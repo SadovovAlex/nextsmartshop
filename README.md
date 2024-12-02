@@ -40,3 +40,20 @@ Warning: For production Image Optimization with Next.js, the optional 'sharp' pa
 Read more: https://nextjs.org/docs/messages/sharp-missing-in-production
 
 yarn add sharp
+
+## output: "standalone"
+In next.config.js
+module.exports = {
+  output: 'standalone',
+}
+
+This will create a folder at .next/standalone which can then be deployed on its own without installing node_modules
+
+This minimal server does not copy the public or .next/static folders by default as these should ideally be handled by a CDN instead, although these folders can be copied to the standalone/public and standalone/.next/static folders manually, after which server.js file will serve these automatically.
+
+To copy these manually, you can use the cp command-line tool after you next build:
+
+cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
+
+To start your minimal server.js file locally, run the following command:
+node .next/standalone/server.js
