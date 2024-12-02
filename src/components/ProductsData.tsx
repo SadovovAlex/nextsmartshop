@@ -24,7 +24,8 @@ const ProductsData = ({ item }: ItemProps) => {
         <Link href={{ pathname: "/product", query: { _id: item?._id } }}>
           <div className="w-full h-76 group overflow-hidden relative">
             <Image
-              src={item?.image}
+              //src={item?.image}
+              src={`/static/products/${item?._id}.png`}
               alt="product image"
               width={800}
               height={400}

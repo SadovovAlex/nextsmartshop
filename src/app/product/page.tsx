@@ -9,11 +9,10 @@ type Props = {
 };
 
 const ProuctPage = async ({ searchParams }: Props) => {
-  const _id = Number(searchParams?._id);
-  const [product, data] = await Promise.all([
-    getSingleProudct(_id),
-    getTrendingProducts(),
-  ]);
+  const _idString = searchParams?._id;
+  const _id = Number(_idString);
+  const product = getSingleProudct(_id);
+  const data = await getTrendingProducts();
 
   return (
     <div>
@@ -22,7 +21,9 @@ const ProuctPage = async ({ searchParams }: Props) => {
         <div>
           <p className="text-xl py-1 font-semibold">У нас еще есть</p>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-            {data?.map((item) => <ProductsData key={item._id} item={item} />)}
+            {data?.map((item: Products) => (
+              <ProductsData key={item._id} item={item} />
+            ))}
           </div>
         </div>
       </Container>

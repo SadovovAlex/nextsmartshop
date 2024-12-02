@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
- output: 'export',
+ //output: 'export',
   images: {
-    unoptimized: true,
+    //unoptimized: true,
     domains: [
       "xn-----6kccstfpfjmicbdprf7c7cl0k6bjc.xn--p1ai",
       "images.pexels.com",
@@ -15,4 +15,9 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
+module.exports = withBundleAnalyzer(nextConfig)
