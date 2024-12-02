@@ -15,7 +15,7 @@ const CartPage = () => {
     <Container>
       {productData.length > 0 ? (
         <Container>
-          <h2 className="text-2xl font-semibold mb-2">Cart</h2>
+          <h2 className="text-2xl font-semibold mb-2">Заказ</h2>
           <div className="flex flex-col gap-5">
             <CartItem />
             <div className="flex items-center justify-end">
@@ -23,7 +23,7 @@ const CartPage = () => {
                 onClick={() => dispatch(resetCart())}
                 className="bg-red-500 text-base font-semibold text-slate-100 py-2 px-6 hover:bg-red-700 hover:text-white duration-200"
               >
-                reset cart
+                 Очистить весь заказ
               </button>
             </div>
             {/* Payment Form */}
@@ -33,11 +33,11 @@ const CartPage = () => {
       ) : (
         <div className="flex flex-col gap-y-6 items-center justify-center bg-white h-96 px-4">
           <p className="border-[1px] border-orange-600 w-full p-2 text-center">
-            Your product cart is currently empty
+            Корзина пустая, добавьте продукты
           </p>
           <Link href={"/"}>
             <button className="bg-darkText text-white py-2 px-6 rounded-md hover:bg-orange-600 duration-200">
-              Return to Shop
+              Вернуться к выбору
             </button>
           </Link>
         </div>

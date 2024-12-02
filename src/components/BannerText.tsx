@@ -29,8 +29,7 @@ const BannerText = ({ title }: Props) => {
           transition={{ duration: 0.6 }}
           className="text-lg text-slate-100"
         >
-          Stock up on sportswear and limited edition collections on our <br />
-          awesome mid-season sale.
+          Натуральное молоко и натуральные продукты из Рязанского края
         </motion.p>
         <motion.div
           initial={{ y: 50, opacity: 0 }}
@@ -38,11 +37,11 @@ const BannerText = ({ title }: Props) => {
           transition={{ duration: 0.7 }}
           className="flex gap-x-4 mt-2"
         >
-          <button className="py-3 px-6 rounded-full bg-slate-200 hover:bg-white duration-200 text-sm uppercase font-semibold" onClick={() => scrollToShop(600)}>
-            Find out more
+          <button className="py-3 px-6 rounded-full bg-slate-200 hover:bg-white duration-200 text-sm uppercase font-semibold" onClick={() => scrollToShop(1100)}>
+            Наша продукция
           </button>
-          <button className="py-3 px-6 rounded-full bg-slate-200 hover:bg-white duration-200 text-sm uppercase font-semibold" onClick={() => scrollToShop(600)}>
-            Shop Now
+          <button className="py-3 px-6 rounded-full bg-slate-200 hover:bg-white duration-200 text-sm uppercase font-semibold" onClick={() => scrollToShop(1100)}>
+            Заказать
           </button>
         </motion.div>
       </Container>

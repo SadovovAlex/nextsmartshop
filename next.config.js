@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+ output: 'export',
   images: {
+    unoptimized: true,
     domains: [
       "xn-----6kccstfpfjmicbdprf7c7cl0k6bjc.xn--p1ai",
       "images.pexels.com",

@@ -8,25 +8,24 @@ import Image from "next/image";
 import BannerText from "./BannerText";
 
 const Banner = () => {
-  const NextArrow = (props: any) => {
-    const { onClick } = props;
+  const NextArrow = (props: { onClick: () => void }) => {
     return (
       <div
         className="p-3 bg-slate-100 hover:text-orange-600 hover:bg-white cursor-pointer duration-200 rounded-full text-2xl flex items-center justify-center z-20 absolute left-2 top-1/2"
-        onClick={onClick}
+        onClick={props.onClick}
       >
-        <PiCaretLeftLight />
+        <PiCaretRightLight />
       </div>
     );
   };
-  const PrevArrow = (props: any) => {
-    const { onClick } = props;
+
+  const PrevArrow = (props: { onClick: () => void }) => {
     return (
       <div
         className="p-3 bg-slate-100 hover:text-orange-600 hover:bg-white cursor-pointer duration-200 rounded-full text-2xl flex items-center justify-center z-20 absolute right-2 top-1/2"
-        onClick={onClick}
+        onClick={props.onClick}
       >
-        <PiCaretRightLight />
+        <PiCaretLeftLight />
       </div>
     );
   };
@@ -37,11 +36,13 @@ const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow onClick={() => {}} />, // Передаем пустую функцию
+    prevArrow: <PrevArrow onClick={() => {}} />, // Передаем пустую функцию
   };
+  
   return (
     <div className="relative">
+{/*    
       <Slider {...settings}>
         <div className="w-full h-full relative">
           <Image
@@ -68,7 +69,8 @@ const Banner = () => {
           />
           <BannerText title="Продукция из натурального молока" />
         </div>
-      </Slider>
+      </Slider> */}
+    
       <div className="absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
     </div>
   );

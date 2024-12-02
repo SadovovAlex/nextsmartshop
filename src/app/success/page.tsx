@@ -7,7 +7,7 @@ const SuccessPage = () => {
     <Container className="flex items-center justify-center py-20">
       <div className="min-h-[400px] flex flex-col items-center justify-center gap-y-5">
         <h2 className="text-4xl font-bold">
-          Your Payment Accepted by smart-shop-vishwa.vercel.app
+          Your Payment Accepted 
         </h2>
         <p>Now you can view your Orders or continue Shopping with us</p>
         <div className="flex items-center gap-x-5">

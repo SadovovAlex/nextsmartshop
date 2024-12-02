@@ -51,10 +51,10 @@ const PaymentForm = () => {
   // =============  Stripe Payment End here ================
   return (
     <div className="w-full bg-white p-4">
-      <h2>Cart Totals</h2>
+      <h2>Состав заказа</h2>
       <div className="border-b-[1px] border-b-slate-300 py-2">
         <div className="max-w-lg flex items-center justify-between">
-          <p className="uppercase font-medium">Subtotal</p>
+          <p className="uppercase font-medium">Заказ</p>
           <p>
             <FormattedPrice amount={totalAmt} />
           </p>
@@ -62,17 +62,17 @@ const PaymentForm = () => {
       </div>
       <div className="border-b-[1px] border-b-slate-300 py-2">
         <div className="max-w-lg flex items-center justify-between">
-          <p className="uppercase font-medium">Shipping</p>
+          <p className="uppercase font-medium">Доставка</p>
           <p>
-            <FormattedPrice amount={20} />
+            <FormattedPrice amount={700} />
           </p>
         </div>
       </div>
       <div className="border-b-[1px] border-b-slate-300 py-2">
         <div className="max-w-lg flex items-center justify-between">
-          <p className="uppercase font-medium">Total Price</p>
+          <p className="uppercase font-medium">Итог</p>
           <p>
-            <FormattedPrice amount={totalAmt + 20} />
+            <FormattedPrice amount={totalAmt + 700} />
           </p>
         </div>
       </div>
@@ -81,15 +81,15 @@ const PaymentForm = () => {
           onClick={handleCheckout}
           className="bg-black text-slate-100 mt-4 py-3 px-6 hover:bg-orange-950 cursor-pointer duration-200"
         >
-          Proceed to checkout
+          Оформить заказ
         </button>
       ) : (
         <div>
           <button className="bg-black text-slate-100 mt-4 py-3 px-6 hover:bg-orange-950 cursor-not-allowed duration-200">
-            Proceed to checkout
+          Оформить заказ
           </button>
           <p className="text-base mt-1 text-red-500 font-semibold animate-bounce">
-            Please login to continue
+            Войдите или зерегистрируйтесь для заказа
           </p>
         </div>
       )}

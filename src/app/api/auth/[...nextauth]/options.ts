@@ -17,20 +17,20 @@ export const options: NextAuthOptions = {
       name: "Credentials",
       credentials: {
         username: {
-          label: "Username",
+          label: "Имя пользователя",
           type: "text",
-          placeholder: "Enter your username",
+          placeholder: "имя при регистрации клиента",
           required: true,
         },
         password: {
-          label: "Password",
+          label: "Пароль",
           type: "password",
-          placeholder: "Enter your password",
+          placeholder: "ваш пароль",
           required: true,
         },
       },
       async authorize(credentials) {
-        const user = { id: "1001", name: "test", password: "test" };
+        const user = { id: "1001", name: "admin", password: "admin" };
         if (
           credentials?.username === user.name &&
           credentials?.password === user.password

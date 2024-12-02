@@ -22,12 +22,12 @@ const ProductsData = ({ item }: ItemProps) => {
     <div className="w-full rounded-lg overflow-hidden">
       <div>
         <Link href={{ pathname: "/product", query: { _id: item?._id } }}>
-          <div className="w-full h-96 group overflow-hidden relative">
+          <div className="w-full h-76 group overflow-hidden relative">
             <Image
               src={item?.image}
               alt="product image"
-              width={500}
-              height={500}
+              width={800}
+              height={400}
               className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
             />
             {item?.isNew && (
@@ -58,7 +58,7 @@ const ProductsData = ({ item }: ItemProps) => {
               onClick={() =>
                 dispatch(addToCart(item)) &&
                 toast.success(
-                  `${item?.title.substring(0, 15)} добавлен в корзину`
+                  `+1 ${item?.title.substring(0, 15)} добавлен в корзину`
                 )
               }
               className="bg-orange-600 px-4 py-2 text-sm tracking-wide rounded-full text-slate-100 hover:bg-orange-800 hover:text-white duration-200"
