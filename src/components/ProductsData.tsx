@@ -59,7 +59,7 @@ const ProductsData = ({ item }: ItemProps) => {
               onClick={() =>
                 dispatch(addToCart(item)) &&
                 toast.success(
-                  `+1 ${item?.title.substring(0, 15)} добавлен в корзину`
+                  `+1 ${item?.title.substring(0, 30)}\nдобавлен в корзину`
                 )
               }
               className="bg-orange-600 px-4 py-2 text-sm tracking-wide rounded-full text-slate-100 hover:bg-orange-800 hover:text-white duration-200"
