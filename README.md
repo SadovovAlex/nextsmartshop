@@ -57,3 +57,7 @@ cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
 
 To start your minimal server.js file locally, run the following command:
 node .next/standalone/server.js
+
+## error `searchParams` should be awaited before using its properties.
+npx @next/codemod@latest next-async-request-api --force
+y
