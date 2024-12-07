@@ -9,7 +9,7 @@ export const productData = [
       "Наше натуральное цельное молоко — это продукт высшего качества, полученный от здоровых коров, которые питаются только натуральными кормами. Это молоко сохраняет все полезные свойства и витамины, что делает его идеальным выбором для всей семьи. Оно обладает насыщенным вкусом и кремовой текстурой, что делает его отличным дополнением к вашему рациону.",
     category: "молоко",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/1.png",
+      "1.png",
     rating: 4,
     quantity: 1,
   },
@@ -23,7 +23,7 @@ export const productData = [
       "Наш йогурт обладает нежной текстурой и насыщенным вкусом, который достигается благодаря традиционным методам ферментации. Он не содержит искусственных добавок и консервантов, что делает его идеальным для всей семьи.",
     category: "кисломолочная",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/2.png",
+      "2.png",
     rating: 3,
     quantity: 1,
   },
@@ -37,7 +37,7 @@ export const productData = [
       "Откройте для себя уникальный вкус и пользу нашего кефира, изготовленного из свежего молока, полученного от лучших фермеров Рязанской области. Этот продукт — идеальный выбор для тех, кто стремится к здоровому образу жизни и ценит натуральные ингредиенты.",
     category: "кисломолочная",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/3.png",
+      "3.png",
     rating: 3,
     quantity: 2,
   },
@@ -51,7 +51,7 @@ export const productData = [
       "Наш мацони обладает кремовой текстурой и легкой кислинкой, что делает его идеальным как для самостоятельного употребления, так и в качестве ингредиента в различных блюдах. Приготовленный по традиционным рецептам, он не содержит искусственных добавок и консервантов.",
     category: "сладкое",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/9.png",
+      "9.png",
     rating: 3,
     quantity: 1,
   },
@@ -65,7 +65,7 @@ export const productData = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
     category: "из молока",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/12.png",
+      "12.png",
     rating: 5,
     quantity: 1,
   },
@@ -79,7 +79,7 @@ export const productData = [
       "Побалуйте себя изысканным десертом с нашей панакотой, приготовленной из натуральных ингредиентов, включая свежие сливки и молоко от местных фермеров Рязанской области. Этот классический итальянский десерт станет настоящим украшением вашего стола и порадует вас своим нежным вкусом.",
     category: "выпечка",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/16.png",
+      "16.png",
     rating: 4,
     quantity: 1,
   },
@@ -93,7 +93,7 @@ export const productData = [
       "Наше масло обладает насыщенным кремовым вкусом и нежной текстурой, что делает его идеальным для приготовления различных блюд, выпечки и намазывания на хлеб. Мы используем только натуральные ингредиенты и традиционные методы производства, чтобы сохранить все полезные свойства и вкус.",
     category: "из молока",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/25.png",
+      "25.png",
     rating: 2,
     quantity: 1,
   },
@@ -107,7 +107,7 @@ export const productData = [
       "Наши блинчики имеют тонкую, нежную текстуру и богатую начинку из отборного мяса, приготовленного с добавлением ароматных специй и свежих овощей. Каждый блинчик завернут с любовью и заботой, чтобы вы могли насладиться настоящим домашним вкусом.",
     category: "к чаю",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/24.png",
+      "24.png",
     rating: 3,
     quantity: 1,
   },
@@ -121,12 +121,13 @@ export const productData = [
       "Чизкейк (киви)",
     category: "women",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/32.png",
+      "32.png",
     rating: 3,
     quantity: 1,
   },
 
 ];
+// Тренды
 export const trendingProducts = [
   {
     _id: 1,
@@ -138,7 +139,7 @@ export const trendingProducts = [
       "Наше натуральное цельное молоко — это продукт высшего качества, полученный от здоровых коров, которые питаются только натуральными кормами. Это молоко сохраняет все полезные свойства и витамины, что делает его идеальным выбором для всей семьи. Оно обладает насыщенным вкусом и кремовой текстурой, что делает его отличным дополнением к вашему рациону.",
     category: "молоко",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/1.png",
+      "1.png",
     rating: 4,
     quantity: 1,
   },
@@ -152,7 +153,7 @@ export const trendingProducts = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
     category: "молоко",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/12.png",
+      "12.png",
     rating: 3,
     quantity: 1,
   },
@@ -166,7 +167,7 @@ export const trendingProducts = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
     category: "молоко",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/15.png",
+      "15.png",
     rating: 3,
     quantity: 1,
   },
@@ -180,7 +181,7 @@ export const trendingProducts = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
     category: "молоко",
     image:
-      "https://молочная-продукция-рязань.рф/img/catalog/16.png",
+      "16.png",
     rating: 3,
     quantity: 1,
   },
