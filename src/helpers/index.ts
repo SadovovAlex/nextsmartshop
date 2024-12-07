@@ -33,7 +33,7 @@ export const calculatePercentage = (oldPrice: any, price: any) => {
     : 0;
 };
 
-export const getSingleProudct = (_id: number) => {
+export const getSingleProduct = (_id: number) => {
   const item = productData.find((product) => product._id === _id);
   return item;
 };

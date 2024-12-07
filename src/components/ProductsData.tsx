@@ -25,11 +25,14 @@ const ProductsData = ({ item }: ItemProps) => {
           <div className="w-full h-76 group overflow-hidden relative">
             <Image
               //src={item?.image}
-              src={`/static/products/${item?._id}.png`}
+              //src={`/static/products/${item?._id}.png`}
+              src={`/static/products/${item?.image}`}
               alt="product image"
               width={800}
               height={400}
               className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
+              //placeholder="blur"
+              //blurDataURL={`/static/products/${item?._id}_blur.png`}
             />
             {item?.isNew && (
               <span className="absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full bg-white group-hover:bg-orange-600 group-hover:text-white duration-200">

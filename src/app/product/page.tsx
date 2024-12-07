@@ -1,17 +1,18 @@
 import Container from "@/components/Container";
-import { getSingleProudct, getTrendingProducts } from "@/helpers";
+import { getSingleProduct, getTrendingProducts } from "@/helpers";
 import { Products } from "../../../type";
 import ProductsData from "@/components/ProductsData";
-import SignleProduct from "@/components/SignleProduct";
+import SignleProduct from "@/components/SingleProduct";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-const ProuctPage = async ({ searchParams }: Props) => {
+const ProuctPage = async (props: Props) => {
+  const searchParams = await props.searchParams;
   const _idString = searchParams?._id;
   const _id = Number(_idString);
-  const product = getSingleProudct(_id);
+  const product = getSingleProduct(_id);
   const data = await getTrendingProducts();
 
   return (

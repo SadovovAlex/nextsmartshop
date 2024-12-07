@@ -14,7 +14,8 @@ const SignleProduct = ({ product }: any) => {
     <div className="grid lg:grid-cols-2 gap-5 bg-white p-4 rounded-lg">
       <div>
         <Image
-          src={product?.image}
+          //src={product?.image}
+          src={`/static/products/${product?.image}`}
           alt="product image"
           width={500}
           height={500}
@@ -40,8 +41,9 @@ const SignleProduct = ({ product }: any) => {
         <div
           onClick={() =>
             dispatch(addToCart(product)) &&
+         
             toast.success(
-              `${product?.title.substring(0, 15)} added successfully!`
+              `+1 ${product?.title.substring(0, 30)}\nдобавлен в корзину`
             )
           }
           className="flex items-center cursor-pointer group"
