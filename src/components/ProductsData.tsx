@@ -1,5 +1,7 @@
 "use client";
 
+//TODO добавить вес продукта и в корзине отобразить вес общий заказа
+
 import Image from "next/image";
 import { ItemProps } from "../../type";
 import { calculatePercentage } from "@/helpers";

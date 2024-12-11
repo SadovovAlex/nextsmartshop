@@ -42,4 +42,26 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  pages: {
+    signIn: '/auth/signin', // Укажите путь к вашей странице входа, если она есть
+  },
+  session: {
+    strategy: "jwt", // Используйте JWT для хранения сессий
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id; // Сохраняем id пользователя в токене
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        // Проверяем, существует ли session.user, если нет, создаем его
+        session.user = session.user || {};
+        session.user.name = token.name; // Добавляем id пользователя в сессию
+      }
+      return session;
+    },
+  },
 };

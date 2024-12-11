@@ -18,13 +18,18 @@ const Footer = () => {
       <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="flex flex-col gap-y-4">
           <Logo />
-          <p>
-          Работаем с розничными магазинами и продуктовыми рынками
-Работаем с оптом на выгодных условиях
-Ветеринарное свидетельство отправляем по Меркурию
-Бесплатная доставка в Москву и Московскую область.
-Дни доставки: пн, вт, чт, пт, сб.
-          </p>
+          <p className="text-base text-gray-700">
+  <span className="font-semibold">Работаем с розничными магазинами и продуктовыми рынками.</span>
+  <br />
+  <span className="font-semibold">Работаем с оптом на выгодных условиях.</span>
+  <br />
+  <span className="font-semibold">Ветеринарное свидетельство отправляем по Меркурию.</span>
+  <br />
+  <span className="font-semibold">Бесплатная доставка в Москву и Московскую область.</span>
+  <br />
+  <span className="font-semibold">Дни доставки:</span> пн, вт, чт, пт, сб.
+</p>
+
           <div className="flex items-center gap-x-4">
             <a href="#" target="_blank">
               <span className="socialLink">
@@ -54,7 +59,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <p className="text-lg">Laset posts</p>
+          <p className="text-lg">События</p>
           <ul className="text-sm font-light mt-2 flex flex-col gap-y-2">
             <li className="flex flex-col">
               <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
@@ -68,22 +73,11 @@ const Footer = () => {
               </span>
               <span className="text-orange-600">Ноябрь 31, 2024</span>
             </li>
-            <li className="flex flex-col">
-              <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
-                Where Music Is Headed Next
-              </span>
-              <span className="text-orange-600">Ноябрь 31, 2024</span>
-            </li>
-            <li className="flex flex-col">
-              <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
-                Where Music Is Headed Next
-              </span>
-              <span className="text-orange-600">Ноябрь 31, 2024</span>
-            </li>
+          
           </ul>
         </div>
         <div>
-          <p className="text-lg">Links</p>
+          <p className="text-lg">Ссылки</p>
           <ul className="text-base font-medium mt-2 flex flex-col gap-y-2">
             <Link href={"/"}>
               <li className="hover:text-orange-500 cursor-pointer duration-200">
@@ -100,14 +94,16 @@ const Footer = () => {
                 О нас
               </li>
             </Link>
-            <Link href="https://vishwa.vercel.app/" target="_blank">
+            <Link href="/contact" target="_blank">
             <li className="hover:text-orange-500 cursor-pointer duration-200">
               Контакты
             </li>
             </Link>
+            <Link href="/news" target="_blank">
             <li className="hover:text-orange-500 cursor-pointer duration-200">
               Новости
             </li>
+            </Link>
           </ul>
         </div>
         <div>
