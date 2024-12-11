@@ -64,5 +64,9 @@ y
 
 ## fix git history
 git filter-branch --force --index-filter "git rm --cached --ignore-unmatch .env.local" --prune-empty --tag-name-filter cat -- --all
+
 git gc --prune=now --aggressive
+
 git push --force
+
+## end
