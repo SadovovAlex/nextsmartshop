@@ -2,11 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Определяем компоненты */
 @layer components {
+  /* Стили для заголовка */
   .headerDiv {
-    @apply bg-bgLight text-gray-500 flex items-center justify-center p-1.5 rounded-full hover:bg-white border-[1px] border-gray-200 hover:border-orange-500 duration-200;
+    @apply 
+      bg-bgLight 
+      text-gray-500 
+      flex 
+      items-center 
+      justify-center 
+      p-1.5 
+      rounded-full 
+      hover:bg-white 
+      border 
+      border-gray-200 
+      hover:border-orange-500 
+      transition 
+      duration-200;
   }
+
+  /* Стили для социальных ссылок */
   .socialLink {
-    @apply bg-slate-100 p-1 text-darkText inline-flex items-center justify-center rounded-md text-lg hover:bg-orange-600 hover:text-white cursor-pointer duration-200;
+    @apply 
+      bg-slate-100 
+      p-2 
+      text-darkText 
+      inline-flex 
+      items-center 
+      justify-center 
+      rounded-md 
+      text-lg 
+      hover:bg-orange-600 
+      hover:text-white 
+      cursor-pointer 
+      transition 
+      duration-200 
+      shadow-md 
+      hover:shadow-lg; /* Добавляем тень при наведении */
+  }
+
+  /* Дополнительные стили для кнопок социальных сетей */
+  .socialLink:hover {
+    @apply 
+      scale-105; /* Увеличиваем размер при наведении */
   }
 }
