@@ -14,6 +14,8 @@ const PaymentForm = () => {
     (state: StateProps) => state?.shopping
   );
   const [totalAmt, setTotalAmt] = useState(0);
+  const [shippingCost, setShippingCost] = useState(2000); // Изначальная стоимость доставки
+
   useEffect(() => {
     let amt = 0;
     productData.map((item: Products) => {
@@ -21,6 +23,13 @@ const PaymentForm = () => {
       return;
     });
     setTotalAmt(amt);
+
+    // Устанавливаем стоимость доставки в зависимости от суммы заказа
+    if (amt > 5000) {
+      setShippingCost(0); // Бесплатная доставка
+    } else {
+      setShippingCost(2000); // Стоимость доставки 2000
+    }
   }, [productData]);
 
   // =============  Stripe Payment Start here ==============
@@ -49,6 +58,7 @@ const PaymentForm = () => {
     }
   };
   // =============  Stripe Payment End here ================
+
   return (
     <div className="w-full bg-white p-4">
       <h2>Состав заказа</h2>
@@ -61,18 +71,22 @@ const PaymentForm = () => {
         </div>
       </div>
       <div className="border-b-[1px] border-b-slate-300 py-2">
-        <div className="max-w-lg flex items-center justify-between">
-          <p className="uppercase font-medium">Доставка</p>
-          <p>
-            <FormattedPrice amount={700} />
-          </p>
-        </div>
-      </div>
+  <div className="max-w-lg flex items-center justify-between">
+    <p className="uppercase font-medium">Доставка</p>
+    <p>
+      <FormattedPrice amount={shippingCost} />
+    </p>
+  </div>
+  {shippingCost > 0 && (
+    <p className="text-sm text-green-500 mt-1">Бесплатная доставка при заказе от 5000</p>
+  )}
+</div>
+
       <div className="border-b-[1px] border-b-slate-300 py-2">
         <div className="max-w-lg flex items-center justify-between">
           <p className="uppercase font-medium">Итог</p>
           <p>
-            <FormattedPrice amount={totalAmt + 700} />
+            <FormattedPrice amount={totalAmt + shippingCost} />
           </p>
         </div>
       </div>
@@ -86,10 +100,10 @@ const PaymentForm = () => {
       ) : (
         <div>
           <button className="bg-black text-slate-100 mt-4 py-3 px-6 hover:bg-orange-950 cursor-not-allowed duration-200">
-          Оформить заказ
+            Оформить заказ
           </button>
           <p className="text-base mt-1 text-red-500 font-semibold animate-bounce">
-            Войдите или зерегистрируйтесь для заказа
+            Войдите или зарегистрируйтесь для заказа
           </p>
         </div>
       )}
