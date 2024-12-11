@@ -63,7 +63,7 @@ npx @next/codemod@latest next-async-request-api --force
 y
 
 ## fix git history
-
+For Example remove file .env.local from git history
 ```bash
 git filter-branch --force --index-filter "git rm --cached --ignore-unmatch .env.local" --prune-empty --tag-name-filter cat -- --all
 git gc --prune=now --aggressive
