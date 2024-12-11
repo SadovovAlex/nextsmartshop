@@ -27,7 +27,7 @@ const PaymentForm = () => {
    
     // Устанавливаем стоимость доставки в зависимости от суммы заказа
     const shippingThreshold = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_THRESHOLD || "5000");
-    const shippingCostValue = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "2000");
+    const shippingCostValue = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "10000");
 
     if (amt > shippingThreshold) {
       setShippingCost(0); // Бесплатная доставка
