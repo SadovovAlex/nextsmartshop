@@ -15,7 +15,7 @@ const Banner = () => {
         onClick={props.onClick}
       >
         <PiCaretRightLight />
-      </div>
+      </div> 
     );
   };
 
