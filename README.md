@@ -61,3 +61,8 @@ node .next/standalone/server.js
 ## error `searchParams` should be awaited before using its properties.
 npx @next/codemod@latest next-async-request-api --force
 y
+
+## fix git history
+git filter-branch --force --index-filter "git rm --cached --ignore-unmatch .env.local" --prune-empty --tag-name-filter cat -- --all
+git gc --prune=now --aggressive
+git push --force
