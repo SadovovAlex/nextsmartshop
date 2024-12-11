@@ -36,7 +36,7 @@ const CartItem = () => {
                 <AiOutlineClose />
               </span>
               <Image
-                src={item?.image}
+                src={`/static/products/${item?.image}`}
                 width={500}
                 height={500}
                 alt="product image"
