@@ -14,7 +14,7 @@ const PaymentForm = () => {
     (state: StateProps) => state?.shopping
   );
   const [totalAmt, setTotalAmt] = useState(0);
-  const [shippingCost, setShippingCost] = useState(2000); // Изначальная стоимость доставки
+  const [shippingCost, setShippingCost] = useState(10000); // Изначальная стоимость доставки
 
   useEffect(() => {
     let amt = 0;
@@ -24,11 +24,15 @@ const PaymentForm = () => {
     });
     setTotalAmt(amt);
 
+   
     // Устанавливаем стоимость доставки в зависимости от суммы заказа
-    if (amt > 5000) {
+    const shippingThreshold = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_THRESHOLD || "5000");
+    const shippingCostValue = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "2000");
+
+    if (amt > shippingThreshold) {
       setShippingCost(0); // Бесплатная доставка
     } else {
-      setShippingCost(2000); // Стоимость доставки 2000
+      setShippingCost(shippingCostValue); // Стоимость доставки
     }
   }, [productData]);
 
