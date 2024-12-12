@@ -8,17 +8,17 @@ import BannerText from "./BannerText";
 const Banner = () => {
   const banners = [
     { image: bannerone, alt: 'Молочная ферма Шуваловых', title: 'Молочная ферма Шуваловых' },
-    { image: bannertwo, alt: 'Сезонные товары', title: 'Сезонные товары' },
+    { image: bannertwo, alt: 'Сезонные товары', title: 'Выпечка и творог' },
     { image: bannerthree, alt: 'Продукция из натурального молока', title: 'Продукция из натурального молока' },
   ];
 
-  // Выберите индекс баннера, который хотите отобразить
-  const currentBannerIndex = 0; // Измените на 1 или 2 для других изображений
-  const currentBanner = banners[currentBannerIndex];
+ // Генерация случайного индекса баннера
+ const currentBannerIndex = Math.floor(Math.random() * banners.length);
+ const currentBanner = banners[currentBannerIndex];
 
   return (
     <div className="relative">
-      <div className="w-full h-full relative">
+      <div className="w-full h-80 relative">
         <Image
           src={currentBanner.image}
           alt={currentBanner.alt}
