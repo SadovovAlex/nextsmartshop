@@ -7,7 +7,12 @@ import { PiCaretLeftLight, PiCaretRightLight } from "react-icons/pi";
 import Image from "next/image";
 import BannerText from "./BannerText";
 
-const Arrow = ({ direction, onClick }) => {
+interface ArrowProps {
+  direction: "next" | "prev";
+  onClick: () => void;
+}
+
+const Arrow: React.FC<ArrowProps> = ({ direction, onClick }) => {
   const isNext = direction === "next";
   const Icon = isNext ? PiCaretRightLight : PiCaretLeftLight;
 
@@ -29,34 +34,36 @@ const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    nextArrow: <Arrow direction="next" />,
-    prevArrow: <Arrow direction="prev" />,
+    nextArrow: <Arrow direction="next" onClick={() => {}} />,
+    prevArrow: <Arrow direction="prev" onClick={() => {}} />,
   };
 
   const banners = [
-    { image: bannerone, alt: 'bannerone', title: 'Молочная ферма Шуваловых' },
-    { image: bannertwo, alt: 'bannertwo', title: 'Сезонные товары' },
-    { image: bannerthree, alt: 'bannerthree', title: 'Продукция из натурального молока' },
+    { image: bannerone, alt: 'Молочная ферма Шуваловых', title: 'Молочная ферма Шуваловых' },
+    { image: bannertwo, alt: 'Сезонные товары', title: 'Сезонные товары' },
+    { image: bannerthree, alt: 'Продукция из натурального молока', title: 'Продукция из натурального молока' },
   ];
 
   return (
     <div className="relative">
       <Slider {...settings}>
-        {banners.map((banner, index) => (
-          <div key={index} className="w-full h-full relative">
-            <Image
-              src={banner.image}
-              alt={banner.alt}
-              className="w-full h-full object-cover"
-              priority={index === 0} // Устанавливаем priority для первого изображения
-            />
-            <BannerText title={banner.title} />
-          </div>
-        ))}
-      </Slider>
-      <div className="absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
-    </div>
-  );
+      
+
+{banners.map((banner, index) => (
+  <div key={index} className="w-full h-full relative">
+    <Image
+      src={banner.image}
+      alt={banner.alt}
+      className="w-full h-full object-cover"
+      priority={index === 0} // Устанавливаем priority для первого изображения
+    />
+    <BannerText title={banner.title} />
+  </div>
+))}
+</Slider>
+<div className="absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
+</div>
+);
 };
 
 export default Banner;
