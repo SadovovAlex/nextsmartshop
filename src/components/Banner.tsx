@@ -44,7 +44,7 @@ const Banner = () => {
     { image: bannerthree, alt: 'Продукция из натурального молока', title: 'Продукция из натурального молока' },
   ];
 
-  return (
+  return (/*
     <div className="relative">
       <Slider {...settings}>
       
@@ -61,9 +61,12 @@ const Banner = () => {
   </div>
 ))}
 </Slider>
+*/
 <div className="absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
-</div>
+//</div>
+
 );
+
 };
 
 export default Banner;
