@@ -29,8 +29,8 @@ export const getTrendingProducts = async () => {
 
 export const calculatePercentage = (oldPrice: any, price: any) => {
   return !!parseFloat(price) && !!parseFloat(oldPrice)
-    ? (100 - (oldPrice / price) * 100).toFixed(0)
-    : 0;
+    ? (100 - ( price / oldPrice) * 100).toFixed(0)
+    : "0";
 };
 
 export const getSingleProduct = (_id: number) => {
