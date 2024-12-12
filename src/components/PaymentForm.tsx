@@ -75,17 +75,17 @@ const PaymentForm = () => {
         </div>
       </div>
       <div className="border-b-[1px] border-b-slate-300 py-2">
-  <div className="max-w-lg flex items-center justify-between">
-    <p className="uppercase font-medium">Доставка</p>
-    <p>
-      <FormattedPrice amount={shippingCost} />
-    </p>
-  </div>
-  {shippingCost > 0 && (
-    <p className="text-sm text-green-500 mt-1">Бесплатная доставка при заказе от 5000</p>
-  )}
-</div>
-
+        <div className="max-w-lg flex items-center justify-between">
+          <p className="uppercase font-medium">Доставка</p>
+          <p>
+            <FormattedPrice amount={shippingCost} />
+          </p>
+        </div>
+        {shippingCost > 0 && (
+          <p className="text-sm text-green-500 mt-1">Бесплатная доставка при заказе от 5000</p>
+        )}
+      </div>
+  
       <div className="border-b-[1px] border-b-slate-300 py-2">
         <div className="max-w-lg flex items-center justify-between">
           <p className="uppercase font-medium">Итог</p>
@@ -94,6 +94,7 @@ const PaymentForm = () => {
           </p>
         </div>
       </div>
+      
       {userInfo ? (
         <button
           onClick={handleCheckout}
@@ -107,12 +108,22 @@ const PaymentForm = () => {
             Оформить заказ
           </button>
           <p className="text-base mt-1 text-red-500 font-semibold animate-bounce">
-            Войдите или зарегистрируйтесь для заказа
+            Войдите или зарегистрируйтесь для оформления заказа
           </p>
-        </div>
+        </div>              
       )}
+  
+      {/* Новая кнопка "отправить запрос и мы перезвоним" */}
+      <button
+        //onClick={} // Функция для обработки нажатия кнопки
+        className="bg-blue-500 text-white mt-4 py-3 px-6 hover:bg-blue-700 cursor-pointer duration-200"
+      >
+        Отправить запрос и мы перезвоним
+      </button>
     </div>
   );
+  
+
 };
 
 export default PaymentForm;

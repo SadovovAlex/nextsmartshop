@@ -18,17 +18,18 @@ const Footer = () => {
       <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="flex flex-col gap-y-4">
           <Logo />
-          <p className="text-base text-gray-700">
-  <span className="font-semibold">Работаем с розничными магазинами и продуктовыми рынками.</span>
+          <p className="text-base text-gray-600 transition duration-300 ease-in-out hover:text-gray-100">
+  <span className="font-semibold animate-fadeIn">Работаем с розничными магазинами и продуктовыми рынками.</span>
   <br />
-  <span className="font-semibold">Работаем с оптом на выгодных условиях.</span>
+  <span className="font-semibold animate-fadeIn">Работаем с оптом на выгодных условиях.</span>
   <br />
-  <span className="font-semibold">Ветеринарное свидетельство отправляем по Меркурию.</span>
+  <span className="font-semibold animate-fadeIn">Ветеринарное свидетельство отправляем по Меркурию.</span>
   <br />
-  <span className="font-semibold">Бесплатная доставка в Москву и Московскую область.</span>
+  <span className="font-semibold animate-fadeIn">Бесплатная доставка в Москву и Московскую область.</span>
   <br />
   <span className="font-semibold">Дни доставки:</span> пн, вт, чт, пт, сб.
 </p>
+
 
           <div className="flex items-center gap-x-4">
             <a href="#" target="_blank">
@@ -63,19 +64,19 @@ const Footer = () => {
           <ul className="text-sm font-light mt-2 flex flex-col gap-y-2">
             <li className="flex flex-col">
               <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
-                Where Music Is Headed Next
+                Молочный фестиваль 2024
               </span>
-              <span className="text-orange-600">Ноябрь 31, 2024</span>
+              <span className="text-orange-600">Август 15, 2024</span>
             </li>
             <li className="flex flex-col">
               <span className="text-slate hover:text-orange-600 cursor-pointer duration-200">
-                Where Music Is Headed Next
+                Вебинар: Польза молока для здоровья
               </span>
-              <span className="text-orange-600">Ноябрь 31, 2024</span>
+              <span className="text-orange-600">Сентябрь 10, 2024</span>
             </li>
-          
           </ul>
         </div>
+
         <div>
           <p className="text-lg">Ссылки</p>
           <ul className="text-base font-medium mt-2 flex flex-col gap-y-2">
@@ -94,15 +95,10 @@ const Footer = () => {
                 О нас
               </li>
             </Link>
-            <Link href="/contact" target="_blank">
-            <li className="hover:text-orange-500 cursor-pointer duration-200">
-              Контакты
-            </li>
-            </Link>
             <Link href="/news" target="_blank">
-            <li className="hover:text-orange-500 cursor-pointer duration-200">
-              Новости
-            </li>
+              <li className="hover:text-orange-500 cursor-pointer duration-200">
+                Новости
+              </li>
             </Link>
           </ul>
         </div>
