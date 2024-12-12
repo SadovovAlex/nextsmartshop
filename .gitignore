@@ -39,4 +39,5 @@ next-env.d.ts
 .env.local
 
 .env.local
-build-standalone.cmd
+
+release.zip
