@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import Logo from "./Logo";
-import testUserImage from "../../public/user.png"
+import testUserImage from "../../public/user.png";
 import { IoMdCart } from "react-icons/io";
 import { FiSearch, FiLogOut } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
@@ -52,13 +52,17 @@ const Header = () => {
       <Container className="h-full flex items-center md:gap-x-5 justify-between md:justify-start">
         <Logo />
         {/* Search Field */}
-        <div className="w-full bg-white hidden md:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
+        <div className="w-1/3 bg-white hidden md:flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-2 py-1.5 focus-within:border-orange-600 group">
           <FiSearch className="text-gray-500 group-focus-within:text-darkText duration-200" />
           <input
             type="text"
             placeholder="поиск продуктов"
             className="placeholder:text-sm flex-1 outline-none"
           />
+        </div>
+        {/* Phone Number */}
+        <div className="hidden md:flex items-center text-sm font-semibold text-gray-700">
+          <p>Телефон: 8-995-963-00-40</p>
         </div>
         {/* Login/Register */}
         {!session && (
@@ -82,8 +86,8 @@ const Header = () => {
         {/* user Image */}
         {session && (
           <Image
-          src={session?.user?.image as string || testUserImage }
-          alt="user image"
+            src={session?.user?.image as string || testUserImage}
+            alt="user image"
             width={50}
             height={50}
             className="rounded-full object-cover"
@@ -101,17 +105,18 @@ const Header = () => {
         )}
         {/* Logout button */}
         {session && (
-          <div
-            onClick={() => signOut()}
-            className="headerDiv px-2 gap-x-1 cursor-pointer"
-          >
-            <FiLogOut className="text-2xl" />
-            <p className="text-sm font-semibold">Выход</p>
-          </div>
-        )}
-      </Container>
-    </div>
-  );
-};
-
-export default Header;
+                    <div
+                    onClick={() => signOut()}
+                    className="headerDiv px-2 gap-x-1 cursor-pointer"
+                  >
+                    <FiLogOut className="text-2xl" />
+                    <p className="text-sm font-semibold">Выход</p>
+                  </div>
+                )}
+              </Container>
+            </div>
+          );
+        };
+        
+        export default Header;
+        

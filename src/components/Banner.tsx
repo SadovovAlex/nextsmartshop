@@ -7,70 +7,53 @@ import { PiCaretLeftLight, PiCaretRightLight } from "react-icons/pi";
 import Image from "next/image";
 import BannerText from "./BannerText";
 
-const Banner = () => {
-  const NextArrow = (props: { onClick: () => void }) => {
-    return (
-      <div
-        className="p-3 bg-slate-100 hover:text-orange-600 hover:bg-white cursor-pointer duration-200 rounded-full text-2xl flex items-center justify-center z-20 absolute left-2 top-1/2"
-        onClick={props.onClick}
-      >
-        <PiCaretRightLight />
-      </div> 
-    );
-  };
+const Arrow = ({ direction, onClick }) => {
+  const isNext = direction === "next";
+  const Icon = isNext ? PiCaretRightLight : PiCaretLeftLight;
 
-  const PrevArrow = (props: { onClick: () => void }) => {
-    return (
-      <div
-        className="p-3 bg-slate-100 hover:text-orange-600 hover:bg-white cursor-pointer duration-200 rounded-full text-2xl flex items-center justify-center z-20 absolute right-2 top-1/2"
-        onClick={props.onClick}
-      >
-        <PiCaretLeftLight />
-      </div>
-    );
-  };
-  var settings = {
+  return (
+    <div
+      className={`p-3 bg-slate-100 hover:text-orange-600 hover:bg-white cursor-pointer duration-200 rounded-full text-2xl flex items-center justify-center z-20 absolute ${isNext ? 'left-2' : 'right-2'} top-1/2`}
+      onClick={onClick}
+    >
+      <Icon />
+    </div>
+  );
+};
+
+const Banner = () => {
+  const settings = {
     dots: false,
     infinite: true,
     autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    nextArrow: <NextArrow onClick={() => {}} />, // Передаем пустую функцию
-    prevArrow: <PrevArrow onClick={() => {}} />, // Передаем пустую функцию
+    nextArrow: <Arrow direction="next" />,
+    prevArrow: <Arrow direction="prev" />,
   };
-  
+
+  const banners = [
+    { image: bannerone, alt: 'bannerone', title: 'Молочная ферма Шуваловых' },
+    { image: bannertwo, alt: 'bannertwo', title: 'Сезонные товары' },
+    { image: bannerthree, alt: 'bannerthree', title: 'Продукция из натурального молока' },
+  ];
+
   return (
     <div className="relative">
-{/*    
       <Slider {...settings}>
-        <div className="w-full h-full relative">
-          <Image
-            src={bannerone}
-            alt="bannerone"
-            className="w-full h-full relative"
-            priority
-          />
-          <BannerText title="Молочная ферма Шуваловых" />
-        </div>
-        <div className="w-full h-full relative">
-          <Image
-            src={bannertwo}
-            alt="bannertwo"
-            className="w-full h-full relative"
-          />
-          <BannerText title="Сезонные товары" />
-        </div>
-        <div className="w-full h-full relative">
-          <Image
-            src={bannerthree}
-            alt="bannerthree"
-            className="w-full h-full relative"
-          />
-          <BannerText title="Продукция из натурального молока" />
-        </div>
-      </Slider> */}
-    
+        {banners.map((banner, index) => (
+          <div key={index} className="w-full h-full relative">
+            <Image
+              src={banner.image}
+              alt={banner.alt}
+              className="w-full h-full object-cover"
+              priority={index === 0} // Устанавливаем priority для первого изображения
+            />
+            <BannerText title={banner.title} />
+          </div>
+        ))}
+      </Slider>
       <div className="absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
     </div>
   );
