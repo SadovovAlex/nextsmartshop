@@ -9,18 +9,28 @@ import { AiOutlineUser } from "react-icons/ai";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { Products, StateProps } from "../../type";
+import { ProductsStruct, StateProps } from "../../type";
 import FormattedPrice from "./FormattedPrice";
 import Link from "next/link";
 import { addUser, deleteUser } from "@/redux/shoppingSlice";
 import { BsBookmarks } from "react-icons/bs";
+// Define the props type for the Header component
+interface HeaderProps {
+  onSearch: (searchTerm: string) => void; // Define the type for onSearch
+}
 
-const Header = () => {
-  const dispatch = useDispatch();
+const Header: React.FC<HeaderProps> = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
   const { data: session } = useSession();
-  const { productData, orderData } = useSelector(
-    (state: StateProps) => state.shopping
-  );
+  const dispatch = useDispatch();
+  const productData = useSelector((state: StateProps) => state.shopping.productData);
+  const orderData = useSelector((state: StateProps) => state.shopping.orderData);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(`change: ${e.target.value}`)
+    setSearchTerm(e.target.value);
+    onSearch(e.target.value); // Pass the search value to the parent component
+  };
 
   useEffect(() => {
     if (session) {
@@ -40,7 +50,7 @@ const Header = () => {
 
   useEffect(() => {
     let amt = 0;
-    productData.map((item: Products) => {
+    productData.map((item: ProductsStruct) => {
       amt += item.price * item.quantity;
       return;
     });
@@ -58,6 +68,8 @@ const Header = () => {
             type="text"
             placeholder="поиск продуктов"
             className="placeholder:text-sm flex-1 outline-none"
+            value={searchTerm}
+            onChange={handleSearchChange} // Обработчик изменения
           />
         </div>
         {/* Phone Number */}

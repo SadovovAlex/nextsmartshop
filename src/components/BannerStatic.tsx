@@ -13,7 +13,8 @@ const Banner = () => {
   ];
 
  // Генерация случайного индекса баннера
- const currentBannerIndex = Math.floor(Math.random() * banners.length);
+ //const currentBannerIndex = Math.floor(Math.random() * banners.length);
+ const currentBannerIndex = 1
  const currentBanner = banners[currentBannerIndex];
 
   return (

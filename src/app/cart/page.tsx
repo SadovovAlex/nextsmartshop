@@ -15,6 +15,14 @@ const CartPage = () => {
     <Container>
       {productData.length > 0 ? (
         <Container>
+          {/* Кнопка "Назад" */}
+          <div className="mb-4">
+            <Link href={"/"}>
+              <button className="bg-darkText text-white py-2 px-6 rounded-md hover:bg-orange-600 duration-200">
+                На главную
+              </button>
+            </Link>
+          </div>
           <h2 className="text-2xl font-semibold mb-2">Заказ</h2>
           <div className="flex flex-col gap-5">
             <CartItem />
@@ -23,7 +31,7 @@ const CartPage = () => {
                 onClick={() => dispatch(resetCart())}
                 className="bg-red-500 text-base font-semibold text-slate-100 py-2 px-6 hover:bg-red-700 hover:text-white duration-200"
               >
-                 Очистить весь заказ
+                Очистить весь заказ
               </button>
             </div>
             {/* Payment Form */}

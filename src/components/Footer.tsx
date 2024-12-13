@@ -11,25 +11,23 @@ import Container from "./Container";
 import Logo from "./Logo";
 import Link from "next/link";
 import Image from "next/image";
-
 const Footer = () => {
   return (
     <div className="w-full bg-darkText text-slate-100">
-      <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         <div className="flex flex-col gap-y-4">
           <Logo />
           <p className="text-base text-gray-600 transition duration-300 ease-in-out hover:text-gray-100">
-  <span className="font-semibold animate-fadeIn">Работаем с розничными магазинами и продуктовыми рынками.</span>
-  <br />
-  <span className="font-semibold animate-fadeIn">Работаем с оптом на выгодных условиях.</span>
-  <br />
-  <span className="font-semibold animate-fadeIn">Ветеринарное свидетельство отправляем по Меркурию.</span>
-  <br />
-  <span className="font-semibold animate-fadeIn">Бесплатная доставка в Москву и Московскую область.</span>
-  <br />
-  <span className="font-semibold">Дни доставки:</span> пн, вт, чт, пт, сб.
-</p>
-
+            <span className="font-semibold animate-fadeIn">Работаем с розничными магазинами и продуктовыми рынками.</span>
+            <br />
+            <span className="font-semibold animate-fadeIn">Опт на выгодных условиях.</span>
+            <br />
+            <span className="font-semibold animate-fadeIn">Ветеринарное свидетельство отправляем по Меркурию.</span>
+            <br />
+            <span className="font-semibold animate-fadeIn">Бесплатная доставка в Москву и Московскую область, при определенной сумме заказа.</span>
+            <br />
+            <span className="font-semibold">Дни доставки:</span> пн, вт, чт, пт, сб.
+          </p>
 
           <div className="flex items-center gap-x-4">
             <a href="#" target="_blank">
@@ -101,14 +99,6 @@ const Footer = () => {
               </li>
             </Link>
           </ul>
-        </div>
-        <div>
-          <p className="text-lg mb-2">Оплата</p>
-          <Image
-            src={payment}
-            alt="payment banner image"
-            className="w-full h-10 object-cover"
-          />
         </div>
       </Container>
       <footer className="bg-neutral-200 text-center lg:text-left dark:bg-neutral-700">
