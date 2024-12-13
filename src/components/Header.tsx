@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   const orderData = useSelector((state: StateProps) => state.shopping.orderData);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(`change: ${e.target.value}`)
+    //console.log(`change: ${e.target.value}`)
     setSearchTerm(e.target.value);
     onSearch(e.target.value); // Pass the search value to the parent component
   };

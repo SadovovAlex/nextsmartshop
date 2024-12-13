@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { Products } from "../../../../type";
+import { ProductsStruct } from "../../../../type";
 import Stripe from "stripe";
 
 export const POST = async (request: NextRequest) => {
@@ -9,7 +9,7 @@ export const POST = async (request: NextRequest) => {
     const reqBody = await request.json();
     const { items, email } = await reqBody;
 
-    const extractingItems = await items.map((item: Products) => ({
+    const extractingItems = await items.map((item: ProductsStruct) => ({
       quantity: item.quantity,
       price_data: {
         currency: "inr",

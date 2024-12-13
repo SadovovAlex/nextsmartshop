@@ -7,10 +7,21 @@ import CartItem from "@/components/CartItem";
 import { resetCart } from "@/redux/shoppingSlice";
 import PaymentForm from "@/components/PaymentForm";
 import Link from "next/link";
+import { useState } from "react";
+import SubmitOrderForm from "@/components/SubmitOrderForm";
 
 const CartPage = () => {
   const { productData } = useSelector((state: StateProps) => state?.shopping);
   const dispatch = useDispatch();
+  
+  // Состояние для управления видимостью формы
+  const [isFormVisible, setFormVisible] = useState(false);
+  
+  // Обработчик для открытия формы
+  const handleOpenForm = () => {
+    setFormVisible(true);
+  };
+
   return (
     <Container>
       {productData.length > 0 ? (
@@ -23,6 +34,7 @@ const CartPage = () => {
               </button>
             </Link>
           </div>
+          {/* заказы */}
           <h2 className="text-2xl font-semibold mb-2">Заказ</h2>
           <div className="flex flex-col gap-5">
             <CartItem />
@@ -34,8 +46,14 @@ const CartPage = () => {
                 Очистить весь заказ
               </button>
             </div>
+
             {/* Payment Form */}
             <PaymentForm />
+
+            {/* SubmitOrderForm Form */}
+            <SubmitOrderForm />
+
+
           </div>
         </Container>
       ) : (

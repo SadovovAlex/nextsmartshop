@@ -26,7 +26,7 @@ const [searchTerm, setSearchTerm] = useState(""); // Исправлено: ис�
 const handleSearch = (term: string) => {
   setSearchTerm(term);
   // Здесь вы можете добавить дополнительную логику для обработки поиска
-  console.log("Searching for:", term);
+  //console.log("Searching for:", term);
 };
 
   return (

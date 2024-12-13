@@ -1,6 +1,6 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
-import { Products, StateProps } from "../../type";
+import { ProductsStruct, StateProps } from "../../type";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import FormattedPrice from "./FormattedPrice";
@@ -17,7 +17,7 @@ const OrderDetails = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   useEffect(() => {
     let amt = 0;
-    orderData?.order?.map((item: Products) => {
+    orderData?.order?.map((item: ProductsStruct) => {
       amt += item.price * item.quantity;
       return;
     });
@@ -35,7 +35,7 @@ const OrderDetails = () => {
             <p className="flex items-center justify-center">Amount</p>
           </div>
           <div className="py-2 flex flex-col justify-center gap-2">
-            {orderData?.order?.map((item: Products) => (
+            {orderData?.order?.map((item: ProductsStruct) => (
               <div
                 key={item?._id}
                 className="py-2 border-b-[1px] border-gray-300 grid grid-cols-7 items-center"

@@ -25,13 +25,13 @@ const Products: React.FC<ProductsProps> = ({ searchTerm }) => {
     const isMatch = item.title.toLowerCase().includes(searchTerm.toLowerCase());
     
     // Логирование фильтрации
-    console.log(`Filtering product: ${item.title}, filter '${searchTerm.toLowerCase()}', Match: ${isMatch}`);
+    //console.log(`Filtering product: ${item.title}, filter '${searchTerm.toLowerCase()}', Match: ${isMatch}`);
     
     return isMatch;
   });
 
   // Логирование общего количества отфильтрованных продуктов
-  console.log(`Total filtered products: ${filteredProducts.length}`);
+  //console.log(`Total filtered products: ${filteredProducts.length}`);
 
   return (
     <Container className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 -mt-10">

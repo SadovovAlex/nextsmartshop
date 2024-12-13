@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Products, StateProps } from "../../type";
+import { ProductsStruct, StateProps } from "../../type";
 import FormattedPrice from "./FormattedPrice";
 import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
@@ -18,7 +18,7 @@ const PaymentForm = () => {
 
   useEffect(() => {
     let amt = 0;
-    productData.map((item: Products) => {
+    productData.map((item: ProductsStruct) => {
       amt += item.price * item.quantity;
       return;
     });
@@ -113,13 +113,7 @@ const PaymentForm = () => {
         </div>              
       )}
   
-      {/* Новая кнопка "отправить запрос и мы перезвоним" */}
-      <button
-        //onClick={} // Функция для обработки нажатия кнопки
-        className="bg-blue-500 text-white mt-4 py-3 px-6 hover:bg-blue-700 cursor-pointer duration-200"
-      >
-        Отправить запрос и мы перезвоним
-      </button>
+     
     </div>
   );
   
