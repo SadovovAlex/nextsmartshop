@@ -1,6 +1,7 @@
 "use client";
 
-
+import { useDispatch, useSelector } from "react-redux";
+import { resetCart } from "@/redux/shoppingSlice";
 import { useEffect, useState } from "react";
 
 
@@ -12,6 +13,8 @@ const SubmitOrderForm = () => {
  const handleOpenForm = () => {
    setFormVisible(true);
  };
+
+ const dispatch = useDispatch();
 
   return (
     <div>  
@@ -29,7 +32,7 @@ const SubmitOrderForm = () => {
                 {/* Форма ввода имени и телефона */}
                 {isFormVisible && (
                   <div className="mt-4">
-                    <h3 className="text-lg font-semibold mb-2">Введите ваши данные</h3>
+                    <h3 className="text-lg font-semibold mb-2">Введите ваши контактные данные, мы вам перезвоним по этому заказу.</h3>
                     <form className="flex flex-col gap-2">
                       <input
                         type="text"
@@ -45,6 +48,7 @@ const SubmitOrderForm = () => {
                       />
                       <button
                         type="submit"
+                        onClick={() => dispatch(resetCart())}
                         className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 duration-200"
                       >
                         Отправить

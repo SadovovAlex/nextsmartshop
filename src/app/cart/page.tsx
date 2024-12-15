@@ -7,20 +7,11 @@ import CartItem from "@/components/CartItem";
 import { resetCart } from "@/redux/shoppingSlice";
 import PaymentForm from "@/components/PaymentForm";
 import Link from "next/link";
-import { useState } from "react";
 import SubmitOrderForm from "@/components/SubmitOrderForm";
 
 const CartPage = () => {
   const { productData } = useSelector((state: StateProps) => state?.shopping);
   const dispatch = useDispatch();
-  
-  // Состояние для управления видимостью формы
-  const [isFormVisible, setFormVisible] = useState(false);
-  
-  // Обработчик для открытия формы
-  const handleOpenForm = () => {
-    setFormVisible(true);
-  };
 
   return (
     <Container>
