@@ -22,7 +22,7 @@ const ProductPage = async (props: Props) => {
   return (
     <div>
       <Container>
-      <Header />
+    
         {/* Кнопка "Назад" */}
         <div className="mb-4">
           <Link href={"/"}>
