@@ -9,6 +9,10 @@ import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
 
 const SignleProduct = ({ product }: any) => {
+  
+  // Выводим product в консоль
+  //console.log('SignleProduct=', product?.image);
+
   const dispatch = useDispatch();
   return (
     <div className="grid lg:grid-cols-2 gap-5 bg-white p-4 rounded-lg">
@@ -32,10 +36,13 @@ const SignleProduct = ({ product }: any) => {
         <p className="text-lightText">{product?.description}</p>
         <div className="text-sm text-lightText flex flex-col">
           <span>
-            SKU: <span className="text-darkText">{product?._id}</span>
+            #: <span className="text-darkText">{product?._id}</span>
           </span>
           <span>
-            Category: <span className="text-darkText">{product?.category}</span>
+            Категория: <span className="text-darkText">{product?.category}</span>
+          </span>
+          <span>
+            Состав: <span className="text-darkText">{product?.ingredients}</span>
           </span>
         </div>
         <div
@@ -57,7 +64,7 @@ const SignleProduct = ({ product }: any) => {
         </div>
         <p className="flex items-center gap-x-2 text-sm">
           <MdFavoriteBorder className="text-xl" />
-          Add to wishlist
+          Добавить в избранное
         </p>
       </div>
       <Toaster />

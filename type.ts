@@ -10,6 +10,7 @@ export interface ProductsStruct {
   image: string;
   rating: number;
   quantity: number;
+  ingredients: string,
 }
 
 export interface ItemProps {
