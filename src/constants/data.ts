@@ -572,6 +572,201 @@ export const productData = [
   rating: 2,
   quantity: 1,
 },
+{
+  _id: 39,
+  title: "Желе ваниль с клубникой",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "уп.",
+  description:
+    "",
+  category: "из молока",
+  image:
+    "38.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 40,
+  title: "Желе ваниль с малиной",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "уп.",
+  description:
+    "",
+  category: "из молока",
+  image:
+    "39.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 41,
+  title: "Желе манго с малиной",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "уп.",
+  description:
+    "",
+  category: "из молока",
+  image:
+    "50.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 42,
+  title: "Желе киви с клубникой",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "уп.",
+  description:
+    "",
+  category: "из молока",
+  image:
+    "41.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 43,
+  title: "Запеканка со смородиной",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "кг.",
+  description:
+    "",
+  category: "выпечка",
+  image:
+    "42.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 44,
+  title: "Запеканка персики",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "кг.",
+  description:
+    "",
+  category: "выпечка",
+  image:
+    "43.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 45,
+  title: "Запеканка микс, персик-вишня",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "кг.",
+  description:
+    "",
+  category: "выпечка",
+  image:
+    "44.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 46,
+  title: "Запеканка микс, персик-клубника",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "кг.",
+  description:
+    "",
+  category: "выпечка",
+  image:
+    "45.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 47,
+  title: "Запеканка микс, малина-??????",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "кг.",
+  description:
+    "",
+  category: "выпечка",
+  image:
+    "46.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 48,
+  title: "Запеканка 'сердечки' микс. Киви-клубника-???????",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "кг.",
+  description:
+    "",
+  category: "выпечка",
+  image:
+    "47.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 49,
+  title: "Запеканка микс. смородина-клубника-вишня-малина",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "кг.",
+  description:
+    "",
+  category: "выпечка",
+  image:
+    "48.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 50,
+  title: "Запеканка ???????",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "кг.",
+  description:
+    "",
+  category: "выпечка",
+  image:
+    "49.png",
+  rating: 2,
+  quantity: 1,
+},
+{
+  _id: 51,
+  title: "Желе малина-??????",
+  isNew: false,
+  oldPrice: 0,
+  price: 0,
+  type: "кг.",
+  description:
+    "",
+  category: "из молока",
+  image:
+    "50.png",
+  rating: 2,
+  quantity: 1,
+},
 
 
 ];
