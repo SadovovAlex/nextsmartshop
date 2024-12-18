@@ -14,7 +14,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <div className="w-full bg-darkText text-slate-100">
-      <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
         <div className="flex flex-col gap-y-4">
           <Logo />
           <p className="text-base transition duration-300 ease-in-out hover:text-gray-500">

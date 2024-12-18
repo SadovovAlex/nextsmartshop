@@ -22,7 +22,7 @@ const ProductsData = ({ item }: ItemProps) => {
 
   const discountPercentage = calculatePercentage(item?.oldPrice, item?.price);
   return (
-    <div className="w-full rounded-lg overflow-hidden">
+    <div className="w-full rounded-lg overflow-hidden mt-10">
       <div>
         <Link href={{ pathname: "/product", query: { _id: item?._id } }}>
           <div className="w-full h-76 group overflow-hidden relative">
