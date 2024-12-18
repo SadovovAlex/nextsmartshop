@@ -19,6 +19,7 @@ const Logo = () => {
         </h3>
 
       </div>
+      
     </Link>
   );
 };

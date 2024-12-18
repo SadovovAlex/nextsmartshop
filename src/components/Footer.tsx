@@ -17,7 +17,7 @@ const Footer = () => {
       <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         <div className="flex flex-col gap-y-4">
           <Logo />
-          <p className="text-base text-gray-600 transition duration-300 ease-in-out hover:text-gray-100">
+          <p className="text-base transition duration-300 ease-in-out hover:text-gray-500">
             <span className="font-semibold animate-fadeIn">Работаем с розничными магазинами и продуктовыми рынками.</span>
             <br />
             <span className="font-semibold animate-fadeIn">Опт на выгодных условиях.</span>
@@ -28,6 +28,49 @@ const Footer = () => {
             <br />
             <span className="font-semibold">Дни доставки:</span> пн, вт, чт, пт, сб.
           </p>
+
+          {/* Phone Number */}
+          <div className="items-center text-sm font-semibold text-white">
+            <p>Телефон: 8-995-963-00-40</p>
+          </div>
+
+          {/* Email Address */}
+          <div className="flex items-center text-sm font-semibold text-white">
+            <p className="mr-2">Email:</p>
+            <p>evgenii.sidorov19872801@gmail.com</p>
+          </div>
+          
+         {/* Contact Information */}
+<div className="flex flex-col text-sm font-semibold text-white mt-2">
+  {/* Email Address */}
+  <div className="flex items-center">
+    <p className="mr-2">Email:</p>
+    <p>evgenii.sidorov19872801@gmail.com</p>
+  </div>
+
+  {/* Address */}
+  <div className="flex items-center mt-1">
+    <p className="mr-2">Адрес:</p>
+    <a 
+      href="https://maps.google.com/maps/search/%D0%9A%D0%BE%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F%20%D1%83%D0%BB.%2C%2070%2C%20%D0%97%D0%B0%D0%BE%D0%BA%D1%81%D0%BA%D0%BE%D0%B5%2C%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B1%D0%BB.%2C%20%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F%2C%20390019/@54.6898,39.7476,17z?hl=en" 
+      className="text-blue-400 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Кооперативная ул., 70, Заокское, Рязанская обл., Россия, 390019
+    </a>
+  </div>
+
+  {/* Working Hours */}
+  <div className="flex items-center mt-1">
+    <p className="mr-2">Часы работы:</p>
+    <p>9:00 - 18:00</p>
+  </div>
+</div>
+
+
+
+
 
           <div className="flex items-center gap-x-4">
             <a href="#" target="_blank">

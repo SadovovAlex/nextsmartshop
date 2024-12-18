@@ -33,7 +33,6 @@ const handleSearch = (term: string) => {
     <html lang="en">
       <body className="font-bodyFont w-full bg-main-bg text-darkText">
         <Layout>
-       
           {children}
           <Footer />
         </Layout>
