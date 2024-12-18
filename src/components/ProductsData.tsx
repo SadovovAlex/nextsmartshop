@@ -21,22 +21,17 @@ const ProductsData = ({ item }: ItemProps) => {
   ));
 
   const discountPercentage = calculatePercentage(item?.oldPrice, item?.price);
-
   return (
     <div className="w-full rounded-lg overflow-hidden">
       <div>
         <Link href={{ pathname: "/product", query: { _id: item?._id } }}>
           <div className="w-full h-76 group overflow-hidden relative">
             <Image
-              //src={item?.image}
-              //src={`/static/products/${item?._id}.png`}
               src={`/static/products/${item?.image}`}
               alt="product image"
               width={800}
               height={400}
-              className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
-            //placeholder="blur"
-            //blurDataURL={`/static/products/${item?._id}_blur.png`}
+              className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg md:w-3/4 md:h-3/4 sm:w-1/2 sm:h-1/2" // Измените размеры для маленьких экранов
             />
             {item?.isNew && (
               <span className="absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full bg-white group-hover:bg-orange-600 group-hover:text-white duration-200">
@@ -48,18 +43,16 @@ const ProductsData = ({ item }: ItemProps) => {
         <div className="border-[1px] border-slate-300 border-t-0 px-2 py-4 flex flex-col gap-y-2 bg-white rounded-b-lg">
           <p>{item?.title}</p>
           <div className="flex items-center justify-between">
-
             {parseFloat(discountPercentage) > 0 && (
               <div className="border-[1px] border-orange-600 py-1 px-4 rounded-full text-xs">
                 <p>{discountPercentage}% скидка</p>
               </div>
             )}
-
             <div className="flex items-center gap-x-2">
-            {parseFloat(discountPercentage) > 0 && (
-              <p className="text-slate-500 line-through text-sm">
-                <FormattedPrice amount={item?.oldPrice} />
-              </p>
+              {parseFloat(discountPercentage) > 0 && (
+                <p className="text-slate-500 line-through text-sm">
+                  <FormattedPrice amount={item?.oldPrice} />
+                </p>
               )}
               <p className="font-semibold">
                 <FormattedPrice amount={item?.price} />
@@ -68,7 +61,7 @@ const ProductsData = ({ item }: ItemProps) => {
             </div>
           </div>
           <div className="flex items-center justify-between">
-            {/* add to cart button */}
+            {/* Кнопка добавления в корзину */}
             <button
               onClick={() =>
                 dispatch(addToCart(item)) &&
@@ -80,7 +73,7 @@ const ProductsData = ({ item }: ItemProps) => {
             >
               В корзину
             </button>
-            {/* star icons */}
+            {/* Иконки звезд */}
             <div className="flex items-center gap-x-1">{startArray}</div>
           </div>
         </div>
@@ -88,6 +81,6 @@ const ProductsData = ({ item }: ItemProps) => {
       <Toaster />
     </div>
   );
-};
+};  
 
 export default ProductsData;
