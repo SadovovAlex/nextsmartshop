@@ -1,7 +1,7 @@
 export interface ProductsStruct {
   _id: number;
   title: string;
-  isNew: boolean;
+  isNew: number;
   oldPrice: number;
   price: number;
   type: string;

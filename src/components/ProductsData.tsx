@@ -12,17 +12,12 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
 
-interface Item {
-  isNew: number; // Change this to number if it's a tinyint
-  // other properties...
-}
-
 const ProductsData = ({ item }: ItemProps) => {
   const dispatch = useDispatch();
   const startArray = Array.from({ length: item?.rating }, (_, index) => (
     <span key={index} className="text-yellow-400">
       <IoIosStar />
-    </span> 
+    </span>
   ));
 
   const discountPercentage = calculatePercentage(item?.oldPrice, item?.price);
@@ -38,15 +33,11 @@ const ProductsData = ({ item }: ItemProps) => {
               height={400}
               className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg md:w-3/4 md:h-3/4 sm:w-1/2 sm:h-1/2" // Измените размеры для маленьких экранов
             />
-    
-
-{item?.isNew === 1 && (
-  <span className="absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full bg-white group-hover:bg-orange-600 group-hover:text-white duration-200">
-    Новинки
-  </span>
-)}
-
-
+            {item?.isNew === 1 && (
+              <span className="absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full bg-white group-hover:bg-orange-600 group-hover:text-white duration-200">
+                Новинки
+              </span>
+            )}
           </div>
         </Link>
         <div className="border-[1px] border-slate-300 border-t-0 px-2 py-4 flex flex-col gap-y-2 bg-white rounded-b-lg">
@@ -90,6 +81,6 @@ const ProductsData = ({ item }: ItemProps) => {
       <Toaster />
     </div>
   );
-};  
+};
 
 export default ProductsData;
