@@ -11,7 +11,7 @@ export const getTrendingProducts = async () => {
   */
 
 export const getProducts = async () => {
-  const res = await fetch("http://localhost:3001/api/products");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
   if (!res.ok) {
     throw new Error("Failed to fetch products");
   }
@@ -24,9 +24,7 @@ export const getProducts = async () => {
 
 
 export const getTrendingProducts = async () => {
-  const res = await fetch(
-    "http://localhost:3001/api/trendproducts"
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/trendproducts`);
   if (!res.ok) {
     throw new Error("Faild to fetch products");
   }
@@ -50,7 +48,7 @@ export const getSingleProduct2 = (_id: number) => {
 */
 
 export const getSingleProduct = async (_id: number) => {
-  const res = await fetch(`http://localhost:3001/api/products/${_id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${_id}`);
   if (!res.ok) {
     throw new Error("Failed to fetch product");
   }

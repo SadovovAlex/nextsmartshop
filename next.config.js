@@ -6,16 +6,17 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'ryazantvorog.ru',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'xn-----6kccstfpfjmicbdprf7c7cl0k6bjc.xn--p1ai',
         port: '',
         pathname: '/**', // Разрешает доступ ко всем путям
       },
-      {
-        protocol: 'https',
-        hostname: 'images.pexels.com',
-        port: '',
-        pathname: '/**',
-      },
+      
       {
         protocol: 'https',
         hostname: 'img.freepik.com',
