@@ -42,11 +42,6 @@ const Footer = () => {
           
          {/* Contact Information */}
 <div className="flex flex-col text-sm font-semibold text-white mt-2">
-  {/* Email Address */}
-  <div className="flex items-center">
-    <p className="mr-2">Email:</p>
-    <p>evgenii.sidorov19872801@gmail.com</p>
-  </div>
 
   {/* Address */}
   <div className="flex items-center mt-1">
@@ -124,6 +119,11 @@ const Footer = () => {
             <Link href={"/"}>
               <li className="hover:text-orange-500 cursor-pointer duration-200">
                 Главная
+              </li>
+            </Link>
+            <Link href={"/price"}>
+              <li className="hover:text-orange-500 cursor-pointer duration-200">
+                Прайс
               </li>
             </Link>
             <Link href={"/cart"}>
