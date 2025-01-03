@@ -5,8 +5,8 @@ import Products from "@/components/Products";
 import Header from "@/components/Header"; 
 
 export default function Home() {
+  
   const [searchTerm, setSearchTerm] = useState(""); // Создаем состояние с функцией для обновления
-
   const handleSearch = (term: string) => {
     setSearchTerm(term); // Обновляем состояние при изменении
   };

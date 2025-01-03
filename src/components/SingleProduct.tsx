@@ -11,14 +11,13 @@ import toast, { Toaster } from "react-hot-toast";
 const SignleProduct = ({ product }: any) => {
   
   // Выводим product в консоль
-  //console.log('SignleProduct=', product?.image);
+  console.log('SignleProduct=', product?.image);
 
   const dispatch = useDispatch();
   return (
     <div className="grid lg:grid-cols-2 gap-5 bg-white p-4 rounded-lg">
       <div>
         <Image
-          //src={product?.image}
           src={`/static/products/${product?.image}`}
           alt="product image"
           width={500}

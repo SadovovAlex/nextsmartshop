@@ -62,7 +62,15 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
         {/* Первая строка: Логотип, Вход, Корзина */}
         <div className="flex items-center justify-between md:gap-x-5 mt-0">
           <Logo />
-          
+          {/* Прайс */}
+          <div className="w-1/3 text-sm font-semibold text-gray-700 text-right">
+            <Link href={"/price"}>
+              <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                Прайс
+              </div>
+
+            </Link>
+          </div>
           {/* Кнопка корзины */}
           <Link href={"/cart"}>
             <div className="bg-black hover:bg-slate-950 rounded-full text-slate-100 hover:text-white flex items-center justify-center gap-x-1 px-3 py-1.5 border-[1px] border-black hover:border-orange-600 duration-200 relative">
@@ -75,7 +83,8 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
               </span>
             </div>
           </Link>
-  
+
+
           {/* Вход/Регистрация */}
           {/* !session && (
             <div onClick={() => signIn()} className="headerDiv cursor-pointer">
@@ -84,7 +93,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
             </div>
           ) */}
         </div>
-  
+
         {/* Вторая строка: Поле поиска и номер телефона */}
         <div className="flex items-center justify-between mt-2">
           {/* Поле поиска */}
@@ -98,17 +107,18 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
               onChange={handleSearchChange}
             />
           </div>
-  
+
           {/* Номер телефона */}
-          <div className="w-1/3 text-sm font-semibold text-gray-700 text-right">
+          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
             <p>Заказ</p>
-            <p>8-995-963-00-40</p>
+            <a href="tel:89959630040" className="inline-block">8-995-963-00-40</a>
           </div>
+
         </div>
       </Container>
     </div>
   );
-  
+
 };
 
 

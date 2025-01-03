@@ -1,3 +1,4 @@
+
 import Container from "@/components/Container";
 import { getSingleProduct, getTrendingProducts } from "@/helpers";
 import { ProductsStruct } from "../../../type";
@@ -15,6 +16,8 @@ const ProductPage = async (props: Props) => {
   const _idString = searchParams?._id;
   const _id = Number(_idString);
 
+  try {
+
   // Получаем продукт асинхронно
   const product = await getSingleProduct(_id);
   const data = await getTrendingProducts();
@@ -29,8 +32,9 @@ const ProductPage = async (props: Props) => {
             <button className="bg-darkText text-white py-2 px-6 rounded-md hover:bg-orange-600 duration-200">
               На главную
             </button>
-          </Link>
+          </Link>   
         </div>
+        
         <SignleProduct product={product} />
         <div>
           <p className="text-xl py-1 font-semibold">У нас еще есть</p>
@@ -43,6 +47,18 @@ const ProductPage = async (props: Props) => {
       </Container>
     </div>
   );
+
+} catch (error) {
+  console.error("Ошибка при получении данных:", error);
+  return (
+    <div>
+      <Container>
+        <p>Произошла ошибка при получении данных. Пожалуйста, попробуйте позже.</p>
+      </Container>
+    </div>
+  );
+}
 };
+
 
 export default ProductPage;

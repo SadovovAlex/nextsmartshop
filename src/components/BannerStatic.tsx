@@ -19,7 +19,7 @@ const Banner = () => {
 
   return (
     <div className="relative">
-      <div className="w-full h-70 relative">
+      <div className="w-full h-70 relative md:h-[500px]"> {/* Ограничение высоты на больших экранах */}
         <Image
           src={currentBanner.image}
           alt={currentBanner.alt}
