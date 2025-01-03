@@ -55,7 +55,7 @@ export const getSingleProduct = async (_id: number) => {
 
   // Дожидаемся завершения промиса и получаем данные
   const product = await res.json();
-  //console.log('xxxxx=', product); // Теперь выводим результат в консоль
+  console.log('xxxxx=', product); // Теперь выводим результат в консоль
 
   // Возвращаем продукт в формате JSON
   return product;

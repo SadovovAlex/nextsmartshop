@@ -48,3 +48,9 @@
       scale-105; /* Увеличиваем размер при наведении */
   }
 }
+
+@media print {
+  .socialLink, .events, .links {
+    display: none;
+  }
+}
