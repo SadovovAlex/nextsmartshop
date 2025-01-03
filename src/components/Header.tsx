@@ -77,12 +77,12 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
           </Link>
   
           {/* Вход/Регистрация */}
-          {!session && (
+          {/* !session && (
             <div onClick={() => signIn()} className="headerDiv cursor-pointer">
               <AiOutlineUser className="text-3xl" />
               <p className="text-sm font-semibold">Вход</p>
             </div>
-          )}
+          ) */}
         </div>
   
         {/* Вторая строка: Поле поиска и номер телефона */}

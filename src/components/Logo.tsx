@@ -7,7 +7,7 @@ const Logo = () => {
     <Link href={"/"}>
       <div className="flex items-center cursor-pointer duration-200">
         <Image
-          src="/static/logo.png"
+          src="/static/logo.webp"
           alt="Логотип"
           className="w-16 h-16 transition-transform duration-200 transform hover:scale-110"
           width={500} 

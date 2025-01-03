@@ -16,7 +16,7 @@ const NotFoundPage = () => {
         <h2 className="text-4xl font-bold text-red-600">Страница не найдена</h2>
         
         <Image
-          src="/static/404.png"
+          src="/static/404.webp"
           alt="404 Not Found"
           className="w-full max-w-xs h-auto my-4" // Адаптивный размер изображения
           width={500} // Укажите ширину изображения
