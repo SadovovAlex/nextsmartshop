@@ -39,12 +39,14 @@ const BannerText = ({ title }: Props) => {
             transition={{ duration: 0.7 }}
             className="flex gap-x-4 mt-2"
           >
+           { /*
             <button className="py-3 px-6 rounded-full bg-slate-200 hover:bg-white duration-200 text-sm uppercase font-semibold" onClick={() => scrollToShop(1100)}>
               Наша продукция
             </button>
             <button className="py-3 px-6 rounded-full bg-slate-200 hover:bg-white duration-200 text-sm uppercase font-semibold" onClick={() => scrollToShop(1100)}>
               Заказать
-            </button>
+            </button>  */
+            } 
           </motion.div>
         </div>
       </Container>

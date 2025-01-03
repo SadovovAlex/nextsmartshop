@@ -1,6 +1,6 @@
 "use client";
-import bannerone from "@/images/bannerone.jpg";
-import bannertwo from "@/images/bannertwo.jpg";
+import bannerone from "@/images/bannerone.webp";
+import bannertwo from "@/images/bannertwo.webp";
 import bannerthree from "@/images/bannerthree.jpg";
 import Image from "next/image";
 import BannerText from "./BannerText";
@@ -8,13 +8,13 @@ import BannerText from "./BannerText";
 const Banner = () => {
   const banners = [
     { image: bannerone, alt: 'Молочная ферма Шуваловых', title: 'Молочная ферма Шуваловых' },
-    { image: bannertwo, alt: 'Сезонные товары', title: 'Выпечка и творог' },
+    { image: bannertwo, alt: 'Сезонные товары', title: 'Пластовый творог и выпечка' },
     { image: bannerthree, alt: 'Продукция из натурального молока', title: 'Продукция из натурального молока' },
   ];
 
  // Генерация случайного индекса баннера
  //const currentBannerIndex = Math.floor(Math.random() * banners.length);
- const currentBannerIndex = 1
+ const currentBannerIndex = 1   // index 0,1,2
  const currentBanner = banners[currentBannerIndex];
 
   return (

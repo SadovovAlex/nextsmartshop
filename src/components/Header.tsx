@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
               <p className="text-sm font-semibold">
                 <FormattedPrice amount={totalAmt ? totalAmt : 0} />
               </p>
-              <span className="bg-white text-orange-600 rounded-full text-xs font-semibold absolute -right-2 -top-1 w-5 h-5 flex items-center justify shadow-xl shadow-black">
+              <span className="bg-white text-orange-600 rounded-full text-xs font-semibold absolute -right-2 -top-1 w-4 h-4 flex items-center justify shadow-xl shadow-black">
                 {productData ? productData?.length : 0}
               </span>
             </div>
