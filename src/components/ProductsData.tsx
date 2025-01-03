@@ -31,7 +31,7 @@ const ProductsData = ({ item }: ItemProps) => {
               alt="product image"
               width={800}
               height={400}
-              className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg md:w-3/4 md:h-3/4 sm:w-1/2 sm:h-1/2" // Измените размеры для маленьких экранов
+              className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg md:w-3/4 md:h-3/4 sm:w-2/3 sm:h-2/3 xs:w-1/2 xs:h-1/2" // Измените размеры для маленьких экранов
             />
             {item?.isNew === 1 && (
               <span className="absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full bg-white group-hover:bg-orange-600 group-hover:text-white duration-200">
