@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-   //output: 'export',
   output: "standalone",
   images: {
-
     remotePatterns: [
       {
         protocol: 'https',
@@ -15,17 +13,22 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'xn-----6kccstfpfjmicbdprf7c7cl0k6bjc.xn--p1ai',
         port: '',
-        pathname: '/**', // Разрешает доступ ко всем путям
+        pathname: '/**',
       },
-      
       {
         protocol: 'https',
         hostname: 'img.freepik.com',
         port: '',
         pathname: '/**',
       },
-     
     ],
+  },
+  // Включение подробных сообщений об ошибках в режиме разработки
+  onDemandEntries: {
+    // Период ожидания (в миллисекундах), прежде чем страница будет удалена из буфера
+    maxInactiveAge: 25 * 1000,
+    // Количество страниц, которые должны быть в буфере одновременно
+    pagesBufferLength: 2,
   },
 };
 
