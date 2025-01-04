@@ -8,13 +8,13 @@ import BannerText from "./BannerText";
 const Banner = () => {
   const banners = [
     { image: bannerone, alt: 'Молочная ферма Шуваловых', title: 'Молочная ферма Шуваловых' },
-    { image: bannertwo, alt: 'Сезонные товары', title: 'Пластовой творог и выпечка' },
-    { image: bannerthree, alt: 'Продукция из натурального молока', title: 'Продукция из натурального молока' },
+    { image: bannertwo, alt: 'Молоко и продукция из натурального молока', title: 'Творог и творожная продукция' },
+    { image: bannerthree, alt: 'Продукция из натурального молока', title: 'Домашня Молочная продукция' },
   ];
 
  // Генерация случайного индекса баннера
- //const currentBannerIndex = Math.floor(Math.random() * banners.length);
- const currentBannerIndex = 0   // index 0,1,2
+ const currentBannerIndex = Math.floor(Math.random() * banners.length);
+ //const currentBannerIndex = 0   // index 0,1,2
  const currentBanner = banners[currentBannerIndex];
 
   return (

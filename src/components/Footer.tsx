@@ -11,6 +11,8 @@ import Container from "./Container";
 import Logo from "./Logo";
 import Link from "next/link";
 import Image from "next/image";
+import packageJson from '../../package.json';
+
 const Footer = () => {
   return (
     <div className="w-full bg-darkText text-slate-100">
@@ -18,13 +20,13 @@ const Footer = () => {
         <div className="flex flex-col gap-y-4">
           <Logo />
           <p className="text-base transition duration-300 ease-in-out hover:text-gray-500">
-            <span className="font-semibold animate-fadeIn">Работаем с розничными магазинами и продуктовыми рынками.</span>
+            <span className="font-semibold animate-fadeIn">Работаем с розничными магазинами, сетями и продуктовыми рынками.</span>
             <br />
             <span className="font-semibold animate-fadeIn">Опт на выгодных условиях.</span>
             <br />
             <span className="font-semibold animate-fadeIn">Ветеринарное свидетельство отправляем по Меркурию.</span>
             <br />
-            <span className="font-semibold animate-fadeIn">Бесплатная доставка в Москву и Московскую область, при определенной сумме заказа.</span>
+            <span className="font-semibold animate-fadeIn">Бесплатная доставка в Москву, Московскую область, Тула (область), Калуга (область), при определенной сумме заказа.</span>
             <br />
             <span className="font-semibold">Дни доставки:</span> пн, вт, чт, пт, сб.
           </p>
@@ -130,10 +132,11 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            WR App
+            WR App v{packageJson.version}
           </a>
         </div>
       </footer>
+
     </div>
   );
 };
