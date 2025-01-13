@@ -42,3 +42,4 @@ next-env.d.ts
 
 release.zip
 be/products.db
+be/node_modules
