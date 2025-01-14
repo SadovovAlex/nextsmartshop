@@ -2,21 +2,15 @@
 
 import PriceList from "@/components/PriceList";
 import Container from "@/components/Container";
-import Link from "next/link";
+
+import Menu from "@/components/Menu"; 
 
 const PricePage = () => {
   return (
     <div>
+      <Menu />
       <Container>
-          {/* Кнопка "Назад" */}
-          <div className="mb-4">
-          <Link href={"/"}>
-            <button className="bg-darkText text-white py-2 px-6 rounded-md hover:bg-orange-600 duration-200">
-              На главную
-            </button>
-          </Link>   
-        </div>
-        <PriceList searchTerm={""} />
+      <PriceList searchTerm={""} />
       </Container>
     </div>
 

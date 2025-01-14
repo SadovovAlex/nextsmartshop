@@ -10,17 +10,28 @@ const Logo = () => {
           src="/static/logo.webp"
           alt="Лого"
           className="w-8 h-8 transition-transform duration-200 transform hover:scale-110"
-          width={500} 
-          height={300} 
+          width={500}
+          height={300}
         />
 
-        <h3 className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-          Ферма Шуваловых
-        </h3>
+        <div className="">
+          <div className="sm:block hidden text-xs font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+            Ферма Шуваловых
+          </div>
+          <div className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+            Заказ <a href="tel:89959630040" className="inline-block">8-995-963-00-40</a>
+          </div>
+        </div>
 
       </div>
-      
+
     </Link>
+
+
+
+
+
+
   );
 };
 

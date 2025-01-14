@@ -9,6 +9,7 @@ import PaymentForm from "@/components/PaymentForm";
 import Link from "next/link";
 import SubmitOrderForm from "@/components/SubmitOrderForm";
 import { Toaster } from "react-hot-toast";
+import Menu from "@/components/Menu"; 
 
 const CartPage = () => {
   const { productData } = useSelector((state: StateProps) => state?.shopping);
@@ -16,16 +17,9 @@ const CartPage = () => {
 
   return (
     <Container>
+      <Menu/>
       {productData.length > 0 ? (
         <Container>
-          {/* Кнопка "Назад" */}
-          <div className="mb-4">
-            <Link href={"/"}>
-              <button className="bg-darkText text-white py-2 px-6 rounded-md hover:bg-orange-600 duration-200">
-                На главную
-              </button>
-            </Link>
-          </div>
           {/* заказы */}
           <h2 className="text-2xl font-semibold mb-2">Заказ</h2>
           <div className="flex flex-col gap-5">

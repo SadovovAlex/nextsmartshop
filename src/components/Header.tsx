@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Container from "./Container";
-import Logo from "./Logo";
+
 import testUserImage from "../../public/user.png";
 import { IoMdCart } from "react-icons/io";
 import { FiSearch, FiLogOut } from "react-icons/fi";
@@ -57,20 +57,22 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   }, [productData]);
 
   return (
-    <div className="bg-bodyColor h-30 top-0 sticky z-20">
+    <div className="bg-bodyColor h-30 top-1 sticky z-20">
       <Container className="h-full flex flex-col">
         {/* Первая строка: Логотип, Вход, Корзина */}
         <div className="flex items-center justify-between md:gap-x-5 mt-0">
-          <Logo />
-          {/* Прайс */}
-          <div className="w-1/3 text-sm font-semibold text-gray-700 text-right">
-            <Link href={"/price"}>
-              <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                Прайс
-              </div>
-
-            </Link>
+          {/* Поле поиска */}
+          <div className="w-2/3 bg-white flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-2 py-1.5 focus-within:border-orange-600 group">
+            <FiSearch className="text-gray-500 group-focus-within:text-darkText duration-200" />
+            <input
+              type="text"
+              placeholder="поиск продуктов"
+              className="placeholder:text-sm flex-1 outline-none"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
           </div>
+         
           {/* Кнопка корзины */}
           <Link href={"/cart"}>
             <div className="bg-black hover:bg-slate-950 rounded-full text-slate-100 hover:text-white flex items-center justify-center gap-x-1 px-3 py-1.5 border-[1px] border-black hover:border-orange-600 duration-200 relative">
@@ -94,27 +96,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
           ) */}
         </div>
 
-        {/* Вторая строка: Поле поиска и номер телефона */}
-        <div className="flex items-center justify-between mt-2">
-          {/* Поле поиска */}
-          <div className="w-2/3 bg-white flex items-center gap-x-1 border-[1px] border-lightText/50 rounded-full px-2 py-1.5 focus-within:border-orange-600 group">
-            <FiSearch className="text-gray-500 group-focus-within:text-darkText duration-200" />
-            <input
-              type="text"
-              placeholder="поиск продуктов"
-              className="placeholder:text-sm flex-1 outline-none"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </div>
-
-          {/* Номер телефона */}
-          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-            <p>Заказ</p>
-            <a href="tel:89959630040" className="inline-block">8-995-963-00-40</a>
-          </div>
-
-        </div>
+       
       </Container>
     </div>
   );
