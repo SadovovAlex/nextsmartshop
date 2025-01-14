@@ -8,6 +8,7 @@ import { resetCart } from "@/redux/shoppingSlice";
 import PaymentForm from "@/components/PaymentForm";
 import Link from "next/link";
 import SubmitOrderForm from "@/components/SubmitOrderForm";
+import { Toaster } from "react-hot-toast";
 
 const CartPage = () => {
   const { productData } = useSelector((state: StateProps) => state?.shopping);
@@ -59,6 +60,7 @@ const CartPage = () => {
           </Link>
         </div>
       )}
+    <Toaster />  
     </Container>
   );
 };

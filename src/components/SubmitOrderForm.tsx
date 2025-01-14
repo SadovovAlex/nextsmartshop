@@ -5,6 +5,9 @@ import { resetCart } from "@/redux/shoppingSlice";
 import { useEffect, useState } from "react";
 import { ProductsStruct, StateProps } from "../../type";
 import FormattedPrice from './FormattedPrice';
+import toast from "react-hot-toast";
+
+
 
 const SubmitOrderForm = () => {
   const { productData } = useSelector((state: StateProps) => state?.shopping);
@@ -14,6 +17,7 @@ const SubmitOrderForm = () => {
   // Устанавливаем стоимость доставки в зависимости от суммы заказа
   const shippingThreshold = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_THRESHOLD || "5000");
   const shippingCostValue = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "10000");
+    
   useEffect(() => {
     let amt = 0;
     productData.map((item: ProductsStruct) => {
@@ -21,13 +25,13 @@ const SubmitOrderForm = () => {
       return;
     });
     setTotalAmt(amt);
-    
-    if (amt > shippingThreshold) {
+
+    if (amt >= shippingThreshold) {
       setShippingCost(0); // Бесплатная доставка
     } else {
       setShippingCost(shippingCostValue); // Стоимость доставки
     }
-  }, [productData]);
+  }, [productData, shippingThreshold, shippingCostValue]);
   
 
   // Состояние для управления видимостью формы
@@ -178,6 +182,9 @@ const SubmitOrderForm = () => {
         // Скрытие формы
         setFormVisible(false);
         // Дополнительные действия после успешной отправки формы
+        toast.success(
+          `Ваш заказ отправлен, мы с вами свяжемся.`
+        )
       } else {
         // Обработка ошибки
         console.error("Ошибка при отправке формы:", response.status);
@@ -237,7 +244,6 @@ const SubmitOrderForm = () => {
           <p>Итого по заказу: <FormattedPrice amount={totalAmt+shippingCost}/> </p>
         </div>
       )}
-
 
     </div>
     
