@@ -4,9 +4,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetCart } from "@/redux/shoppingSlice";
 import { useEffect, useState } from "react";
 import { ProductsStruct, StateProps } from "../../type";
+import FormattedPrice from './FormattedPrice';
 
 const SubmitOrderForm = () => {
   const { productData } = useSelector((state: StateProps) => state?.shopping);
+  // сумма корзины и доставка 
+  const [totalAmt, setTotalAmt] = useState(0);
+  const [shippingCost, setShippingCost] = useState(10000); // Изначальная стоимость доставки
+  // Устанавливаем стоимость доставки в зависимости от суммы заказа
+  const shippingThreshold = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_THRESHOLD || "5000");
+  const shippingCostValue = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "10000");
+  useEffect(() => {
+    let amt = 0;
+    productData.map((item: ProductsStruct) => {
+      amt += item.price * item.quantity;
+      return;
+    });
+    setTotalAmt(amt);
+    
+    if (amt > shippingThreshold) {
+      setShippingCost(0); // Бесплатная доставка
+    } else {
+      setShippingCost(shippingCostValue); // Стоимость доставки
+    }
+  }, [productData]);
+  
 
   // Состояние для управления видимостью формы
   const [isFormVisible, setFormVisible] = useState(false);
@@ -131,6 +153,10 @@ const SubmitOrderForm = () => {
         `).join('')}
       </tbody>
     </table>
+    <BR>
+    <p>Заказ: ${totalAmt}</p>
+    <p>Доставка: ${shippingCost}</p>
+    <p>Итого по заказу: ${totalAmt + shippingCost} </p>
     `;
 
 
@@ -206,9 +232,15 @@ const SubmitOrderForm = () => {
               Отправить
             </button>
           </form>
+          <p>Заказ: <FormattedPrice amount={totalAmt}/> </p>
+          <p>Доставка: <FormattedPrice amount={shippingCost}/> </p>
+          <p>Итого по заказу: <FormattedPrice amount={totalAmt+shippingCost}/> </p>
         </div>
       )}
+
+
     </div>
+    
   );
 };
 

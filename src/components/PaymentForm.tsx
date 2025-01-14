@@ -37,6 +37,8 @@ const PaymentForm = () => {
   }, [productData]);
 
   // =============  Stripe Payment Start here ==============
+  const handleCheckout = async () => {}
+  /*
   const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
   );
@@ -61,6 +63,7 @@ const PaymentForm = () => {
       throw new Error("Failed to create Stripe Payment");
     }
   };
+  */
   // =============  Stripe Payment End here ================
 
   return (
@@ -97,7 +100,8 @@ const PaymentForm = () => {
       
       {userInfo ? (
         <button
-          onClick={handleCheckout}
+          onClick={handleCheckout} 
+    
           className="bg-black text-slate-100 mt-4 py-3 px-6 hover:bg-orange-950 cursor-pointer duration-200"
         >
           Оформить заказ
