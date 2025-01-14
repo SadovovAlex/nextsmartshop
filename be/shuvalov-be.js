@@ -1,15 +1,16 @@
 const express = require('express');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Настройка CORS
 app.use(cors({
-  origin: '*', // Разрешить только этот источник
-  methods: ['GET', 'POST'], // Разрешенные методы
-  allowedHeaders: ['Content-Type'], // Разрешенные заголовки
-  credentials: true // Разрешить отправку учетных данных
+  origin: '*',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true
 }));
 
 const db = require('./database');
@@ -39,7 +40,7 @@ app.get('/api/trendproducts', (req, res) => {
 
 // Метод для получения одного товара по ID
 app.get('/api/products/:id', (req, res) => {
-  const productId = req.params.id; // Получаем ID из параметров запроса
+  const productId = req.params.id;
   db.get('SELECT * FROM products WHERE _id = ?', [productId], (err, row) => {
     if (err) {
       return res.status(500).json({ message: 'Ошибка получения данных' });
@@ -48,6 +49,47 @@ app.get('/api/products/:id', (req, res) => {
       return res.status(404).json({ message: 'Продукт не найден' });
     }
     res.json(row);
+  });
+});
+
+// Метод для отправки письма
+app.post('/api/send-email', (req, res) => {
+  const { name, email, message } = req.body;
+
+  const emailLogin = process.env.EMAIL_LOGIN;
+  const emailPassword = process.env.EMAIL_PASSWORD;
+
+  if (!emailLogin || !emailPassword) {
+    return res.status(500).json({ message: 'Почта не настроена' });
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: emailLogin,
+      pass: emailPassword
+    }
+  });
+
+  const mailOptions = {
+    from: emailLogin,
+    to: email,
+    subject: 'New message from your website',
+    text: `
+      Name: ${name}
+      Email: ${email}
+      Message: ${message}
+    `
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Error sending email' });
+    }
+    res.status(200).json({ message: 'Email sent successfully' });
   });
 });
 
