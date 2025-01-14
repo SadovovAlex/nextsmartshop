@@ -42,7 +42,7 @@ const CartPage = () => {
             <PaymentForm />
 
             {/* SubmitOrderForm Form */}
-            <SubmitOrderForm />
+            <SubmitOrderForm  />
 
 
           </div>

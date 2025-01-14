@@ -52,9 +52,8 @@ app.get('/api/products/:id', (req, res) => {
   });
 });
 
-// Метод для отправки письма
 app.post('/api/send-email', (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, message, table, tablestyle } = req.body;
 
   const emailLogin = process.env.EMAIL_LOGIN;
   const emailPassword = process.env.EMAIL_PASSWORD;
@@ -72,17 +71,32 @@ app.post('/api/send-email', (req, res) => {
       pass: emailPassword
     }
   });
-
   const mailOptions = {
     from: emailLogin,
     to: email,
-    subject: 'New message from your website',
+    subject: `Новый заказ от ${name}`,
     text: `
       Name: ${name}
       Email: ${email}
       Message: ${message}
+    `,
+    html: `
+      <html>
+        <head>
+          ${tablestyle}
+        </head>
+        <body>
+          <h2>Новый заказ от ${name}</h2>
+          <BR>Email: ${email}
+          <BR>Сообщение к заказу: ${message}
+          <BR>
+          <h2>Информация о заказе:</h2>
+          ${table}
+        </body>
+      </html>
     `
   };
+  
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -96,4 +110,7 @@ app.post('/api/send-email', (req, res) => {
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
+  console.log(`email:${process.env.EMAIL_LOGIN}`);
+
+
 });
