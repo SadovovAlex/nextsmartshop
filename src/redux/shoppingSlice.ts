@@ -38,7 +38,7 @@ export const shoppingSlice = createSlice({
         (item: ProductsStruct) => item._id === action.payload._id
       );
       if (existingProduct?.quantity === 1) {
-        existingProduct.quantity === 1;
+        existingProduct.quantity = 1;
       } else {
         existingProduct && existingProduct.quantity--;
       }

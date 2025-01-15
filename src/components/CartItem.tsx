@@ -28,6 +28,7 @@ const CartItem = () => {
             key={item._id}
             className="w-full bg-white p-4 flex flex-col md:flex-row items-center justify-between gap-4"
           >
+
             <div className="flex items-center gap-x-3 w-full md:w-1/3">
               <span
                 onClick={() => dispatch(deleteProduct(item?._id))}
@@ -43,18 +44,23 @@ const CartItem = () => {
                 className="w-20 h-20 object-cover"
                 loading="lazy"
               />
+              {item?.title}
             </div>
+
+
             {/* quantity */}
-            <div className="flex items-center justify-start gap-x-3 border-[1px] border-slate-300 py-2 px-4 w-full md:w-auto">
-              <p>количество</p>
-              <div className="flex items-center text-lg w-20 justify-between">
+            <div className="flex items-center justify-between gap-x-3 w-full md:w-auto">
+              <div>
+              <FormattedPrice amount={item?.price} />
+              </div>
+              <div className="flex items-center text-lg w-40 justify-between">
                 <span
                   onClick={() => dispatch(decreaseQuantity(item))}
                   className="cursor-pointer"
                 >
                   <FiChevronLeft />
                 </span>
-                <span>{item?.quantity}</span>
+                <span className="text-2xl">{item?.quantity}</span>
                 <span
                   onClick={() => dispatch(increaseQuantity(item))}
                   className="cursor-pointer"
@@ -62,12 +68,13 @@ const CartItem = () => {
                   <FiChevronRight />
                 </span>
               </div>
+              <div className="flex items-end justify-end w-full md:w-1/3">
+                <p className="text-2xl font-semibold">
+                  <FormattedPrice amount={item?.price * item?.quantity} />
+                </p>
+              </div>
             </div>
-            <div className="w-full md:w-1/3 flex items-end justify-start md:justify-end">
-              <p className="text-lg font-semibold">
-                <FormattedPrice amount={item?.price * item?.quantity} />
-              </p>
-            </div>
+
           </div>
         ))}
       </div>

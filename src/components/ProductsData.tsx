@@ -45,11 +45,11 @@ const ProductsData = ({ item }: ItemProps) => {
           <div className="font-bold">
             #{item?._id} {item?.title}
             </div>
-            <div className="">
+            <div className="text-xs">
               {item?.cat_name}
             </div>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between text-sm">
             {item?.ingredients}
           </div>
           <div className="flex items-center justify-between">
