@@ -3,6 +3,12 @@ import React from "react";
 import Image from "next/image";
 
 const Logo = () => {
+  const handlePhoneClick = () => {
+    if (typeof window !== 'undefined') {
+      window.location.href = 'tel:89959630040';
+    }
+  };
+
   return (
     <Link href={"/"}>
       <div className="flex items-center cursor-pointer duration-200">
@@ -18,20 +24,15 @@ const Logo = () => {
           <div className="sm:block hidden text-xs font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
             Ферма Шуваловых
           </div>
-          <div className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-            Заказ <a href="tel:89959630040" className="inline-block">8-995-963-00-40</a>
+          <div
+            className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
+            onClick={handlePhoneClick}
+          >
+            +7(995)963-00-40
           </div>
         </div>
-
       </div>
-
     </Link>
-
-
-
-
-
-
   );
 };
 

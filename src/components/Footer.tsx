@@ -36,8 +36,8 @@ const Footer = () => {
         <div>
           {/* Phone Number */}
           <div className="items-center text-sm font-semibold text-white">
-            <p>Телефон для заказа: 8-995-963-00-40</p>
-            <p>Email: evgenii.sidorov19872801@gmail.com</p>
+            <p>Телефон для заказа: +7(995)963-00-40</p>
+            <p>Email: ryazantvorog@gmail.com</p>
           </div>
 
           {/* Contact Information */}
