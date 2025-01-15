@@ -15,7 +15,7 @@ const BannerText = ({ title }: Props) => {
 
   return (
     <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-      <Container className="bg-white bg-opacity-70 p-6 rounded-lg w-full md:max-w-none md:p-10 ml-3 mr-3">
+      <Container className="bg-white bg-opacity-70 p-6 rounded-lg w-full md:max-w-none md:p-10 ml-3 mr-3 xs:mt-0">
         <div className="sm:ml-2 md:ml-8">
           <motion.h2
             initial={{ y: 30, opacity: 0 }}

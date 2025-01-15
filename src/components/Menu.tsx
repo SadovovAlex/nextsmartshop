@@ -46,7 +46,7 @@ const Menu = () => {
               className="h-6 w-6 fill-white"
               viewBox="0 0 24 24"
             >
-              <path d="M3 6.00092H21M3 12.0009H21M3 18.0009H21" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M3 6.00092H21M3 12.0009H21M3 18.0009H21" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               <defs>
                 <clipPath id="clip0_429_11066">
                   <rect width="24" height="24" fill="white" transform="translate(0 0.000915527)" />
@@ -88,10 +88,7 @@ const Menu = () => {
             <li>
               <Link href="/cart">Корзина</Link>
             </li>
-            <li>
-              <Link href="/cart">Корзина</Link>
-            </li>
-
+           
           </ul>
         </nav>
       </div>

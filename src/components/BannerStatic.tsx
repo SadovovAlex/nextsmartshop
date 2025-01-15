@@ -19,7 +19,7 @@ const Banner = () => {
 
  return (
   <div className="relative ">
-    <div className="w-full h-auto relative sm:h-[500px] md:h-[600px]"> {/* Изменение высоты на мобильных устройствах */}
+    <div className="w-full h-auto relative xs:h-[300px] md:h-[400px]"> {/* Изменение высоты на мобильных устройствах */}
       <Image
         src={currentBanner.image}
         alt={currentBanner.alt}
@@ -28,7 +28,7 @@ const Banner = () => {
       />
       <BannerText title={currentBanner.title} />
     </div>
-    <div className=" w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
+    <div className=" w-full bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
   </div>
 );
 };
