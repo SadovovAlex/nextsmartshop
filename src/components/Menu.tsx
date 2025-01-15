@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
@@ -17,7 +19,7 @@ const Menu = () => {
       const currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
       const scrollThreshold = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
-      if (currentScrollPos < scrollThreshold * 0.02 ) {
+      if (currentScrollPos < scrollThreshold * 0.02) {
         setIsMenuVisible(true);
       } else {
         setIsMenuVisible(currentScrollPos < prevScrollPos);
@@ -37,23 +39,20 @@ const Menu = () => {
       <div className="container mx-auto flex justify-between items-center py-4">
         <div className="flex items-center">
           <button
-            className="mr-4 sm:hidden"
+            className="mr-4 lg:hidden"
             onClick={toggleMenu}
           >
-
-
-
             <svg
-              className="h-6 w-6 fill-current"
+              className="h-6 w-6 fill-white"
               viewBox="0 0 24 24"
             >
-              <path
-                fillRule="evenodd"
-                d="M4 6h16M4 12h16M4 18h16"
-                fill="white"
-              />
+              <path d="M3 6.00092H21M3 12.0009H21M3 18.0009H21" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <defs>
+                <clipPath id="clip0_429_11066">
+                  <rect width="24" height="24" fill="white" transform="translate(0 0.000915527)" />
+                </clipPath>
+              </defs>
             </svg>
-
           </button>
           <Link href="/">
             <Logo />

@@ -6,6 +6,7 @@ import ProductsData from "@/components/ProductsData";
 import SignleProduct from "@/components/SingleProduct";
 import Header from "@/components/Header"
 import Link from "next/link";
+import Menu from "@/components/Menu"; 
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -24,17 +25,10 @@ const ProductPage = async (props: Props) => {
 
   return (
     <div>
+      <Menu/>
       <Container>
-    
-        {/* Кнопка "Назад" */}
-        <div className="mb-4">
-          <Link href={"/"}>
-            <button className="bg-darkText text-white py-2 px-6 rounded-md hover:bg-orange-600 duration-200">
-              На главную
-            </button>
-          </Link>   
-        </div>
-        
+      
+               
         <SignleProduct product={product} />
         <div>
           <p className="text-xl py-1 font-semibold">У нас еще есть</p>
