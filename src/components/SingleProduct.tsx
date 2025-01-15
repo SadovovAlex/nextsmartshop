@@ -40,7 +40,7 @@ const SignleProduct = ({ product }: any) => {
             #: <span className="text-darkText">{product?._id}</span>
           </span>
           <span>
-            Категория: <span className="text-darkText">{product?.category}</span>
+            Категория: <span className="text-darkText">{product?.cat_name}</span>
           </span>
           <span>
             Состав: <span className="text-darkText">{product?.ingredients}</span>
