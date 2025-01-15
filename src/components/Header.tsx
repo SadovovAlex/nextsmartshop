@@ -4,10 +4,9 @@ import Container from "./Container";
 
 import testUserImage from "../../public/user.png";
 import { IoMdCart } from "react-icons/io";
-import { FiSearch, FiLogOut } from "react-icons/fi";
+import { FiSearch, FiLogOut, FiX } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { useSession, signIn, signOut } from "next-auth/react";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductsStruct, StateProps } from "../../type";
 import FormattedPrice from "./FormattedPrice";
@@ -29,6 +28,11 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
     onSearch(e.target.value);
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    onSearch("");
   };
 
   useEffect(() => {
@@ -71,8 +75,14 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
               value={searchTerm}
               onChange={handleSearchChange}
             />
+            {searchTerm && (
+              <FiX
+                className="text-gray-500 cursor-pointer hover:text-darkText duration-200"
+                onClick={handleClearSearch}
+              />
+            )}
           </div>
-         
+
           {/* Кнопка корзины */}
           <Link href={"/cart"}>
             <div className="bg-black hover:bg-slate-950 rounded-full text-slate-100 hover:text-white flex items-center justify-center gap-x-1 px-3 py-1.5 border-[1px] border-black hover:border-orange-600 duration-200 relative">
@@ -96,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
           ) */}
         </div>
 
-       
+
       </Container>
     </div>
   );
