@@ -18,9 +18,11 @@ const db = require('./database');
 // Middleware для парсинга JSON
 app.use(express.json());
 
+//DON`t FRGET change data structure in type.ts FrontEnd!!!
+
 // Метод для получения списка товаров
 app.get('/api/products', (req, res) => {
-  db.all('SELECT * FROM products ORDER BY image desc, category desc', [], (err, rows) => {
+  db.all('SELECT p.*, c.cat_name, c.cat_priority FROM products p,  dict_category c WHERE p.category_id = c.id ORDER BY c.cat_priority ASC, image DESC', [], (err, rows) => {
     if (err) {
       return res.status(500).json({ message: 'Ошибка получения данных' });
     }
@@ -30,7 +32,7 @@ app.get('/api/products', (req, res) => {
 
 // Метод для получения тренд товаров
 app.get('/api/trendproducts', (req, res) => {
-  db.all('SELECT * FROM products WHERE isNew=1', [], (err, rows) => {
+  db.all('SELECT p.*, c.cat_name, c.cat_priority FROM products p,  dict_category c WHERE p.category_id = c.id AND isNew=1', [], (err, rows) => {
     if (err) {
       return res.status(500).json({ message: 'Ошибка получения данных' });
     }
@@ -41,7 +43,7 @@ app.get('/api/trendproducts', (req, res) => {
 // Метод для получения одного товара по ID
 app.get('/api/products/:id', (req, res) => {
   const productId = req.params.id;
-  db.get('SELECT * FROM products WHERE _id = ?', [productId], (err, row) => {
+  db.get('SELECT p.*, c.cat_name, c.cat_priority FROM products p,  dict_category c WHERE p.category_id = c.id AND _id = ?', [productId], (err, row) => {
     if (err) {
       return res.status(500).json({ message: 'Ошибка получения данных' });
     }

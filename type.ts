@@ -6,7 +6,7 @@ export interface ProductsStruct {
   price: number;
   type: string;
   description: string;
-  category: string;
+  cat_name: string;
   image: string;
   rating: number;
   quantity: number;
