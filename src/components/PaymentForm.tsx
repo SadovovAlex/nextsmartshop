@@ -98,7 +98,9 @@ const PaymentForm = () => {
         </div>
       </div>
       
-      {userInfo ? (
+      {
+        /*
+      userInfo ? (
         <button
           onClick={handleCheckout} 
     
@@ -115,7 +117,8 @@ const PaymentForm = () => {
             Войдите или зарегистрируйтесь для оформления заказа
           </p>
         </div>              
-      )}
+      )
+      */}
   
      
     </div>

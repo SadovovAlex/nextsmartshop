@@ -75,7 +75,7 @@ const BannerText = ({ title }: Props) => {
             transition={{ duration: 0.6 }}
             className="xs:text-base font-bold text-gray-900 drop-shadow-md"
           >
-            Телефон для заказа: 8-995-963-00-40
+            Телефон для заказа: +7(995)963-00-40
           </motion.p>
           <motion.p
             initial={{ y: 40, opacity: 0 }}

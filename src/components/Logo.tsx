@@ -5,7 +5,7 @@ import Image from "next/image";
 const Logo = () => {
   const handlePhoneClick = () => {
     if (typeof window !== 'undefined') {
-      window.location.href = 'tel:89959630040';
+      window.location.href = 'tel:+79959630040';
     }
   };
 

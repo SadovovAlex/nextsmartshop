@@ -35,6 +35,7 @@ const CartPage = () => {
 
             {/* Payment Form */}
             <PaymentForm />
+          
 
             {/* SubmitOrderForm Form */}
             <SubmitOrderForm  />
