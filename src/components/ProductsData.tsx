@@ -27,10 +27,10 @@ const ProductsData = ({ item }: ItemProps) => {
         <Link href={{ pathname: "/product", query: { _id: item?._id } }}>
           <div className="w-full h-76 group overflow-hidden relative">
             <Image
-              src={`/static/products/${item?.image}`}
-              alt="product image"
-              width={800}
-              height={400}
+              src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
+              alt="foto"
+              width={650}
+              height={650}
               className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg md:w-3/4 md:h-3/4 sm:w-2/3 sm:h-2/3 xs:w-1/3 xs:h-1/3" // Измените размеры для маленьких экранов
             />
             {item?.isNew === 1 && (

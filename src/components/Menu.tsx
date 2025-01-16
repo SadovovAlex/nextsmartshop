@@ -64,12 +64,12 @@ const Menu = () => {
             className={`md:flex md:items-center ${isMenuOpen ? "block" : "hidden"
               }`}
           >
-            <ul className="md:flex md:space-x-4">
+            <ul className="md:flex md:space-x-6">
               <li>
                 <div className="w-1/3 text-sm font-semibold text-white text-right">
                   <Link href="/">
-                    <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                      Главная
+                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                   Главная
                     </div>
                   </Link>
                 </div>
@@ -84,7 +84,7 @@ const Menu = () => {
                 </div>
               </li>
               <li>
-                <Link href="/news">Новости</Link>
+                <Link href="/about">О нас</Link>
               </li>
               <li>
                 <Link href="/cart">Корзина</Link>

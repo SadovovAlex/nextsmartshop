@@ -19,7 +19,7 @@ const Footer = () => {
       <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
         <div className="flex flex-col gap-y-4">
           <Logo />
-          <p className="text-base transition duration-300 ease-in-out hover:text-gray-500">
+          <p className="text-xs transition duration-300 ease-in-out hover:text-gray-500">
             <span className="font-semibold animate-fadeIn">Работаем с розничными магазинами, сетями и продуктовыми рынками.</span>
             <br />
             <span className="font-semibold animate-fadeIn">Опт на выгодных условиях.</span>
@@ -52,7 +52,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Кооперативная ул., 70, Заокское, Рязанская обл., Россия, 390019
+                Россия, 390019, Рязанская обл., село Заокское.
               </a>
             </div>
 
@@ -92,36 +92,43 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="links">
-          <p className="text-lg">Ссылки</p>
-          <ul className="text-base font-medium mt-2 flex flex-col gap-y-2">
-            <Link href={"/"}>
-              <li className="hover:text-orange-500 cursor-pointer duration-200">
-                Главная
-              </li>
-            </Link>
-            <Link href={"/price"}>
-              <li className="hover:text-orange-500 cursor-pointer duration-200">
-                Прайс
-              </li>
-            </Link>
-            <Link href={"/cart"}>
-              <li className="hover:text-orange-500 cursor-pointer duration-200">
-                Корзина
-              </li>
-            </Link>
-            <Link href={"/about"}>
-              <li className="hover:text-orange-500 cursor-pointer duration-200">
-                О нас
-              </li>
-            </Link>
-            <Link href="/news" target="_blank">
-              <li className="hover:text-orange-500 cursor-pointer duration-200">
-                Новости
-              </li>
-            </Link>
-          </ul>
-        </div>
+        <div className="links  py-4 px-6 md:px-0">
+  <div className="container mx-auto">
+
+    <ul className="flex flex-wrap justify-center md:justify-start space-x-4 md:space-x-8">
+      <li className="list-none">
+        <Link href="/">
+          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+            Главная
+          </div>
+        </Link>
+      </li>
+      <li className="list-none">
+        <Link href={"/price"}>
+          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+            Прайс
+          </div>
+        </Link>
+      </li>
+      <li className="list-none">
+        <Link href="/about">
+          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+            О нас
+          </div>
+        </Link>
+      </li>
+      <li className="list-none">
+        <Link href="/cart">
+          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+            Корзина
+          </div>
+        </Link>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
       </Container>
       <footer className="bg-neutral-200 text-center lg:text-left dark:bg-neutral-700">
         <div className="p-2 text-neutral-700 dark:text-neutral-200 text-center">

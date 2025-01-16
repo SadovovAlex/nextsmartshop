@@ -28,7 +28,6 @@ const CartItem = () => {
             key={item._id}
             className="w-full bg-white p-4 flex flex-col md:flex-row items-center justify-between gap-4"
           >
-
             <div className="flex items-center gap-x-3 w-full md:w-1/3">
               <span
                 onClick={() => dispatch(deleteProduct(item?._id))}
@@ -37,7 +36,7 @@ const CartItem = () => {
                 <AiOutlineClose />
               </span>
               <Image
-                src={`/static/products/${item?.image}`}
+                src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
                 width={500}
                 height={500}
                 alt="product image"
@@ -47,11 +46,10 @@ const CartItem = () => {
               {item?.title}
             </div>
 
-
             {/* quantity */}
             <div className="flex items-center justify-between gap-x-3 w-full md:w-auto">
               <div>
-              <FormattedPrice amount={item?.price} />
+                <FormattedPrice amount={item?.price} />
               </div>
               <div className="flex items-center text-lg w-40 justify-between">
                 <span

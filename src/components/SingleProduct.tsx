@@ -9,7 +9,7 @@ import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
 
 
-const SignleProduct = ({ product }: any) => {
+const SignleProduct = ({ item }: any) => {
   
   // Выводим product в консоль
   //console.log('SignleProduct=', product?.image);
@@ -20,7 +20,7 @@ const SignleProduct = ({ product }: any) => {
 
       <div>
         <Image
-          src={`/static/products/${product?.image}`}
+          src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
           alt="product image"
           width={500}
           height={500}
@@ -29,29 +29,29 @@ const SignleProduct = ({ product }: any) => {
       </div>
       <div className="flex flex-col justify-center gap-y-10">
         <div>
-          <p className="text-3xl font-semibold">{product?.title}</p>
+          <p className="text-3xl font-semibold">{item?.title}</p>
           <p className="text-xl font-semibold">
-            <FormattedPrice amount={product?.price} />
+            <FormattedPrice amount={item?.price} />
           </p>
         </div>
-        <p className="text-lightText">{product?.description}</p>
+        <p className="text-lightText">{item?.description}</p>
         <div className="text-sm text-lightText flex flex-col">
           <span>
-            #: <span className="text-darkText">{product?._id}</span>
+            #: <span className="text-darkText">{item?._id}</span>
           </span>
           <span>
-            Категория: <span className="text-darkText">{product?.cat_name}</span>
+            Категория: <span className="text-darkText">{item?.cat_name}</span>
           </span>
           <span>
-            Состав: <span className="text-darkText">{product?.ingredients}</span>
+            Состав: <span className="text-darkText">{item?.ingredients}</span>
           </span>
         </div>
         <div
           onClick={() =>
-            dispatch(addToCart(product)) &&
+            dispatch(addToCart(item)) &&
          
             toast.success(
-              `+1 ${product?.title.substring(0, 30)}\nдобавлен в корзину`
+              `+1 ${item?.title.substring(0, 30)}\nдобавлен в корзину`
             )
           }
           className="flex items-center cursor-pointer group"

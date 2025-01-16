@@ -39,7 +39,7 @@ const SubmitOrderForm = () => {
   // Состояние для хранения данных формы
   const [formData, setFormData] = useState({
     name: "",
-    email: "aasdvv@gmail.com",
+    email: "ryazantvorog@gmail.com",
     message: "",
   });
 

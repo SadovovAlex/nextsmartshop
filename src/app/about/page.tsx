@@ -1,11 +1,13 @@
 import React from "react";
 import Container from "@/components/Container";
 import './AboutPage.css'; // Импортируем CSS файл для стилей
+import Menu from "@/components/Menu"; 
 
 
 const AboutPage = () => {
   return (
     <div className="about-page">
+      <Menu/>
       <Container>
         <h1 className="fade-in">О нас</h1>
         <p className="fade-in">

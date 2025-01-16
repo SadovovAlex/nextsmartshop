@@ -57,13 +57,15 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
 <table className="w-full table-auto border-collapse">
   <thead>
     <tr className="bg-gray-200">
+    <th className="px-2 py-1">#</th>
       <th className="px-2 py-1"></th>
       <th
         className="px-2 py-1 cursor-pointer hover:bg-gray-300"
         onClick={() => handleSort("title")}
       >
-        Название
+        Наименование
       </th>
+      <th className="px-2 py-1">Категория</th>
       <th
         className="px-2 py-1 cursor-pointer hover:bg-gray-300"
         onClick={() => handleSort("type")}
@@ -74,24 +76,27 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
         className="px-2 py-1 cursor-pointer hover:bg-gray-300"
         onClick={() => handleSort("price")}
       >
-        Цена
+        Цена,₽ 
       </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody className="text-xs">
     {sortedProducts.map((item: ProductsStruct, index) => (
       <tr
         key={item._id}
-        className={`border-b hover:bg-gray-100 transition-colors duration-300 ${
+        className={`border-b hover:bg-green-100 transition-colors duration-300 ${
           index % 2 === 0 ? "bg-gray-100" : "bg-white"
         }`}
       >
         <td className="px-1 py-1">
+          {item?._id}
+        </td>
+        <td className="px-1 py-1">
           <Image
-            src={`/static/products/${item?.image}`}
+            src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
             alt="product image"
-            width={30}
-            height={15}
+            width={20}
+            height={10}
             
           />
         </td>
@@ -105,8 +110,9 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
             {item.title}
           </Link>
         </td>
-        <td className="px-2 py-1">{item.type}</td>
-        <td className="px-2 py-1">{item.price}</td>
+        <td className="px-2 py-1">{item?.cat_name}</td>
+        <td className="px-2 py-1">{item?.type}</td>
+        <td className="px-2 py-1">{item?.price}</td>
       </tr>
     ))}
   </tbody>

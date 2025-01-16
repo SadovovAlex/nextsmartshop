@@ -10,7 +10,7 @@ const Logo = () => {
   };
 
   return (
-    <Link href={"/"}>
+  
       <div className="flex items-center cursor-pointer duration-200">
         <Image
           src="/static/logo.webp"
@@ -32,7 +32,7 @@ const Logo = () => {
           </div>
         </div>
       </div>
-    </Link>
+  
   );
 };
 
