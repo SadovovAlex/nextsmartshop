@@ -1,5 +1,8 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
+import { getSingleProduct } from '@/helpers';
+import { ProductsStruct } from '../../type';
 import Image from "next/image";
 import FormattedPrice from "./FormattedPrice";
 import { IoMdCart } from "react-icons/io";
@@ -8,19 +11,39 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/shoppingSlice";
 import toast, { Toaster } from "react-hot-toast";
 
+type Props = {
+  productId: number;
+};
 
-const SignleProduct = ({ item }: any) => {
-  
-  // Выводим product в консоль
-  //console.log('SignleProduct=', product?.image);
+const SingleProduct: React.FC<Props> = ({ productId }) => {
+  const [item, setProduct] = React.useState<ProductsStruct | null>(null);
+  React.useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const data = await getSingleProduct(productId);
+        setProduct(data);
+      } catch (error) {
+        console.error('Ошибка при получении данных:', error);
+      }
+    };
+
+    fetchProduct();
+  }, [productId]);
+
+  if (!item) {
+    return <div>Загрузка...</div>;
+  }
 
   const dispatch = useDispatch();
+
   return (
     <div className="grid lg:grid-cols-2 gap-5 bg-white p-4 rounded-lg">
 
       <div>
+        
         <Image
-          src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
+          //src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
+          src={`/static/products/${item?.image}`}
           alt="product image"
           width={500}
           height={500}
@@ -63,14 +86,16 @@ const SignleProduct = ({ item }: any) => {
             <IoMdCart />
           </span>
         </div>
+        {/*
         <p className="flex items-center gap-x-2 text-sm">
           <MdFavoriteBorder className="text-xl" />
           Добавить в избранное
-        </p>
+        </p>  */
+        }
       </div>
       <Toaster />
     </div>
   );
 };
 
-export default SignleProduct;
+export default SingleProduct;
