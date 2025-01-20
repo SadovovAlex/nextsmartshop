@@ -10,7 +10,7 @@ import payment from "@/images/payment.png";
 import Container from "./Container";
 import Logo from "./Logo";
 import Link from "next/link";
-import Image from "next/image";
+import { TEXT } from '../constants/constants';
 import packageJson from '../../package.json';
 
 const Footer = () => {
@@ -26,7 +26,7 @@ const Footer = () => {
             <br />
             <span className="font-semibold animate-fadeIn">Ветеринарное свидетельство отправляем по Меркурию.</span>
             <br />
-            <span className="font-semibold animate-fadeIn">Бесплатная доставка в Москву, Московскую область, Тула (область), Калуга (область), при определенной сумме заказа.</span>
+            <span className="font-semibold animate-fadeIn">{TEXT.DELIVERY}</span>
             <br />
             <span className="font-semibold">Дни доставки:</span> пн, вт, чт, пт, сб.
           </p>

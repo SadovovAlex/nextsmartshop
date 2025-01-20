@@ -158,9 +158,9 @@ const SubmitOrderForm = () => {
       </tbody>
     </table>
     <BR>
-    <p>Заказ: ${totalAmt}</p>
-    <p>Доставка: ${shippingCost}</p>
-    <p>Итого по заказу: ${totalAmt + shippingCost} </p>
+    <p>Заказ: ${totalAmt}₽</p>
+    <p>Доставка: ${shippingCost}₽</p>
+    <p>Итого по заказу: ${totalAmt + shippingCost}₽</p>
     `;
 
 
@@ -226,7 +226,7 @@ const SubmitOrderForm = () => {
 
             <textarea
               name="message"
-              placeholder="Сообщение"
+              placeholder="Куда планируется доставка"
               className="border border-gray-300 p-2 rounded"
               value={formData.message}
               onChange={handleInputChange}

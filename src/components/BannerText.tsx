@@ -1,5 +1,6 @@
 import Container from "./Container";
 import { motion } from "framer-motion";
+import { TEXT } from '../constants/constants';
 
 interface Props {
   title: string;
@@ -39,7 +40,7 @@ const BannerText = ({ title }: Props) => {
             transition={{ duration: 0.6 }}
             className="text-base text-gray-700 drop-shadow-md xs:text-xs"
           >
-            Бесплатная доставка в Москву, Московскую область, Тула (область), Калуга (область), при определенной сумме заказа.
+            {TEXT.DELIVERY}
           </motion.p>
 
           <motion.p
