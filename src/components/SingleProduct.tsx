@@ -17,6 +17,8 @@ type Props = {
 
 const SingleProduct: React.FC<Props> = ({ productId }) => {
   const [item, setProduct] = React.useState<ProductsStruct | null>(null);
+  const dispatch = useDispatch();
+  
   React.useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -33,8 +35,6 @@ const SingleProduct: React.FC<Props> = ({ productId }) => {
   if (!item) {
     return <div>Загрузка...</div>;
   }
-
-  const dispatch = useDispatch();
 
   return (
     <div className="grid lg:grid-cols-2 gap-5 bg-white p-4 rounded-lg">
