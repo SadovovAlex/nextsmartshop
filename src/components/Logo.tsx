@@ -13,6 +13,13 @@ const Logo = () => {
   
       <div className="flex items-center cursor-pointer duration-200">
         <Image
+          src="/static/qr-code.webp"
+          alt="Лого"
+          className="w-12 h-12 transition-transform duration-200 transform hover:scale-110"
+          width={500}
+          height={300}
+        />
+        <Image
           src="/static/logo.webp"
           alt="Лого"
           className="w-8 h-8 transition-transform duration-200 transform hover:scale-110"

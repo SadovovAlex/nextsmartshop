@@ -50,7 +50,60 @@
 }
 
 @media print {
-  .socialLink, .events, .links {
-    display: none;
+  /* Скрыть элементы, которые не нужны при печати */
+  .noprint,
+  .socialLink,
+  .events,
+  .links {
+    display: none !important;
+  }
+  /* показать элементы, которые нужны ТОЛЬКО при печати */
+  .onlyprint {
+    display: block;
+  }
+
+  /* Убрать фон и тени для улучшения читаемости */
+  body {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Увеличить размер шрифта для лучшей читаемости */
+  body,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 14pt !important;
+  }
+
+  /* Убрать ссылки, так как они не нужны при печати */
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+
+  /* Убрать элементы управления, которые не нужны при печати */
+  button,
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+
+  /* Улучшить компоновку таблиц */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  /* Улучшить компоновку изображений */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
   }
 }
+

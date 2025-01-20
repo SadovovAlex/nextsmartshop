@@ -59,39 +59,48 @@ const Menu = () => {
               <Logo />
             </Link>
           </div>
-
-          <nav
-            className={`md:flex md:items-center ${isMenuOpen ? "block" : "hidden"
-              }`}
-          >
-            <ul className="md:flex md:space-x-6">
-              <li>
-                <div className="w-1/3 text-sm font-semibold text-white text-right">
-                  <Link href="/">
-                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                   Главная
-                    </div>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="w-1/3 text-sm font-semibold text-white text-right">
-                  <Link href={"/price"}>
+          <div className="noprint">
+            <nav
+              className={`md:flex md:items-center ${isMenuOpen ? "block" : "hidden"
+                }`}
+            >
+              <ul className="md:flex md:space-x-6">
+                <li>
+                  <div className="w-1/3 text-sm font-semibold text-white text-right">
+                    <Link href="/">
+                      <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                        Главная
+                      </div>
+                    </Link>
+                  </div>
+                </li>
+                <li>
+                  <div className="w-1/3 text-sm font-semibold text-white text-right">
+                    <Link href={"/price"}>
+                      <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                        Прайс
+                      </div>
+                    </Link>
+                  </div>
+                </li>
+                <li>
+                  <Link href="/about">
                     <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                      Прайс
+                      О нас
                     </div>
                   </Link>
-                </div>
-              </li>
-              <li>
-                <Link href="/about">О нас</Link>
-              </li>
-              <li>
-                <Link href="/cart">Корзина</Link>
-              </li>
+                </li>
+                <li>
+                  <Link href="/cart">
+                    <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                      Корзина
+                    </div>
+                  </Link>
+                </li>
 
-            </ul>
-          </nav>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>

@@ -49,6 +49,8 @@ const AboutPage = () => {
 
         <h2 className="fade-in">Контакты</h2>
         <p className="fade-in">Телефон: +7(995)963-00-40</p>
+        <p className="fade-in">e-mail: ryazantvorog@gmail.com  </p>
+        
         <p className="fade-in">Адрес: Рязанская область, село Заокское</p>
         <footer className="fade-in">
           <p>© 2024 Молочная ферма Шуваловых</p>

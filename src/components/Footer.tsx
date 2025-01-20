@@ -12,13 +12,19 @@ import Logo from "./Logo";
 import Link from "next/link";
 import { TEXT } from '../constants/constants';
 import packageJson from '../../package.json';
+import Image from "next/image";
 
 const Footer = () => {
+  const handlePhoneClick = () => {
+    if (typeof window !== 'undefined') {
+      window.location.href = 'tel:+79959630040';
+    }
+  };
   return (
     <div className="w-full bg-darkText text-slate-100">
       <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
         <div className="flex flex-col gap-y-4">
-          <Logo />
+
           <p className="text-xs transition duration-300 ease-in-out hover:text-gray-500">
             <span className="font-semibold animate-fadeIn">Работаем с розничными магазинами, сетями и продуктовыми рынками.</span>
             <br />
@@ -35,9 +41,18 @@ const Footer = () => {
 
         <div>
           {/* Phone Number */}
-          <div className="items-center text-sm font-semibold text-white">
-            <p>Телефон для заказа: +7(995)963-00-40</p>
-            <p>Email: ryazantvorog@gmail.com</p>
+          <div className="">
+            <div className="sm:block hidden text-xs font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+              Ферма Шуваловых
+            </div>
+            <div
+              className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
+              onClick={handlePhoneClick}
+            >+7(995)963-00-40
+            </div>
+            <div className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer">
+            ryazantvorog@gmail.com  
+            </div>
           </div>
 
           {/* Contact Information */}
@@ -93,40 +108,46 @@ const Footer = () => {
         </div>
 
         <div className="links  py-4 px-6 md:px-0">
-  <div className="container mx-auto">
-
-    <ul className="flex flex-wrap justify-center md:justify-start space-x-4 md:space-x-8">
-      <li className="list-none">
-        <Link href="/">
-          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-            Главная
+          <div className="container mx-auto">
+            <ul className="flex flex-wrap justify-center md:justify-start space-x-4 md:space-x-8">
+              <li className="list-none">
+                <Link href="/">
+                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                    Главная
+                  </div>
+                </Link>
+              </li>
+              <li className="list-none">
+                <Link href={"/price"}>
+                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                    Прайс
+                  </div>
+                </Link>
+              </li>
+              <li className="list-none">
+                <Link href="/about">
+                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                    О нас
+                  </div>
+                </Link>
+              </li>
+              <li className="list-none">
+                <Link href="/cart">
+                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                    Корзина
+                  </div>
+                </Link>
+              </li>
+            </ul>
+            <Image
+              src="/static/qr-code.webp"
+              alt="Лого"
+              className="w-28 h-28 transition-transform duration-200 transform hover:scale-110 "
+              width={500}
+              height={300}
+            />
           </div>
-        </Link>
-      </li>
-      <li className="list-none">
-        <Link href={"/price"}>
-          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-            Прайс
-          </div>
-        </Link>
-      </li>
-      <li className="list-none">
-        <Link href="/about">
-          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-            О нас
-          </div>
-        </Link>
-      </li>
-      <li className="list-none">
-        <Link href="/cart">
-          <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-            Корзина
-          </div>
-        </Link>
-      </li>
-    </ul>
-  </div>
-</div>
+        </div>
 
 
       </Container>

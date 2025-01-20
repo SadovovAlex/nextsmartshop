@@ -95,7 +95,7 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
           <Image
             src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
             alt="product image"
-            width={20}
+            width={25}
             height={10}
             
           />
