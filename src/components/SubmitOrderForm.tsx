@@ -13,10 +13,10 @@ const SubmitOrderForm = () => {
   const { productData } = useSelector((state: StateProps) => state?.shopping);
   // сумма корзины и доставка 
   const [totalAmt, setTotalAmt] = useState(0);
-  const [shippingCost, setShippingCost] = useState(10000); // Изначальная стоимость доставки
+  const [shippingCost, setShippingCost] = useState(5000); // Изначальная стоимость доставки
   // Устанавливаем стоимость доставки в зависимости от суммы заказа
   const shippingThreshold = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_THRESHOLD || "5000");
-  const shippingCostValue = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "10000");
+  const shippingCostValue = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "5000");
     
   useEffect(() => {
     let amt = 0;

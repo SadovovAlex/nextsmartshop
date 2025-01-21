@@ -53,7 +53,7 @@ const AboutPage = () => {
         
         <p className="fade-in">Адрес: Рязанская область, село Заокское</p>
         <footer className="fade-in">
-          <p>© 2024 Молочная ферма Шуваловых</p>
+          <p>© 2024 Рязанская молочная ферма Заокское</p>
         </footer>
       </Container>
     </div>

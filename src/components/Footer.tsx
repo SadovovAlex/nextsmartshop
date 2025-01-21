@@ -20,6 +20,11 @@ const Footer = () => {
       window.location.href = 'tel:+79959630040';
     }
   };
+  const handleEmailClick = () => {
+    if (typeof window !== 'undefined') {
+    window.location.href = 'mailto:ryazantvorog@gmail.com';
+    }
+    };  
   return (
     <div className="w-full bg-darkText text-slate-100">
       <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
@@ -43,17 +48,19 @@ const Footer = () => {
           {/* Phone Number */}
           <div className="">
             <div className="sm:block hidden text-xs font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-              Ферма Шуваловых
+            Рязанская молочная ферма Заокское
             </div>
             <div
               className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
               onClick={handlePhoneClick}
             >+7(995)963-00-40
             </div>
-            <div className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer">
+            <div className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
+            onClick={handleEmailClick}>
             ryazantvorog@gmail.com  
             </div>
           </div>
+
 
           {/* Contact Information */}
           <div className="flex flex-col text-sm font-semibold text-white mt-2">

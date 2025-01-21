@@ -29,7 +29,7 @@ const Logo = () => {
 
         <div className="">
           <div className="sm:block hidden text-xs font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-            Ферма Шуваловых
+          Рязанская молочная ферма Заокское
           </div>
           <div
             className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"

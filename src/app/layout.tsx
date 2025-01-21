@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 // export const metadata: Metadata = {
 //   title: {
 //     template: "shopping_mart",
-//     default: "Молочная ферма Шуваловых, Рязань",
+//     default: "Рязанская молочная ферма Заокское",
 //   },
 // };
 
