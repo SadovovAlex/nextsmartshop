@@ -1,107 +1,65 @@
 "use client";
-
+import React, { useState } from "react";
+import { FaBars } from "react-icons/fa";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
 
-
 const Menu = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMenuVisible, setIsMenuVisible] = useState(true);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollThreshold = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-      if (currentScrollPos < scrollThreshold * 0.02) {
-        setIsMenuVisible(true);
-      } else {
-        setIsMenuVisible(currentScrollPos < prevScrollPos);
-        setPrevScrollPos(currentScrollPos);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos]);
-
   return (
-    <div>
-      <div
-        className={`fixed top-0 left-0 w-full bg-gray-800 text-white z-50 transition-all duration-300 ${isMenuVisible ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-      >
-        <div className="container mx-auto flex justify-between items-center py-4">
-          <div className="flex items-center">
-            <button
-              className="mr-4 lg:hidden"
-              onClick={toggleMenu}
-            >
-              <svg
-                className="h-6 w-6 fill-white"
-                viewBox="0 0 24 24"
-              >
-                <path d="M3 6.00092H21M3 12.0009H21M3 18.0009H21" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                <defs>
-                  <clipPath id="clip0_429_11066">
-                    <rect width="24" height="24" fill="white" transform="translate(0 0.000915527)" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </button>
-            <Link href="/">
-              <Logo />
-            </Link>
-          </div>
-          <div className="noprint">
-            <nav
-              className={`md:flex md:items-center ${isMenuOpen ? "block" : "hidden"
-                }`}
-            >
-              <ul className="md:flex md:space-x-6">
-                <li>
-                  <div className="w-1/3 text-sm font-semibold text-white text-right">
-                    <Link href="/">
-                      <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                        Главная
-                      </div>
-                    </Link>
-                  </div>
-                </li>
-                <li>
-                  <div className="w-1/3 text-sm font-semibold text-white text-right">
-                    <Link href={"/price"}>
-                      <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                        Прайс
-                      </div>
-                    </Link>
-                  </div>
-                </li>
-                <li>
-                  <Link href="/about">
-                    <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                      О нас
-                    </div>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/cart">
-                    <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                      Корзина
-                    </div>
-                  </Link>
-                </li>
-
-              </ul>
-            </nav>
-          </div>
+    <div className={`relative ${isOpen ? "open" : ""}`}>
+      <div className="flex justify-between items-center bg-gray-900 text-white p-2.5">
+        <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
+          <FaBars />
         </div>
+        <Link href="/">
+          <Logo />
+        </Link>
+        <nav
+          className={`absolute top-full left-0 w-48 bg-gray-100 shadow-md z-30 transform transition-transform duration-300 ${
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          } md:static md:transform-none md:w-auto md:bg-transparent md:shadow-none md:flex md:justify-center`}
+        >
+          <ul className="list-none md:flex md:space-x-4">
+            <li className="border-b border-gray-200 md:border-none">
+              <a
+                href="/"
+                className="block px-4 py-2 hover:bg-gray-200 hover:text-orange-500 md:hover:bg-transparent sm:text-black"
+              >
+                Главная
+              </a>
+            </li>
+            <li className="border-b border-gray-200 md:border-none">
+              <a
+                href="/price"
+                className="block px-4 py-2 hover:bg-gray-200 hover:text-orange-500 md:hover:bg-transparent sm:text-black"
+              >
+                Прайс
+              </a>
+            </li>
+            <li className="border-b border-gray-200 md:border-none">
+              <a
+                href="/about"
+                className="block px-4 py-2 hover:bg-gray-200 hover:text-orange-500 md:hover:bg-transparent sm:text-black"
+              >
+                О нас
+              </a>
+            </li>
+            <li className="md:border-none">
+              <a
+                href="/cart"
+                className="block px-4 py-2 hover:bg-gray-200 hover:text-orange-500 md:hover:bg-transparent sm:text-black"
+              >
+                Корзина
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

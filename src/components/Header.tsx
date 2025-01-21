@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   }, [productData]);
 
   return (
-    <div className="bg-bodyColor h-30 top-1 sticky z-20">
+    <div className="bg-bodyColor h-10 top-1 sticky z-20">
       <Container className="h-full flex flex-col">
         {/* Первая строка: Логотип, Вход, Корзина */}
         <div className="flex items-center justify-between md:gap-x-5 mt-0">

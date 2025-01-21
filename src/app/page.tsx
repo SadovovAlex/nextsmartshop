@@ -1,24 +1,23 @@
 "use client";
+
 import React, { useState } from "react";
 import Banner from "@/components/BannerStatic";
 import Products from "@/components/Products";
-import Header from "@/components/Header"; 
-import Menu from "@/components/Menu"; 
+import Header from "@/components/Header";
+import Menu from "@/components/Menu";
 
 export default function Home() {
-  
-  const [searchTerm, setSearchTerm] = useState(""); // Создаем состояние с функцией для обновления
+  const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = (term: string) => {
-    setSearchTerm(term); // Обновляем состояние при изменении
+    setSearchTerm(term);
   };
 
   return (
     <main>
-      <Menu /> {/* Добавляем компонент меню */}
-      <Header onSearch={handleSearch} /> {/* Передаем функцию для обновления searchTerm */}
-      
-      <Banner />
-      <Products searchTerm={searchTerm} /> {/* Передаем searchTerm в Products */}
+        <Menu />
+        <Header onSearch={handleSearch} />
+        <Banner />
+        <Products searchTerm={searchTerm} />
     </main>
   );
 }
