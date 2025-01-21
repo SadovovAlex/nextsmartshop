@@ -22,49 +22,53 @@ const Footer = () => {
   };
   const handleEmailClick = () => {
     if (typeof window !== 'undefined') {
-    window.location.href = 'mailto:ryazantvorog@gmail.com';
+      window.location.href = 'mailto:ryazantvorog@gmail.com';
     }
-    };  
+  };
   return (
-    <div className="w-full bg-darkText text-slate-100">
-      <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
-        <div className="flex flex-col gap-y-4">
+    <div className="pt-2 w-full bg-darkText text-slate-100">
+      <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-10">
 
+        <div className="flex flex-col gap-y-4">
           <p className="text-xs transition duration-300 ease-in-out hover:text-gray-500">
-            <span className="font-semibold animate-fadeIn">Работаем с розничными магазинами, сетями и продуктовыми рынками.</span>
+            <span className="font-semibold animate-fadeIn">
+              Работаем с розничными магазинами, сетями и продуктовыми рынками.
+            </span>
             <br />
             <span className="font-semibold animate-fadeIn">Опт на выгодных условиях.</span>
             <br />
-            <span className="font-semibold animate-fadeIn">Ветеринарное свидетельство отправляем по Меркурию.</span>
+            <span className="font-semibold animate-fadeIn">
+              Ветеринарное свидетельство отправляем по Меркурию.
+            </span>
             <br />
             <span className="font-semibold animate-fadeIn">{TEXT.DELIVERY}</span>
             <br />
             <span className="font-semibold">Дни доставки:</span> пн, вт, чт, пт, сб.
           </p>
-
         </div>
 
         <div>
           {/* Phone Number */}
           <div className="">
             <div className="sm:block hidden text-xs font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-            Рязанская молочная ферма Заокское
+              Рязанская молочная ферма Заокское
             </div>
             <div
               className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
               onClick={handlePhoneClick}
-            >+7(995)963-00-40
+            >
+              +7(995)963-00-40
             </div>
-            <div className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
-            onClick={handleEmailClick}>
-            ryazantvorog@gmail.com  
+            <div
+              className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
+              onClick={handleEmailClick}
+            >
+              ryazantvorog@gmail.com
             </div>
           </div>
 
-
           {/* Contact Information */}
           <div className="flex flex-col text-sm font-semibold text-white mt-2">
-
             {/* Address */}
             <div className="flex items-center mt-1">
               <p className="mr-2">Адрес:</p>
@@ -80,43 +84,59 @@ const Footer = () => {
 
             {/* Working Hours */}
             <div className="flex items-center mt-1">
-              <p className="mr-2">Часы работы:</p>
-              <p>9:00 - 18:00</p>
+              <p className="mr-2">Прием заказов:</p>
+              <p>8:00 - 10:00 ежедневно</p>
             </div>
           </div>
+          {
+            /*
+                    <div className="socialLink flex items-center gap-x-4">
+                      <a href="#" target="_blank">
+                        <span className="socialLink">
+                          <BsInstagram />
+                        </span>
+                      </a>
+                      <a href="#" target="_blank">
+                        <span className="socialLink">
+                          <BsGithub />
+                        </span>
+                      </a>
+                      <a href="#" target="_blank">
+                        <span className="socialLink">
+                          <BsLinkedin />
+                        </span>
+                      </a>
+                      <a href="#" target="_blank">
+                        <span className="socialLink">
+                          <BsFacebook />
+                        </span>
+                      </a>
+                      <a href="#" target="_blank">
+                        <span className="socialLink">
+                          <BsTwitter />
+                        </span>
+                      </a>
+                    </div>
+               
+                  */
+          }
+        </div>
 
-          <div className="socialLink flex items-center gap-x-4">
-            <a href="#" target="_blank">
-              <span className="socialLink">
-                <BsInstagram />
-              </span>
-            </a>
-            <a href="#" target="_blank">
-              <span className="socialLink">
-                <BsGithub />
-              </span>
-            </a>
-            <a href="#" target="_blank">
-              <span className="socialLink">
-                <BsLinkedin />
-              </span>
-            </a>
-            <a href="#" target="_blank">
-              <span className="socialLink">
-                <BsFacebook />
-              </span>
-            </a>
-            <a href="#" target="_blank">
-              <span className="socialLink">
-                <BsTwitter />
-              </span>
-            </a>
+        <div className="md:mt-0 top-0 items-center">
+          <div className="container mx-auto flex flex-col items-center">
+            <Image
+              src="/static/qr-code.webp"
+              alt="Лого"
+              className="w-28 h-28 transition-transform duration-200 transform hover:scale-110"
+              width={500}
+              height={300}
+            />
           </div>
         </div>
 
-        <div className="links  py-4 px-6 md:px-0">
-          <div className="container mx-auto">
-            <ul className="flex flex-wrap justify-center md:justify-start space-x-4 md:space-x-8">
+        <div className="links py-4 px-6 md:px-0">
+          <div className="container mx-auto flex flex-col items-center">
+            <div className="flex flex-wrap justify-center space-x-4 md:flex-col md:items-start md:mr-8 md:space-y-4">
               <li className="list-none">
                 <Link href="/">
                   <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
@@ -145,21 +165,17 @@ const Footer = () => {
                   </div>
                 </Link>
               </li>
-            </ul>
-            <Image
-              src="/static/qr-code.webp"
-              alt="Лого"
-              className="w-28 h-28 transition-transform duration-200 transform hover:scale-110 "
-              width={500}
-              height={300}
-            />
+            </div>
           </div>
         </div>
 
 
+
+
+
       </Container>
-      <footer className="bg-neutral-200 text-center lg:text-left dark:bg-neutral-700">
-        <div className="p-2 text-neutral-700 dark:text-neutral-200 text-center">
+      <footer className="bg-neutral-200 text-center lg:text-left dark:bg-neutral-700 text-sm">
+        <div className="p-2 text-neutral-700 dark:text-neutral-200 text-center ">
           &copy; 2024 WR Shop. All rights reserved.&nbsp;
           <a
             href="#"
@@ -171,8 +187,8 @@ const Footer = () => {
           </a>
         </div>
       </footer>
-
     </div>
+
   );
 };
 
