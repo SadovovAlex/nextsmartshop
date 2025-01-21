@@ -1,6 +1,6 @@
 import Container from "./Container";
 import { motion } from "framer-motion";
-import { TEXT } from '../constants/constants';
+import { TEXT } from '../constants/text';
 
 interface Props {
   title: string;

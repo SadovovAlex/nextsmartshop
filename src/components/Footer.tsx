@@ -10,7 +10,7 @@ import payment from "@/images/payment.png";
 import Container from "./Container";
 import Logo from "./Logo";
 import Link from "next/link";
-import { TEXT } from '../constants/constants';
+import { TEXT } from '../constants/text';
 import packageJson from '../../package.json';
 import Image from "next/image";
 
