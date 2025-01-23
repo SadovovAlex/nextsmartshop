@@ -16,8 +16,9 @@ const CartPage = () => {
   const dispatch = useDispatch();
 
   return (
+    <div>
+    <Menu/>
     <Container>
-      <Menu/>
       {productData.length > 0 ? (
         <Container>
           {/* заказы */}
@@ -57,6 +58,7 @@ const CartPage = () => {
       )}
     <Toaster />  
     </Container>
+    </div>
   );
 };
 
