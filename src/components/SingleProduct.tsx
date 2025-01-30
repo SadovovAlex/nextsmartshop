@@ -48,6 +48,7 @@ const SingleProduct: React.FC<Props> = ({ productId }) => {
           width={500}
           height={500}
           className="w-full max-h-[700px] object-cover rounded-lg"
+          priority
         />
       </div>
       <div className="flex flex-col justify-center gap-y-10">

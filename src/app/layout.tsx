@@ -1,4 +1,4 @@
-"use client";
+
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import "./css/globals.css";
@@ -21,13 +21,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) 
 {
-const [searchTerm, setSearchTerm] = useState(""); // Исправлено: используйте searchTerm вместо setSearchTerm
-// Создайте функцию, которая будет передаваться в Header
-const handleSearch = (term: string) => {
-  setSearchTerm(term);
-  // Здесь вы можете добавить дополнительную логику для обработки поиска
-  //console.log("Searching for:", term);
-};
 
   return (
     <html lang="en">

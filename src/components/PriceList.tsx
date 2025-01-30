@@ -96,8 +96,7 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
             src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
             alt="product image"
             width={25}
-            height={10}
-            
+            height={25}
           />
         </td>
         <td className="px-2 py-1">
