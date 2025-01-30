@@ -13,9 +13,9 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <SessionProvider>
+        
           {children}
-        </SessionProvider>
+        
       </PersistGate>
     </Provider>
   );

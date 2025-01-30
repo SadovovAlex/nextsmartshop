@@ -20,8 +20,8 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { data: session } = useSession();
-  const dispatch = useDispatch();
+  //const { data: session } = useSession();
+  //const dispatch = useDispatch();
   const productData = useSelector((state: StateProps) => state.shopping.productData);
   const orderData = useSelector((state: StateProps) => state.shopping.orderData);
 
@@ -35,6 +35,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
     onSearch("");
   };
 
+  /*
   useEffect(() => {
     if (session) {
       dispatch(
@@ -48,6 +49,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
       dispatch(deleteUser());
     }
   }, [session, dispatch]);
+  */
 
   const [totalAmt, setTotalAmt] = useState(0);
 
