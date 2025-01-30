@@ -22,7 +22,7 @@ app.use(express.json());
 
 // Метод для получения списка товаров
 app.get('/api/products', (req, res) => {
-  db.all('SELECT p.*, c.cat_name, c.cat_priority FROM products p,  dict_category c WHERE p.category_id = c.id ORDER BY c.cat_priority ASC, image DESC', [], (err, rows) => {
+  db.all('SELECT p.*, c.cat_name, c.cat_priority FROM products p,  dict_category c WHERE p.category_id = c.id ORDER BY c.cat_priority ASC, title, image DESC', [], (err, rows) => {
     if (err) {
       return res.status(500).json({ message: 'Ошибка получения данных' });
     }
