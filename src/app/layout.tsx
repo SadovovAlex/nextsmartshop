@@ -8,12 +8,49 @@ import "slick-carousel/slick/slick-theme.css";
 import Footer from "@/components/Footer";
 import Script from "next/script"; // Импортируем Script из next/script
 
-// export const metadata: Metadata = {
-//   title: {
-//     template: "shopping_mart",
-//     default: "Рязанская молочная ферма Заокское",
-//   },
-// };
+export const metadata: Metadata = {
+  title: {
+    template: "shopping_mart",
+    default: "Рязанская молочная ферма Заокское",
+  },
+  description: "Натуральные молочные продукты от Рязанской молочной фермы Заокское. Свежее молоко, творог, сметана и другие качественные продукты.",
+  keywords: "молочная ферма, молочные продукты, натуральное молоко, творог, сметана, рязанская область, заокское",
+  authors: [{ name: "Рязанская молочная ферма Заокское" }],
+  creator: "Рязанская молочная ферма Заокское",
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: "https://ryazantvorog.ru",
+    siteName: "Рязанская молочная ферма Заокское",
+    title: "Рязанская молочная ферма Заокское - Натуральные молочные продукты",
+    description: "Натуральные молочные продукты от Рязанской молочной фермы Заокское. Свежее молоко, творог, сметана и другие качественные продукты.",
+    images: [
+      {
+        url: "/static/logo.webp",
+        width: 1200,
+        height: 630,
+        alt: "Рязанская молочная ферма Заокское",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Рязанская молочная ферма Заокское - Натуральные молочные продукты",
+    description: "Натуральные молочные продукты от Рязанской молочной фермы Заокское",
+    images: ["/static/logo.webp"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default function RootLayout({
   children,
@@ -36,9 +73,10 @@ export default function RootLayout({
               (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
               ym(99732927, "init", {
+                webvisor:true,
                 clickmap:true,
-                trackLinks:true,
-                accurateTrackBounce:true
+                accurateTrackBounce:true,
+                trackLinks:true
               });
             `,
           }}
