@@ -85,6 +85,31 @@
     text-decoration: none !important;
     color: inherit !important;
   }
+  
+  /* Cookie Consent Popup Styles */
+  .cookie-consent {
+    backdrop-filter: blur(4px);
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .cookie-consent a {
+    transition: color 0.2s ease;
+  }
+  
+  .cookie-consent a:hover {
+    color: #1d4ed8;
+  }
 
   /* Убрать элементы управления, которые не нужны при печати */
   button,
