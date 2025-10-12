@@ -97,7 +97,7 @@ const Menu = () => {
                 className="flex items-center gap-x-1 bg-slate-800/50 hover:bg-slate-700/50 rounded-full px-3 py-1.5 transition-colors"
               >
                 <FiUser className="text-gray-300" />
-                <span className="text-sm font-medium text-gray-300">Админ</span>
+                <span className="text-sm font-medium text-gray-300"></span>
               </button>
             )}
           </div>
