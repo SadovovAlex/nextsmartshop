@@ -1,16 +1,17 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import { CONTACT } from "@/constants/text";
 
 const Logo = () => {
   const handlePhoneClick = () => {
     if (typeof window !== 'undefined') {
-      window.location.href = 'tel:+79959630040';
+      window.location.href = `tel:${CONTACT.PHONE}`;
     }
   };
   const handleEmailClick = () => {
     if (typeof window !== 'undefined') {
-      window.location.href = 'mailto:ryazantvorog@gmail.com';
+      window.location.href = `mailto:${CONTACT.EMAIL}`;
     }
   };
 
@@ -34,7 +35,7 @@ const Logo = () => {
             className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
             onClick={handlePhoneClick}
           >
-            +7(995)963-00-40
+            {CONTACT.PHONE_FORMATTED}
           </div>
           {/*
           <div

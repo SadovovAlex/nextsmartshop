@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import Script from "next/script"; // Импортируем Script из next/script
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ryazantvorog.ru"),
   title: {
     template: "shopping_mart",
     default: "Рязанская молочная ферма Заокское",

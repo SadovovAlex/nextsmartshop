@@ -1,6 +1,6 @@
 import Container from "./Container";
 import { motion } from "framer-motion";
-import { TEXT } from '../constants/text';
+import { TEXT, CONTACT } from '../constants/text';
 
 interface Props {
   title: string;
@@ -76,7 +76,7 @@ const BannerText = ({ title }: Props) => {
             transition={{ duration: 0.6 }}
             className="xs:text-base font-bold text-gray-900 drop-shadow-md"
           >
-            Телефон для заказа: +7(995)963-00-40
+            Телефон для заказа: {CONTACT.PHONE_FORMATTED}
           </motion.p>
           <motion.p
             initial={{ y: 40, opacity: 0 }}
@@ -84,7 +84,7 @@ const BannerText = ({ title }: Props) => {
             transition={{ duration: 0.6 }}
             className="xs:text-base font-bold text-gray-900 drop-shadow-md"
           >
-            Email: ryazantvorog@gmail.com
+            Email: {CONTACT.EMAIL}
           </motion.p>
 
           {/* <motion.div

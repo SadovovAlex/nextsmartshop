@@ -10,23 +10,23 @@ import payment from "@/images/payment.png";
 import Container from "./Container";
 import Logo from "./Logo";
 import Link from "next/link";
-import { TEXT } from '../constants/text';
+import { TEXT, CONTACT } from '../constants/text';
 import packageJson from '../../package.json';
 import Image from "next/image";
 
 const Footer = () => {
   const handlePhoneClick = () => {
     if (typeof window !== 'undefined') {
-      window.location.href = 'tel:+79959630040';
+      window.location.href = `tel:${CONTACT.PHONE}`;
     }
   };
   const handleEmailClick = () => {
     if (typeof window !== 'undefined') {
-      window.location.href = 'mailto:ryazantvorog@gmail.com';
+      window.location.href = `mailto:${CONTACT.EMAIL}`;
     }
   };
   return (
-    <div className="pt-2 w-full bg-darkText text-slate-100">
+    <div className="pt-2 w-full bg-darkText text-slate-100 footer">
       <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-10">
 
         <div className="flex flex-col gap-y-4">
@@ -57,7 +57,7 @@ const Footer = () => {
               className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
               onClick={handlePhoneClick}
             >
-              +7(995)963-00-40
+              {CONTACT.PHONE_FORMATTED}
             </div>
             <div
               className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
@@ -165,6 +165,13 @@ const Footer = () => {
                   </div>
                 </Link>
               </li>
+              <li className="list-none">
+                <Link href="/invoice">
+                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
+                    Накладная
+                  </div>
+                </Link>
+              </li>
             </div>
           </div>
         </div>
@@ -183,7 +190,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            WR App v{packageJson.version}
+            WRDev v{packageJson.version}
           </a>
         </div>
       </footer>

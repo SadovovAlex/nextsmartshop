@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link"; // Используем Link из Next.js для навигации
 import Container from "@/components/Container";
 import Menu from "@/components/Menu";
+import { CONTACT } from "@/constants/text";
 
 const AboutPage = () => {
 
@@ -62,10 +63,10 @@ const AboutPage = () => {
         <div className="bg-white p-8 rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">Контакты</h2>
           <p className="text-lg text-gray-600 mb-4">
-            Телефон: +7(995)963-00-40
+            Телефон: {CONTACT.PHONE_FORMATTED}
           </p>
           <p className="text-lg text-gray-600 mb-4">
-            Email: ryazantvorog@gmail.com
+            Email: {CONTACT.EMAIL}
           </p>
           <p className="text-lg text-gray-600">
             Адрес: Рязанская область, село Заокское

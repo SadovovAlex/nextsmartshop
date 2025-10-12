@@ -14,8 +14,10 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {children}
-        <CookieConsent />
+        <div className="layout">
+          {children}
+          <CookieConsent />
+        </div>
       </PersistGate>
     </Provider>
   );

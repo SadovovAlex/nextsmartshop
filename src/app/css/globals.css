@@ -54,9 +54,16 @@
   .noprint,
   .socialLink,
   .events,
-  .links {
+  .links,
+  .site-title,
+  .date-time,
+  .header,
+  .footer,
+  .layout,
+  .print-button {
     display: none !important;
   }
+  
   /* показать элементы, которые нужны ТОЛЬКО при печати */
   .onlyprint {
     display: block;
@@ -111,8 +118,8 @@
     color: #1d4ed8;
   }
 
-  /* Убрать элементы управления, которые не нужны при печати */
-  button,
+  /* Убрать элементы управления, которые не нужны при печати, но оставить кнопку печати */
+  button:not(.print-button),
   input,
   select,
   textarea {
@@ -129,6 +136,138 @@
   img {
     max-width: 100% !important;
     height: auto !important;
+  }
+
+  /* Invoice container print styles */
+  .invoice-container {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: scale(0.9);
+    transform-origin: top left;
+    width: 111% !important; /* Компенсация масштаба */
+  }
+
+  /* Invoice header print styles */
+  .invoice-container .flex.justify-between.items-start {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .invoice-container .flex-1 {
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .invoice-container .text-right {
+    text-align: left !important;
+  }
+
+  .invoice-container .overflow-x-auto {
+    overflow: visible !important;
+  }
+
+  /* Table print styles */
+  .invoice-container table {
+    font-size: 10pt !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: avoid !important;
+  }
+
+  .invoice-container th,
+  .invoice-container td {
+    padding: 2px 4px !important;
+    font-size: 10pt !important;
+    border: 1px solid #ccc !important;
+    display: table-cell !important;
+  }
+
+  .invoice-container th.text-right,
+  .invoice-container td.text-right {
+    text-align: right !important;
+  }
+
+  .invoice-container thead {
+    display: table-header-group !important;
+  }
+
+  .invoice-container tbody {
+    display: table-row-group !important;
+  }
+
+  .invoice-container tfoot {
+    display: table-footer-group !important;
+  }
+
+  .invoice-container tr {
+    display: table-row !important;
+    page-break-inside: avoid !important;
+  }
+
+  .invoice-container thead tr {
+    background-color: #f3f4f6 !important;
+    font-weight: bold !important;
+  }
+
+  .invoice-container tbody tr:nth-child(even) {
+    background-color: #f9fafb !important;
+  }
+
+  .invoice-container tfoot tr {
+    background-color: #f3f4f6 !important;
+    font-weight: bold !important;
+  }
+
+  /* Remove background colors for better print quality */
+  .invoice-container .bg-white,
+  .invoice-container .bg-gray-50,
+  .invoice-container .bg-gray-100 {
+    background-color: transparent !important;
+  }
+
+  /* Link print styles */
+  .invoice-container a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  /* Border print styles */
+  .invoice-container .border {
+    border: 1px solid #000 !important;
+  }
+
+  .invoice-container .border-gray-300 {
+    border-color: #000 !important;
+  }
+
+  /* Padding and margin print styles */
+  .invoice-container .p-8 {
+    padding: 0.5rem !important;
+  }
+
+  .invoice-container .mb-6,
+  .invoice-container .mb-8,
+  .invoice-container .mb-4 {
+    margin-bottom: 0.25rem !important;
+  }
+
+  /* Font print styles */
+  .invoice-container .text-lg,
+  .invoice-container .text-base,
+  .invoice-container .text-sm {
+    font-size: 10pt !important;
+  }
+
+  .invoice-container .font-semibold {
+    font-weight: bold !important;
+  }
+
+  /* Page print styles */
+  @page {
+    margin: 1cm;
+    size: auto;
   }
 }
 
