@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const adminRoutes = require('./admin-login');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -13,7 +14,13 @@ app.use(cors({
   credentials: true
 }));
 
+// Middleware для парсинга JSON
+app.use(express.json());
+
 const db = require('./database');
+
+// Маршруты администратора
+app.use('/api/admin', adminRoutes);
 
 // Middleware для парсинга JSON
 app.use(express.json());

@@ -56,7 +56,7 @@ const InvoiceList: React.FC = () => {
               Грузополучатель <span className="border-b-2 border-dotted border-gray-400 px-1">_______________________________________________</span>
             </div>
             <div className="mb-2">
-              Адрес доставки <span className="border-b-2 border-dotted border-gray-400 px-1">________________________________________________</span>
+              Адрес доставки <span className="border-b-2 border-dotted border-gray-400 px-1">__________________________________________________</span>
             </div>
           </div>
 

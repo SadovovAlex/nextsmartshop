@@ -4,7 +4,7 @@ import Container from "./Container";
 
 import testUserImage from "../../public/user.png";
 import { IoMdCart } from "react-icons/io";
-import { FiSearch, FiLogOut, FiX } from "react-icons/fi";
+import { FiSearch, FiLogOut, FiX, FiUser } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -97,22 +97,10 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
               </span>
             </div>
           </Link>
-
-
-          {/* Вход/Регистрация */}
-          {/* !session && (
-            <div onClick={() => signIn()} className="headerDiv cursor-pointer">
-              <AiOutlineUser className="text-3xl" />
-              <p className="text-sm font-semibold">Вход</p>
-            </div>
-          ) */}
         </div>
-
-
       </Container>
     </div>
   );
-
 };
 
 
