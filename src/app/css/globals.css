@@ -58,8 +58,6 @@
   .site-title,
   .date-time,
   .header,
-  .footer,
-  .layout,
   .print-button {
     display: none !important;
   }

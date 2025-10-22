@@ -35,9 +35,9 @@ const Logo = () => {
             className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
             onClick={handlePhoneClick}
           >
-            {CONTACT.PHONE_FORMATTED}
+            {CONTACT.PHONE_FORMATTED} (заказы 08:00 - 10:00)
           </div>
-          {/*
+          { /*
           <div
             className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
             onClick={handleEmailClick}

@@ -69,50 +69,6 @@ const InvoicePrint: React.FC = () => {
             />
           </div>
     
-          {/* Print Styles */}
-          <style jsx global>{`
-            @media print {
-              body * {
-                visibility: hidden !important;
-              }
-              .print, .print * {
-                visibility: visible !important;
-              }
-              .print {
-                position: static !important;
-                width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                background: white !important;
-              }
-              .print .bg-white {
-                background: white !important;
-              }
-              .print .border {
-                border: 1px solid #ccc !important;
-              }
-              .print .border-collapse {
-                border-collapse: collapse !important;
-              }
-              .print .w-full {
-                width: 100% !important;
-              }
-              .print .overflow-x-auto {
-                overflow-x: visible !important;
-              }
-              /* Hide site title and date/time when printing */
-              .print .site-title,
-              .print .date-time,
-              .print .header,
-              .print .footer,
-              .print .layout {
-                display: none !important;
-              }
-              @page {
-                margin: 1cm;
-              }
-            }
-          `}</style>
         </div>
 
         {/* Invoice Table */}

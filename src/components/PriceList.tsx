@@ -60,52 +60,51 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
   };
 
   return (
-    <table className="w-full table-auto border-collapse">
+    <table className="w-full table-auto border-collapse print:table">
       <thead>
-        <tr className="bg-gray-200">
+        <tr className="bg-gray-200 print:bg-transparent">
           <th
-            className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
             onClick={() => handleSort("id")}
           >
             #
           </th>
 
-          <th className="px-2 py-1"></th>
+          <th className="px-2 py-1 print:px-1 print:py-0.5"></th>
           <th
-            className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
             onClick={() => handleSort("title")}
           >
             Наименование
           </th>
 
 
-          <th className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+          <th className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
             onClick={() => handleSort("cat_name")}
           >
             Категория
           </th>
           <th
-            className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
             onClick={() => handleSort("type")}
           >
             Ед.изм.
           </th>
           <th
-            className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
             onClick={() => handleSort("price")}
           >
             Цена,₽
           </th>
         </tr>
       </thead>
-      <tbody className="text-xs">
+      <tbody className="text-xs print:text-xs">
         {sortedProducts.map((item: ProductsStruct, index) => (
           <tr
             key={item._id}
-            className={`border-b hover:bg-green-100 transition-colors duration-300 ${index % 2 === 0 ? "bg-gray-100" : "bg-white"
-              }`}
+            className={`border-b hover:bg-green-100 transition-colors duration-300 print:border-b print:border-gray-300 print:hover:bg-transparent print:bg-transparent ${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
           >
-            <td className="px-1 py-1">
+            <td className="px-1 py-1 print:px-1 print:py-0.5">
               <Link
                 href={{
                   pathname: "/product",
@@ -116,7 +115,7 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
               </Link>
 
             </td>
-            <td className="px-1 py-1">
+            <td className="px-1 py-1 print:px-1 print:py-0.5">
               <Link
                 href={{
                   pathname: "/product",
@@ -132,7 +131,7 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
               </Link>
 
             </td>
-            <td className="px-2 py-1">
+            <td className="px-2 py-1 print:px-1 print:py-0.5">
               <Link
                 href={{
                   pathname: "/product",
@@ -142,9 +141,9 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
                 {item.title}
               </Link>
             </td>
-            <td className="px-2 py-1">{item?.cat_name}</td>
-            <td className="px-2 py-1">{item?.type}</td>
-            <td className="px-2 py-1">{item?.price}</td>
+            <td className="px-2 py-1 print:px-1 print:py-0.5">{item?.cat_name}</td>
+            <td className="px-2 py-1 print:px-1 print:py-0.5">{item?.type}</td>
+            <td className="px-2 py-1 print:px-1 print:py-0.5">{item?.price}</td>
           </tr>
         ))}
       </tbody>
