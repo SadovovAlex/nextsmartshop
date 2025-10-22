@@ -40,6 +40,12 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
         : b.type.localeCompare(a.type);
     } else if (sortColumn === "price") {
       return sortDirection === "asc" ? a.price - b.price : b.price - a.price;
+    } else if (sortColumn === "cat_name") {
+      return sortDirection === "asc"
+        ? a.cat_name.localeCompare(b.cat_name, "ru")
+        : b.cat_name.localeCompare(a.cat_name, "ru");
+    } else if (sortColumn === "id") {
+      return sortDirection === "asc" ? a._id - b._id : b._id - a._id;
     }
     return 0;
   });
@@ -54,68 +60,95 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
   };
 
   return (
-<table className="w-full table-auto border-collapse">
-  <thead>
-    <tr className="bg-gray-200">
-    <th className="px-2 py-1">#</th>
-      <th className="px-2 py-1"></th>
-      <th
-        className="px-2 py-1 cursor-pointer hover:bg-gray-300"
-        onClick={() => handleSort("title")}
-      >
-        Наименование
-      </th>
-      <th className="px-2 py-1">Категория</th>
-      <th
-        className="px-2 py-1 cursor-pointer hover:bg-gray-300"
-        onClick={() => handleSort("type")}
-      >
-        Ед.изм.
-      </th>
-      <th
-        className="px-2 py-1 cursor-pointer hover:bg-gray-300"
-        onClick={() => handleSort("price")}
-      >
-        Цена,₽ 
-      </th>
-    </tr>
-  </thead>
-  <tbody className="text-xs">
-    {sortedProducts.map((item: ProductsStruct, index) => (
-      <tr
-        key={item._id}
-        className={`border-b hover:bg-green-100 transition-colors duration-300 ${
-          index % 2 === 0 ? "bg-gray-100" : "bg-white"
-        }`}
-      >
-        <td className="px-1 py-1">
-          {item?._id}
-        </td>
-        <td className="px-1 py-1">
-          <Image
-            src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
-            alt="product image"
-            width={25}
-            height={25}
-          />
-        </td>
-        <td className="px-2 py-1">
-          <Link
-            href={{
-              pathname: "/product",
-              query: { _id: item?._id },
-            }}
+    <table className="w-full table-auto border-collapse">
+      <thead>
+        <tr className="bg-gray-200">
+          <th
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+            onClick={() => handleSort("id")}
           >
-            {item.title}
-          </Link>
-        </td>
-        <td className="px-2 py-1">{item?.cat_name}</td>
-        <td className="px-2 py-1">{item?.type}</td>
-        <td className="px-2 py-1">{item?.price}</td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+            #
+          </th>
+
+          <th className="px-2 py-1"></th>
+          <th
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+            onClick={() => handleSort("title")}
+          >
+            Наименование
+          </th>
+
+
+          <th className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+            onClick={() => handleSort("cat_name")}
+          >
+            Категория
+          </th>
+          <th
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+            onClick={() => handleSort("type")}
+          >
+            Ед.изм.
+          </th>
+          <th
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300"
+            onClick={() => handleSort("price")}
+          >
+            Цена,₽
+          </th>
+        </tr>
+      </thead>
+      <tbody className="text-xs">
+        {sortedProducts.map((item: ProductsStruct, index) => (
+          <tr
+            key={item._id}
+            className={`border-b hover:bg-green-100 transition-colors duration-300 ${index % 2 === 0 ? "bg-gray-100" : "bg-white"
+              }`}
+          >
+            <td className="px-1 py-1">
+              <Link
+                href={{
+                  pathname: "/product",
+                  query: { _id: item?._id },
+                }}
+              >
+                {item?._id}
+              </Link>
+
+            </td>
+            <td className="px-1 py-1">
+              <Link
+                href={{
+                  pathname: "/product",
+                  query: { _id: item?._id },
+                }}
+              >
+                <Image
+                  src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
+                  alt="product image"
+                  width={25}
+                  height={25}
+                />
+              </Link>
+
+            </td>
+            <td className="px-2 py-1">
+              <Link
+                href={{
+                  pathname: "/product",
+                  query: { _id: item?._id },
+                }}
+              >
+                {item.title}
+              </Link>
+            </td>
+            <td className="px-2 py-1">{item?.cat_name}</td>
+            <td className="px-2 py-1">{item?.type}</td>
+            <td className="px-2 py-1">{item?.price}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
 
   );
 };
