@@ -27,7 +27,7 @@ const CookieConsent = () => {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="flex-1">
           <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-            Для улучшения работы, сайт может собирать данные, используя файлы cookie и сервис «Яндекс Метрика». 
+            Мы собираем этот чертов куки, как и все. 
             Это соответствует{" "}
             <a 
               href="/privacy-policy.pdf" 
@@ -35,7 +35,7 @@ const CookieConsent = () => {
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800 underline"
             >
-              Политике в отношении обработки персональных данных
+              Политике
             </a>. 
             Продолжая работу с сайтом, Вы даёте согласие на обработку персональных данных.
           </p>
@@ -45,7 +45,7 @@ const CookieConsent = () => {
             onClick={acceptConsent}
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 whitespace-nowrap"
           >
-            Принять
+            Ну ОК
           </button>
         </div>
       </div>
