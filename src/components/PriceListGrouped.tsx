@@ -203,7 +203,7 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
             fontSize: '14px',
             headerFontSize: '12px',
             variationFontSize: '12px',
-            rowHeight: '14',
+            rowHeight: '16',
             padding: '1',
             cellPadding: '0.75'
           });
@@ -413,7 +413,26 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
               </td>
 
               {/* Поле для рукописного указания заказа штук */}
-              <td></td>
+               <td
+                style={{
+                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                }}
+              >
+                <div className="flex flex-col space-y-0 border-l-2 border-r-2 border-gray-300 bg-gray-50" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
+                  {group.variations.map((variation, varIndex) => (
+                    <div
+                      key={`${group.id}_sum_${variation.id}`}
+                      className={`flex items-center ${varIndex < group.variations.length - 1 ? 'border-b border-gray-400' : ''}`}
+                      style={{
+                        height: `${parseInt(printScale.rowHeight) * 0.75}px`,
+                        backgroundColor: varIndex % 2 === 0 ? '#f9f9f9' : 'transparent'
+                      }}
+                    >
+
+                    </div>
+                  ))}
+                </div>
+              </td>
 
               <td
                 className="font-semibold"
@@ -450,12 +469,18 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
                   padding: `${printScale.cellPadding}px ${printScale.padding}px`,
                 }}
               >
-                <div className="flex flex-col space-y-0" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
-                  {group.variations.map((variation) => (
-                    <div key={`${group.id}_${variation.id}`}
-                      className="border-b border-gray-300"
-                      style={{ height: `${parseInt(printScale.rowHeight) * 0.75}px` }}
-                    ></div>
+                <div className="flex flex-col space-y-0 border-l-2 border-r-2 border-gray-300 bg-gray-50" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
+                  {group.variations.map((variation, varIndex) => (
+                    <div
+                      key={`${group.id}_${variation.id}`}
+                      className={`flex items-center ${varIndex < group.variations.length - 1 ? 'border-b border-gray-400' : ''}`}
+                      style={{
+                        height: `${parseInt(printScale.rowHeight) * 0.75}px`,
+                        backgroundColor: varIndex % 2 === 0 ? '#f9f9f9' : 'transparent'
+                      }}
+                    >
+
+                    </div>
                   ))}
                 </div>
               </td>
@@ -466,12 +491,18 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
                   padding: `${printScale.cellPadding}px ${printScale.padding}px`,
                 }}
               >
-                <div className="flex flex-col space-y-0" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
-                  {group.variations.map((variation) => (
-                    <div key={`${group.id}_sum_${variation.id}`}
-                      className="border-b border-gray-300"
-                      style={{ height: `${parseInt(printScale.rowHeight) * 0.75}px` }}
-                    ></div>
+                <div className="flex flex-col space-y-0 border-l-2 border-r-2 border-gray-300 bg-gray-50" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
+                  {group.variations.map((variation, varIndex) => (
+                    <div
+                      key={`${group.id}_sum_${variation.id}`}
+                      className={`flex items-center ${varIndex < group.variations.length - 1 ? 'border-b border-gray-400' : ''}`}
+                      style={{
+                        height: `${parseInt(printScale.rowHeight) * 0.75}px`,
+                        backgroundColor: varIndex % 2 === 0 ? '#f9f9f9' : 'transparent'
+                      }}
+                    >
+
+                    </div>
                   ))}
                 </div>
               </td>
