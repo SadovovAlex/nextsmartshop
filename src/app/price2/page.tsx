@@ -21,6 +21,9 @@ const PricePage2 = () => {
           top: 0;
           width: 100%;
         }
+        footer, .footer {
+          display: none !important;
+        }
         .no-print {
           display: none !important;
         }

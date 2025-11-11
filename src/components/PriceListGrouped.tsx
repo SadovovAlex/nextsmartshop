@@ -190,8 +190,22 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
   };
 
   return (
-    <div className="space-y-4">
-      <h1 className="text-2xl font-bold text-center mb-4">Прайс-лист (группированный)</h1>
+    <div className="space-y-4 print:space-y-2">
+      {/* Invoice Header */}
+      <div className="mb-4 print:mb-2 print:break-after-avoid">
+        <div className="flex justify-between items-start text-sm">
+          <div className="flex-1">
+            <div className="font-semibold">НАКЛАДНАЯ № _______ от _____ ________________  202___г.</div>
+            <div>ГОРОД ___________________________</div>
+            <div className="font-semibold">ГРУЗОПОЛУЧАТЕЛЬ ______________________________________</div>
+          </div>
+          <div className="flex-1 text-right">
+            <div className="font-semibold">ГРУЗООТПРАВИТЕЛЬ</div>
+            <div>Домашняя Молочная Продукция,</div>
+            <div>Рязанская область г. РЯЗАНЬ</div>
+          </div>
+        </div>
+      </div>
 
       <table className="w-full table-auto border-collapse print:table">
         <thead>
