@@ -21,11 +21,34 @@ export const shoppingSlice = createSlice({
       const existingProduct = state.productData.find(
         (item: ProductsStruct) => item._id === action.payload._id
       );
-      if (existingProduct) {
-        existingProduct.quantity += action.payload.quantity;
-      } else {
-        state.productData.push(action.payload);
+      
+      // Validate basic product data
+      const product = action.payload;
+      if (!product || !product._id || !product.title) {
+        console.warn('Invalid product data:', product);
+        return;
       }
+      
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        // Ensure new products start with quantity 1
+        const newProduct = {
+          ...product,
+          quantity: 1
+        };
+        state.productData.push(newProduct);
+      }
+    },
+    // New reducer to normalize existing cart items
+    normalizeCartQuantities: (state) => {
+      state.productData = state.productData.map((item: ProductsStruct) => {
+        // If quantity is 0, undefined, null, or not a number, set to 1
+        if (!item.quantity || item.quantity === 0 || isNaN(Number(item.quantity))) {
+          return { ...item, quantity: 1 };
+        }
+        return item;
+      });
     },
     increaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
@@ -68,6 +91,7 @@ export const shoppingSlice = createSlice({
 
 export const {
   addToCart,
+  normalizeCartQuantities,
   increaseQuantity,
   decreaseQuantity,
   deleteProduct,

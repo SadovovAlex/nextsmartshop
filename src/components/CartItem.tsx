@@ -55,20 +55,24 @@ const CartItem = () => {
                 <span
                   onClick={() => dispatch(decreaseQuantity(item))}
                   className="cursor-pointer"
+                  title="Уменьшить количество"
                 >
                   <FiChevronLeft />
                 </span>
-                <span className="text-2xl">{item?.quantity}</span>
+                <span className="text-2xl font-bold">
+                  {item?.quantity && !isNaN(Number(item?.quantity)) ? item?.quantity : 1}
+                </span>
                 <span
                   onClick={() => dispatch(increaseQuantity(item))}
                   className="cursor-pointer"
+                  title="Увеличить количество"
                 >
                   <FiChevronRight />
                 </span>
               </div>
               <div className="flex items-end justify-end w-full md:w-1/3">
                 <p className="text-2xl font-semibold">
-                  <FormattedPrice amount={item?.price * item?.quantity} />
+                  <FormattedPrice amount={(item?.price || 0) * (item?.quantity || 1)} />
                 </p>
               </div>
             </div>

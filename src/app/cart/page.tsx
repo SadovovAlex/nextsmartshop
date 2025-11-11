@@ -4,16 +4,24 @@ import Container from "@/components/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { StateProps } from "../../../type";
 import CartItem from "@/components/CartItem";
-import { resetCart } from "@/redux/shoppingSlice";
+import { resetCart, normalizeCartQuantities } from "@/redux/shoppingSlice";
 import PaymentForm from "@/components/PaymentForm";
 import Link from "next/link";
 import SubmitOrderForm from "@/components/SubmitOrderForm";
 import { Toaster } from "react-hot-toast";
-import Menu from "@/components/Menu"; 
+import Menu from "@/components/Menu";
+import { useEffect } from "react";
 
 const CartPage = () => {
   const { productData } = useSelector((state: StateProps) => state?.shopping);
   const dispatch = useDispatch();
+
+  // Normalize quantities when cart loads
+  useEffect(() => {
+    if (productData && productData.length > 0) {
+      dispatch(normalizeCartQuantities());
+    }
+  }, [dispatch]);
 
   return (
     <div>
