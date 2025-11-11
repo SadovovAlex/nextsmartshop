@@ -418,23 +418,29 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
 
 
               {/* Поле для рукописного указания заказа штук */}
-              <td
+               <td
                 style={{
                   padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                  lineHeight: '1.2'
                 }}
               >
-                <div style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
+                <div className="flex flex-col space-y-0">
                   {group.variations.map((variation, varIndex) => (
                     <div
-                      key={`${group.id}_sum_${variation.id}`}
-                      className={`flex items-center border border-gray-300 ${varIndex < group.variations.length - 1 ? 'border-b border-gray-400' : ''}`}
+                      key={variation.id}
+                      className="border border-gray-300 bg-white"
                       style={{
+                        marginBottom: varIndex < group.variations.length - 1 ? '1px' : '0',
                         height: `${parseInt(printScale.rowHeight) * 0.75}px`,
-                        backgroundColor: varIndex % 2 === 0 ? '#f9f9f9' : 'transparent',
-                        marginBottom: varIndex < group.variations.length - 1 ? '1px' : '0'
+                        display: 'flex',
+                        alignItems: 'center',
+                        paddingLeft: '2px',
+                        backgroundColor: varIndex % 2 === 0 ? '#fafafa' : 'white'
                       }}
                     >
+                      <div className="flex items-center gap-1 w-full">
 
+                      </div>
                     </div>
                   ))}
                 </div>
