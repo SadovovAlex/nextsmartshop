@@ -76,7 +76,7 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
   const logout = async () => {
     try {
       // Очистка cookie на сервере
-      await fetch(`${process.env.NEXTAUTH_URL || '3000'}/api/admin/logout`, {
+      await fetch('/api/admin/logout', {
         method: 'POST',
         credentials: 'include',
       });
