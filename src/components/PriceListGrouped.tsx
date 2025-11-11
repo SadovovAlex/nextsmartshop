@@ -4,6 +4,7 @@ import { ProductsStruct } from "../../type";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FiHome, FiPrinter } from "react-icons/fi";
+import { TEXT, CONTACT } from '../constants/text';
 
 interface ProductsProps {
   searchTerm: string;
@@ -270,10 +271,12 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
           <div className="flex-1">
             <div className="font-semibold">НАКЛАДНАЯ № _______ от _____ ________________  202___г.</div>
             <div className="font-semibold">ГРУЗОПОЛУЧАТЕЛЬ ______________________________________</div>
+             <div className="font-semibold">АДРЕС _____________________________________________________</div>
           </div>
           <div className="flex-1 text-right">
             <div className="font-semibold">ГРУЗООТПРАВИТЕЛЬ</div>
             <div>Домашняя Молочная Продукция, г. РЯЗАНЬ</div>
+            <div>{CONTACT.PHONE}</div>
           </div>
         </div>
       </div>
