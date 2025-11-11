@@ -314,16 +314,6 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
               Заказ
             </th>
 
-            <th
-              className="text-left font-bold leading-tight"
-              style={{
-                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
-                fontSize: printScale.headerFontSize,
-                lineHeight: '1.2'
-              }}
-            >
-              Вариации
-            </th>
 
             <th
               className="text-left font-bold leading-tight cursor-pointer hover:bg-gray-300"
@@ -336,6 +326,19 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
             >
               Цена,₽
             </th>
+
+            <th
+              className="text-left font-bold leading-tight"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
+            >
+              Вариации
+            </th>
+
+
 
             <th
               className="text-left font-bold leading-tight"
@@ -438,6 +441,8 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
                   ))}
                 </div>
               </td>
+
+
 
               {/* Поле для рукописного указания количества */}
               <td
