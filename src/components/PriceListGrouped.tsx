@@ -2,6 +2,8 @@ import { getProducts } from "@/helpers";
 import React, { useEffect, useState, useRef } from "react";
 import { ProductsStruct } from "../../type";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FiHome, FiPrinter } from "react-icons/fi";
 
 interface ProductsProps {
   searchTerm: string;
@@ -23,6 +25,7 @@ interface ProductGroup {
 }
 
 const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
+  const router = useRouter();
   const [products, setProducts] = useState<ProductsStruct[]>([]);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
@@ -35,6 +38,16 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
     cellPadding: '0.25'
   });
   const tableRef = useRef<HTMLDivElement>(null);
+
+  // Function to handle print
+  const handlePrint = () => {
+    window.print();
+  };
+
+  // Function to go home
+  const handleGoHome = () => {
+    router.push('/');
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -233,6 +246,26 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
     <div ref={tableRef} className="space-y-4 print:space-y-2">
       {/* Invoice Header */}
       <div className="mb-4 print:mb-2 print:break-after-avoid">
+        {/* Action Buttons */}
+        <div className="flex justify-end gap-2 mb-3 no-print">
+          <button
+            onClick={handleGoHome}
+            className="flex items-center gap-2 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
+            title="На главную"
+          >
+            <FiHome size={16} />
+            Главная
+          </button>
+          <button
+            onClick={handlePrint}
+            className="flex items-center gap-2 px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm"
+            title="Печать текущей страницы"
+          >
+            <FiPrinter size={16} />
+            Печать
+          </button>
+        </div>
+
         <div className="flex justify-between items-start text-sm">
           <div className="flex-1">
             <div className="font-semibold">НАКЛАДНАЯ № _______ от _____ ________________  202___г.</div>
