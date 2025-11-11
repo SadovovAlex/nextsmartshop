@@ -1,5 +1,5 @@
 import { getProducts } from "@/helpers";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ProductsStruct } from "../../type";
 import Link from "next/link";
 
@@ -26,6 +26,15 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
   const [products, setProducts] = useState<ProductsStruct[]>([]);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+  const [printScale, setPrintScale] = useState({
+    fontSize: '9px',
+    headerFontSize: '10px',
+    variationFontSize: '8px',
+    rowHeight: '4',
+    padding: '0.5',
+    cellPadding: '0.25'
+  });
+  const tableRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -180,6 +189,60 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
     return 0;
   });
 
+  // Calculate optimal print scaling to fit on almost 2 pages (1.8-1.9)
+  useEffect(() => {
+    if (groupedArray.length > 0 && typeof window !== 'undefined') {
+      const calculateOptimalScale = () => {
+        // Rough estimation: more rows per page for better content density
+        const rowsPerPage = 70;
+        const estimatedPages = groupedArray.length / rowsPerPage;
+
+        if (estimatedPages <= 1.8) {
+          // We can fit comfortably, use larger fonts
+          setPrintScale({
+            fontSize: '14px',
+            headerFontSize: '12px',
+            variationFontSize: '12px',
+            rowHeight: '14',
+            padding: '1',
+            cellPadding: '0.75'
+          });
+        } else if (estimatedPages <= 2.0) {
+          // Slightly larger than comfortable fit
+          setPrintScale({
+            fontSize: '14px',
+            headerFontSize: '12px',
+            variationFontSize: '12px',
+            rowHeight: '16',
+            padding: '1.75',
+            cellPadding: '1.5'
+          });
+        } else {
+          // Scale down to target 1.8-1.9 pages (less aggressive compression)
+          const targetPages = 1.99;
+          const scale = Math.min(targetPages / estimatedPages, 0.95);
+          const newFontSize = Math.max(8, Math.floor(10 * scale));
+          const newHeaderSize = Math.max(9, Math.floor(11 * scale));
+          const newVariationSize = Math.max(7, Math.floor(9 * scale));
+          const newRowHeight = Math.max(4, Math.floor(5 * scale));
+
+          setPrintScale({
+            fontSize: `${newFontSize}px`,
+            headerFontSize: `${newHeaderSize}px`,
+            variationFontSize: `${newVariationSize}px`,
+            rowHeight: newRowHeight.toString(),
+            padding: Math.max(0.5, Math.floor(0.75 * scale * 100) / 100).toString(),
+            cellPadding: Math.max(0.25, Math.floor(0.5 * scale * 100) / 100).toString()
+          });
+        }
+      };
+
+      // Calculate after a short delay to ensure DOM is ready
+      const timer = setTimeout(calculateOptimalScale, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [groupedArray.length]);
+
   const handleSort = (column: string) => {
     if (sortColumn === column) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");
@@ -190,109 +253,220 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
   };
 
   return (
-    <div className="space-y-4 print:space-y-2">
+    <div ref={tableRef} className="space-y-4 print:space-y-2">
       {/* Invoice Header */}
       <div className="mb-4 print:mb-2 print:break-after-avoid">
         <div className="flex justify-between items-start text-sm">
           <div className="flex-1">
             <div className="font-semibold">НАКЛАДНАЯ № _______ от _____ ________________  202___г.</div>
-            <div>ГОРОД ___________________________</div>
             <div className="font-semibold">ГРУЗОПОЛУЧАТЕЛЬ ______________________________________</div>
           </div>
           <div className="flex-1 text-right">
             <div className="font-semibold">ГРУЗООТПРАВИТЕЛЬ</div>
-            <div>Домашняя Молочная Продукция,</div>
-            <div>Рязанская область г. РЯЗАНЬ</div>
+            <div>Домашняя Молочная Продукция, Рязанская область г. РЯЗАНЬ</div>
           </div>
         </div>
       </div>
 
       <table className="w-full table-auto border-collapse print:table">
         <thead>
-          <tr className="bg-gray-200 print:bg-transparent">
-            <th className="px-2 py-1 text-left print:px-1 print:py-0.5 print:text-xs">
+          <tr className="bg-gray-200 print:bg-transparent" style={{ height: `${parseInt(printScale.rowHeight) * 2}px` }}>
+            <th
+              className="text-left font-bold leading-tight"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
+            >
               Категория
             </th>
-            <th className="px-2 py-1 text-left print:px-1 print:py-0.5 print:text-xs">
+            <th
+              className="text-left font-bold leading-tight"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
+            >
               Наименование
             </th>
             <th
-              className="px-2 py-1 text-left cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:cursor-default"
+              className="text-left font-bold leading-tight cursor-pointer hover:bg-gray-300"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
               onClick={() => handleSort("unit")}
             >
               Ед.изм.
             </th>
 
             <th
-              className="px-2 py-1 text-left cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:cursor-default"
+              className="text-left font-bold leading-tight"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
+            >
+              Заказ
+            </th>
+
+            <th
+              className="text-left font-bold leading-tight"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
+            >
+              Вариации
+            </th>
+
+            <th
+              className="text-left font-bold leading-tight cursor-pointer hover:bg-gray-300"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
               onClick={() => handleSort("price")}
             >
               Цена,₽
             </th>
 
-            <th className="px-2 py-1 text-left print:px-1 print:py-0.5 print:text-xs">
-              Вариации
+            <th
+              className="text-left font-bold leading-tight"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
+            >
+              Кол-во по факту
             </th>
-
-            <th className="px-2 py-1 text-left print:px-1 print:py-0.5 print:text-xs">
-              Количество
-            </th>
-            <th className="px-2 py-1 text-left print:px-1 print:py-0.5 print:text-xs">
+            <th
+              className="text-left font-bold leading-tight"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
+            >
               Сумма
             </th>
           </tr>
         </thead>
-        <tbody className="text-xs print:text-xs">
+        <tbody style={{ fontSize: printScale.fontSize, lineHeight: '1.2' }}>
           {groupedArray.map((group, index) => (
             <tr
               key={group.id}
-              className={`border-b hover:bg-green-100 transition-colors duration-300 print:border-b print:border-gray-300 print:hover:bg-transparent print:bg-transparent ${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
+              className={`border-b hover:bg-green-100 transition-colors duration-300 print:border-b print:border-gray-300 print:hover:bg-transparent ${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
+              style={{ height: `${parseInt(printScale.rowHeight) * 2}px` }}
             >
-              <td className="px-2 py-1 print:px-1 print:py-0.5 font-medium">{group.category}</td>
-              <td className="px-2 py-1 print:px-1 print:py-0.5">
-                <div className="flex flex-col space-y-1">
+              <td
+                className="font-medium"
+                style={{
+                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                  fontSize: printScale.fontSize,
+                  lineHeight: '1.2'
+                }}
+              >
+                {group.category}
+              </td>
+
+              <td
+                style={{
+                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                  lineHeight: '1.2'
+                }}
+              >
+                <div className="flex flex-col space-y-0">
                   {group.variations.map((variation) => (
                     <Link
                       key={variation.id}
                       href={{ pathname: "/product", query: { _id: variation.id } }}
-                      className="text-xs hover:text-blue-600 hover:underline block"
+                      className="hover:text-blue-600 hover:underline block"
+                      style={{
+                        fontSize: printScale.variationFontSize,
+                        lineHeight: '1.1'
+                      }}
                     >
                       {variation.fullTitle}
                     </Link>
                   ))}
                 </div>
               </td>
-              <td className="px-2 py-1 print:px-1 print:py-0.5">{group.unit}</td>
+              <td
+                style={{
+                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                  fontSize: printScale.fontSize,
+                  lineHeight: '1.2'
+                }}
+              >
+                {group.unit}
+              </td>
 
-              <td className="px-2 py-1 print:px-1 print:py-0.5 font-semibold">{group.price.toFixed(2)}</td>
+              {/* Поле для рукописного указания заказа штук */}
+              <td></td>
 
-              <td className="px-2 py-1 print:px-1 print:py-0.5">
-                <div className="flex flex-col space-y-1">
+              <td
+                className="font-semibold"
+                style={{
+                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                  fontSize: printScale.fontSize,
+                  lineHeight: '1.2'
+                }}
+              >
+                {group.price.toFixed(2)}
+              </td>
+
+              <td
+                style={{
+                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                  lineHeight: '1.2'
+                }}
+              >
+                <div className="flex flex-col space-y-0">
                   {group.variations.map((variation) => (
-                    <div key={variation.id} className="flex items-center gap-1 h-4">
-                      <span className="text-xs">•</span>
-                      <span className="text-xs">{variation.title}</span>
+                    <div key={variation.id} className="flex items-center gap-1" style={{ height: `${parseInt(printScale.rowHeight) * 0.75}px` }}>
+                      <span style={{ fontSize: `${parseFloat(printScale.variationFontSize) * 0.8}px` }}>•</span>
+                      <span style={{ fontSize: printScale.variationFontSize, lineHeight: '1.1' }}>{variation.title}</span>
                     </div>
                   ))}
                 </div>
               </td>
 
-
-
               {/* Поле для рукописного указания количества */}
-              <td className="px-2 py-1 print:px-1 print:py-0.5">
-                <div className="flex flex-col space-y-1 min-h-[2rem]">
+              <td
+                style={{
+                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                }}
+              >
+                <div className="flex flex-col space-y-0" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
                   {group.variations.map((variation) => (
-                    <div key={`${group.id}_${variation.id}`} className="border-b border-gray-300 h-4"></div>
+                    <div key={`${group.id}_${variation.id}`}
+                      className="border-b border-gray-300"
+                      style={{ height: `${parseInt(printScale.rowHeight) * 0.75}px` }}
+                    ></div>
                   ))}
                 </div>
               </td>
 
               {/* Пустое поле для суммы */}
-              <td className="px-2 py-1 print:px-1 print:py-0.5">
-                <div className="flex flex-col space-y-1 min-h-[2rem]">
+              <td
+                style={{
+                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                }}
+              >
+                <div className="flex flex-col space-y-0" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
                   {group.variations.map((variation) => (
-                    <div key={`${group.id}_sum_${variation.id}`} className="border-b border-gray-300 h-4"></div>
+                    <div key={`${group.id}_sum_${variation.id}`}
+                      className="border-b border-gray-300"
+                      style={{ height: `${parseInt(printScale.rowHeight) * 0.75}px` }}
+                    ></div>
                   ))}
                 </div>
               </td>
