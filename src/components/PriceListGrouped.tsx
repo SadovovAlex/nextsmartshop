@@ -91,12 +91,36 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
     let variation = "ориг."; // значение по умолчанию
 
     // Пытаемся найти вариацию в названии
-    if (title.includes('вишн')) {
-      variation = "вишня";
-    } else if (title.includes('изюм')) {
-      variation = "изюм";
+    if (title.includes('персик-вишня')) {
+      variation = "персик-вишня";
+    } else if (title.includes('мак-курага')) {
+      variation = "мак-курага";
+    } else if (title.includes('ваниль-клубника')) {
+      variation = "ваниль-клубника";
+    } else if (title.includes('персик-клубника')) {
+      variation = "персик-клубника";
+    } else if (title.includes('ваниль-малина') || title.includes('желе') && title.includes('ваниль-малина')) {
+      variation = "ваниль-малина";
+    } else if (title.includes('киви-клубника') || title.includes('желе') && title.includes('киви-клубника')) {
+      variation = "киви-клубника";
+    } else if (title.includes('манго-малина') || title.includes('желе') && title.includes('манго-малина')) {
+      variation = "манго-малина";
     } else if (title.includes('клубника')) {
       variation = "клубника";
+    }  else if (title.includes('малина-манго-маракуйя')) {
+      variation = "малина-манго-маракуйя";
+    }  else if (title.includes('манго-маракуйя')) {
+      variation = "манго-маракуйя";
+    }  else if (title.includes('ананас-виноград')) {
+      variation = "ананас-виноград";  
+    } else if (title.includes('яблоко-изюм')) {
+      variation = "яблоко-изюм";
+    } else if (title.includes('зебра')) {
+      variation = "зебра";
+    } else if (title.includes('со смородиной')) {
+      variation = "смородина";
+    } else if (title.includes('изюм')) {
+      variation = "изюм";
     } else if (title.includes('малин')) {
       variation = "малина";
     } else if (title.includes('черник')) {
@@ -107,28 +131,35 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
       variation = "варенье";
     } else if (title.includes('мед')) {
       variation = "мед";
-    } else if (title.includes('орех')) {
-      variation = "орехи";
+    } else if (title.includes('грецкий орех')) {
+      variation = "грецкий орех";
     } else if (title.includes('мак-курага')) {
       variation = "мак-курага";
     } else if (title.includes('чернослив')) {
       variation = "чернослив";
-     } else if (title.includes('зелен')) {
+    } else if (title.includes('зелен')) {
       variation = "зелень";
     } else if (title.includes('паприк')) {
       variation = "паприка";
     } else if (title.includes('перец')) {
-      variation = "перец";  
+      variation = "перец";
+    } else if (title.includes('цукаты')) {
+      variation = "цукаты";
     } else if (title.includes('шоколадн')) {
       variation = "шоколадная";
-    } else if (title.includes('груш')) {
+    } else if (title.includes('мак-груша')) {
+      variation = "мак-груша";
+    } else if (title.includes('груша')) {
       variation = "груша";
     } else if (title.includes('киви')) {
-      variation = "киви";  
+      variation = "киви";
     } else if (title.includes('клюкв')) {
       variation = "клюква";
-    } else if (title.includes('персик')) {
-      variation = "персик";
+    } else if (title.includes('курага')) {
+      variation = "курага";
+    } else if (title.includes('мак')) {
+      variation = "мак";
+
     } else if (title.includes('тыкв')) {
       variation = "тыква";
     } else if (title.includes('с ягодами')) {
@@ -141,16 +172,12 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
       variation = "с творогом";
     } else if (title.includes('из топленого творога')) {
       variation = "топленый творог";
-    } else if (title.includes('мак-курага')) {
-      variation = "мак-курага";
-    } else if (title.includes('ваниль-клубника')) {
-      variation = "ваниль-клубника";
-    } else if (title.includes('ваниль-малина') || title.includes('желе') && title.includes('ваниль-малина')) {
-      variation = "ваниль-малина";
-    } else if (title.includes('киви-клубника') || title.includes('желе') && title.includes('киви-клубника')) {
-      variation = "киви-клубника";
-    } else if (title.includes('манго-малина') || title.includes('желе') && title.includes('манго-малина')) {
-      variation = "манго-малина";
+    
+      
+    } else if (title.includes('персик')) {
+      variation = "персик";
+     } else if (title.includes('вишня')) {
+      variation = "вишня";  
     }
 
 
@@ -271,7 +298,7 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
           <div className="flex-1">
             <div className="font-semibold">НАКЛАДНАЯ № _______ от _____ ________________  202___г.</div>
             <div className="font-semibold">ГРУЗОПОЛУЧАТЕЛЬ ______________________________________</div>
-             <div className="font-semibold">АДРЕС _____________________________________________________</div>
+            <div className="font-semibold">АДРЕС _____________________________________________________</div>
           </div>
           <div className="flex-1 text-right">
             <div className="font-semibold">ГРУЗООТПРАВИТЕЛЬ</div>
