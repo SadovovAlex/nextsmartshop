@@ -200,7 +200,7 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
         if (estimatedPages <= 1.8) {
           // We can fit comfortably, use larger fonts
           setPrintScale({
-            fontSize: '14px',
+            fontSize: '12px',
             headerFontSize: '12px',
             variationFontSize: '12px',
             rowHeight: '16',
@@ -291,17 +291,7 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
             >
               Наименование
             </th>
-            <th
-              className="text-left font-bold leading-tight cursor-pointer hover:bg-gray-300"
-              style={{
-                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
-                fontSize: printScale.headerFontSize,
-                lineHeight: '1.2'
-              }}
-              onClick={() => handleSort("unit")}
-            >
-              Ед.изм.
-            </th>
+
 
             <th
               className="text-left font-bold leading-tight"
@@ -314,6 +304,17 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
               Заказ
             </th>
 
+            <th
+              className="text-left font-bold leading-tight cursor-pointer hover:bg-gray-300"
+              style={{
+                padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                fontSize: printScale.headerFontSize,
+                lineHeight: '1.2'
+              }}
+              onClick={() => handleSort("unit")}
+            >
+              Ед.изм.
+            </th>
 
             <th
               className="text-left font-bold leading-tight cursor-pointer hover:bg-gray-300"
@@ -387,21 +388,58 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
                 }}
               >
                 <div className="flex flex-col space-y-0">
-                  {group.variations.map((variation) => (
-                    <Link
+                  {group.variations.map((variation, varIndex) => (
+                    <div
                       key={variation.id}
-                      href={{ pathname: "/product", query: { _id: variation.id } }}
-                      className="hover:text-blue-600 hover:underline block"
+                      className="border border-gray-300 bg-white"
                       style={{
-                        fontSize: printScale.variationFontSize,
-                        lineHeight: '1.1'
+                        marginBottom: varIndex < group.variations.length - 1 ? '1px' : '0',
+                        height: `${parseInt(printScale.rowHeight) * 0.75}px`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        paddingLeft: '2px',
+                        backgroundColor: varIndex % 2 === 0 ? '#fafafa' : 'white'
                       }}
                     >
-                      {variation.fullTitle}
-                    </Link>
+                      <Link
+                        href={{ pathname: "/product", query: { _id: variation.id } }}
+                        className="hover:text-blue-600 hover:underline block w-full"
+                        style={{
+                          fontSize: printScale.variationFontSize,
+                          lineHeight: '1.1'
+                        }}
+                      >
+                        {variation.fullTitle}
+                      </Link>
+                    </div>
                   ))}
                 </div>
               </td>
+
+
+              {/* Поле для рукописного указания заказа штук */}
+              <td
+                style={{
+                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                }}
+              >
+                <div style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
+                  {group.variations.map((variation, varIndex) => (
+                    <div
+                      key={`${group.id}_sum_${variation.id}`}
+                      className={`flex items-center border border-gray-300 ${varIndex < group.variations.length - 1 ? 'border-b border-gray-400' : ''}`}
+                      style={{
+                        height: `${parseInt(printScale.rowHeight) * 0.75}px`,
+                        backgroundColor: varIndex % 2 === 0 ? '#f9f9f9' : 'transparent',
+                        marginBottom: varIndex < group.variations.length - 1 ? '1px' : '0'
+                      }}
+                    >
+
+                    </div>
+                  ))}
+                </div>
+              </td>
+
               <td
                 style={{
                   padding: `${printScale.cellPadding}px ${printScale.padding}px`,
@@ -410,28 +448,6 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
                 }}
               >
                 {group.unit}
-              </td>
-
-              {/* Поле для рукописного указания заказа штук */}
-               <td
-                style={{
-                  padding: `${printScale.cellPadding}px ${printScale.padding}px`,
-                }}
-              >
-                <div className="flex flex-col space-y-0 border-l-2 border-r-2 border-gray-300 bg-gray-50" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
-                  {group.variations.map((variation, varIndex) => (
-                    <div
-                      key={`${group.id}_sum_${variation.id}`}
-                      className={`flex items-center ${varIndex < group.variations.length - 1 ? 'border-b border-gray-400' : ''}`}
-                      style={{
-                        height: `${parseInt(printScale.rowHeight) * 0.75}px`,
-                        backgroundColor: varIndex % 2 === 0 ? '#f9f9f9' : 'transparent'
-                      }}
-                    >
-
-                    </div>
-                  ))}
-                </div>
               </td>
 
               <td
@@ -452,34 +468,52 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
                 }}
               >
                 <div className="flex flex-col space-y-0">
-                  {group.variations.map((variation) => (
-                    <div key={variation.id} className="flex items-center gap-1" style={{ height: `${parseInt(printScale.rowHeight) * 0.75}px` }}>
-                      <span style={{ fontSize: `${parseFloat(printScale.variationFontSize) * 0.8}px` }}>•</span>
-                      <span style={{ fontSize: printScale.variationFontSize, lineHeight: '1.1' }}>{variation.title}</span>
+                  {group.variations.map((variation, varIndex) => (
+                    <div
+                      key={variation.id}
+                      className="border border-gray-300 bg-white"
+                      style={{
+                        marginBottom: varIndex < group.variations.length - 1 ? '1px' : '0',
+                        height: `${parseInt(printScale.rowHeight) * 0.75}px`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        paddingLeft: '2px',
+                        backgroundColor: varIndex % 2 === 0 ? '#fafafa' : 'white'
+                      }}
+                    >
+                      <div className="flex items-center gap-1 w-full">
+                        <span style={{ fontSize: `${parseFloat(printScale.variationFontSize) * 0.8}px` }}>•</span>
+                        <span style={{ fontSize: printScale.variationFontSize, lineHeight: '1.1' }}>{variation.title}</span>
+                      </div>
                     </div>
                   ))}
                 </div>
               </td>
 
-
-
               {/* Поле для рукописного указания количества */}
               <td
                 style={{
                   padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                  lineHeight: '1.2'
                 }}
               >
-                <div className="flex flex-col space-y-0 border-l-2 border-r-2 border-gray-300 bg-gray-50" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
+                <div className="flex flex-col space-y-0">
                   {group.variations.map((variation, varIndex) => (
                     <div
-                      key={`${group.id}_${variation.id}`}
-                      className={`flex items-center ${varIndex < group.variations.length - 1 ? 'border-b border-gray-400' : ''}`}
+                      key={variation.id}
+                      className="border border-gray-300 bg-white"
                       style={{
+                        marginBottom: varIndex < group.variations.length - 1 ? '1px' : '0',
                         height: `${parseInt(printScale.rowHeight) * 0.75}px`,
-                        backgroundColor: varIndex % 2 === 0 ? '#f9f9f9' : 'transparent'
+                        display: 'flex',
+                        alignItems: 'center',
+                        paddingLeft: '2px',
+                        backgroundColor: varIndex % 2 === 0 ? '#fafafa' : 'white'
                       }}
                     >
+                      <div className="flex items-center gap-1 w-full">
 
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -489,23 +523,31 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
               <td
                 style={{
                   padding: `${printScale.cellPadding}px ${printScale.padding}px`,
+                  lineHeight: '1.2'
                 }}
               >
-                <div className="flex flex-col space-y-0 border-l-2 border-r-2 border-gray-300 bg-gray-50" style={{ minHeight: `${parseInt(printScale.rowHeight)}px` }}>
+                <div className="flex flex-col space-y-0">
                   {group.variations.map((variation, varIndex) => (
                     <div
-                      key={`${group.id}_sum_${variation.id}`}
-                      className={`flex items-center ${varIndex < group.variations.length - 1 ? 'border-b border-gray-400' : ''}`}
+                      key={variation.id}
+                      className="border border-gray-300 bg-white"
                       style={{
+                        marginBottom: varIndex < group.variations.length - 1 ? '1px' : '0',
                         height: `${parseInt(printScale.rowHeight) * 0.75}px`,
-                        backgroundColor: varIndex % 2 === 0 ? '#f9f9f9' : 'transparent'
+                        display: 'flex',
+                        alignItems: 'center',
+                        paddingLeft: '2px',
+                        backgroundColor: varIndex % 2 === 0 ? '#fafafa' : 'white'
                       }}
                     >
+                      <div className="flex items-center gap-1 w-full">
 
+                      </div>
                     </div>
                   ))}
                 </div>
               </td>
+
             </tr>
           ))}
         </tbody>
