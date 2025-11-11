@@ -81,7 +81,7 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
       variation = "вишня";
     } else if (title.includes('изюм')) {
       variation = "изюм";
-    } else if (title.includes('клубник')) {
+    } else if (title.includes('клубника')) {
       variation = "клубника";
     } else if (title.includes('малин')) {
       variation = "малина";
@@ -95,58 +95,26 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
       variation = "мед";
     } else if (title.includes('орех')) {
       variation = "орехи";
-    } else if (title.includes('кураг')) {
-      variation = "курага";
+    } else if (title.includes('мак-курага')) {
+      variation = "мак-курага";
     } else if (title.includes('чернослив')) {
       variation = "чернослив";
-    } else if (title.includes('киви')) {
-      if (title.includes('клубник')) {
-        variation = "киви с клубникой";
-      } else {
-        variation = "киви";
-      }
-    } else if (title.includes('манго')) {
-      if (title.includes('малин')) {
-        variation = "манго с малиной";
-      } else if (title.includes('маракуй')) {
-        variation = "манго, маракуйя";
-      } else {
-        variation = "манго";
-      }
-    } else if (title.includes('зелен')) {
+     } else if (title.includes('зелен')) {
       variation = "зелень";
     } else if (title.includes('паприк')) {
       variation = "паприка";
     } else if (title.includes('перец')) {
-      variation = "перец";
-    } else if (title.includes('шоколад')) {
-      if (title.includes('вишн')) {
-        variation = "шоколад/вишня";
-      } else if (title.includes('клубник') && title.includes('черник')) {
-        variation = "шоколад/клубника/черника";
-      } else if (title.includes('мак')) {
-        variation = "шоколад/мак";
-      } else if (title.includes('персик')) {
-        variation = "шоколад/персик";
-      } else {
-        variation = "шоколад";
-      }
+      variation = "перец";  
     } else if (title.includes('шоколадн')) {
       variation = "шоколадная";
-    } else if (title.includes('ананас')) {
-      variation = "ананас, виноград";
-    } else if (title.includes('виноград')) {
-      variation = "ананас, виноград";
     } else if (title.includes('груш')) {
       variation = "груша";
+    } else if (title.includes('киви')) {
+      variation = "киви";  
     } else if (title.includes('клюкв')) {
       variation = "клюква";
-    } else if (title.includes('маракуй')) {
-      variation = "манго, маракуйя";
     } else if (title.includes('персик')) {
       variation = "персик";
-    } else if (title.includes('мак')) {
-      variation = "мак";
     } else if (title.includes('тыкв')) {
       variation = "тыква";
     } else if (title.includes('с ягодами')) {
@@ -155,13 +123,22 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
       variation = "с фруктами";
     } else if (title.includes('с мясом')) {
       variation = "с мясом";
-    } else if (title.includes('топлен')) {
-      variation = "из топленого творога";
-    } else if (title.includes('мак-кураг')) {
+    } else if (title.includes('с творогом')) {
+      variation = "с творогом";
+    } else if (title.includes('из топленого творога')) {
+      variation = "топленый творог";
+    } else if (title.includes('мак-курага')) {
       variation = "мак-курага";
-    } else if (title.includes('мак') && title.includes('кураг')) {
-      variation = "мак-курага";
+    } else if (title.includes('ваниль-клубника')) {
+      variation = "ваниль-клубника";
+    } else if (title.includes('ваниль-малина') || title.includes('желе') && title.includes('ваниль-малина')) {
+      variation = "ваниль-малина";
+    } else if (title.includes('киви-клубника') || title.includes('желе') && title.includes('киви-клубника')) {
+      variation = "киви-клубника";
+    } else if (title.includes('манго-малина') || title.includes('желе') && title.includes('манго-малина')) {
+      variation = "манго-малина";
     }
+
 
     groups[key].variations.push({
       id: product._id,
@@ -263,7 +240,7 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
           </div>
           <div className="flex-1 text-right">
             <div className="font-semibold">ГРУЗООТПРАВИТЕЛЬ</div>
-            <div>Домашняя Молочная Продукция, Рязанская область г. РЯЗАНЬ</div>
+            <div>Домашняя Молочная Продукция, г. РЯЗАНЬ</div>
           </div>
         </div>
       </div>
@@ -298,7 +275,8 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
               style={{
                 padding: `${printScale.cellPadding}px ${printScale.padding}px`,
                 fontSize: printScale.headerFontSize,
-                lineHeight: '1.2'
+                lineHeight: '1.2',
+                width: '40px'
               }}
             >
               Заказ
@@ -336,7 +314,7 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
                 lineHeight: '1.2'
               }}
             >
-              Вариации
+              Начинки
             </th>
 
 
@@ -346,7 +324,8 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
               style={{
                 padding: `${printScale.cellPadding}px ${printScale.padding}px`,
                 fontSize: printScale.headerFontSize,
-                lineHeight: '1.2'
+                lineHeight: '1.2',
+                width: '40px'
               }}
             >
               Кол-во по факту
@@ -356,7 +335,8 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
               style={{
                 padding: `${printScale.cellPadding}px ${printScale.padding}px`,
                 fontSize: printScale.headerFontSize,
-                lineHeight: '1.2'
+                lineHeight: '1.2',
+                width: '50px'
               }}
             >
               Сумма
@@ -418,7 +398,7 @@ const PriceListGrouped: React.FC<ProductsProps> = ({ searchTerm }) => {
 
 
               {/* Поле для рукописного указания заказа штук */}
-               <td
+              <td
                 style={{
                   padding: `${printScale.cellPadding}px ${printScale.padding}px`,
                   lineHeight: '1.2'
