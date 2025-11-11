@@ -59,7 +59,6 @@ const InvoicePage = () => {
 
     <div id="price2-page" className="min-h-screen">
 
-      <Menu />
 
       <Container>
         <AdminRouteGuard>
