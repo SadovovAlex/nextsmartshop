@@ -21,7 +21,7 @@ const CartPage = () => {
     if (productData && productData.length > 0) {
       dispatch(normalizeCartQuantities());
     }
-  }, [dispatch]);
+  }, [dispatch, productData]);
 
   return (
     <div>
