@@ -57,6 +57,17 @@ export default function OptPage() {
             height: 120px;
             object-fit: cover;
             background-color: #f5f5f5;
+            position: relative;
+        }
+        .watermark {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 10px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
         }
         .product-content {
             padding: 8px;
@@ -114,7 +125,10 @@ export default function OptPage() {
     <div class="grid">
         ${products.map((product: ProductsStruct) => `
             <div class="product-card">
-                <img src="${product.image ? '/static/products/' + product.image : '/static/no_photo.webp'}" alt="${product.title}" class="product-image">
+                <div style="position: relative;">
+                    <img src="${product.image ? '/static/products/' + product.image : '/static/no_photo.webp'}" alt="${product.title}" class="product-image">
+                    <div class="watermark">www.ryazantvorog.ru</div>
+                </div>
                 <div class="product-content">
                     <div class="product-title">Арт. ${product._id} ${product.title}</div>
                     <div class="product-category">${product.cat_name}</div>

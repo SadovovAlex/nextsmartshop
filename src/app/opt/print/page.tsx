@@ -104,7 +104,7 @@ export default function OptPrintPage() {
       <div className="product-grid">
         {products.map((item: ProductsStruct) => (
           <div key={item._id} className="product-card border border-gray-300 rounded-lg overflow-hidden">
-            <div className="product-image w-full bg-gray-100">
+            <div className="product-image w-full bg-gray-100 relative">
               <Image
                 src={item.image ? `/static/products/${item.image}` : '/static/no_photo.webp'}
                 alt={item.title}
@@ -112,6 +112,9 @@ export default function OptPrintPage() {
                 height={100}
                 className="w-full h-24 object-cover"
               />
+              <div className="absolute bottom-1 right-1 text-white text-xs font-semibold opacity-80 tracking-wide pointer-events-none">
+                www.ryazantvorog.ru
+              </div>
             </div>
             <div className="p-2">
               <div className="product-title font-semibold line-clamp-2">
