@@ -97,7 +97,7 @@ export default function OptPrintPage() {
       `}</style>
 
       <div className="print-header text-center mb-4">
-        <h1 className="text-2xl font-bold">Каталог товаров (Оптовая цена)</h1>
+        <h1 className="text-2xl font-bold">Каталог товаров (Оптовая цена) печать</h1>
         <p className="text-sm text-gray-600">Распечатано {new Date().toLocaleDateString('ru-RU')}</p>
       </div>
 
@@ -123,14 +123,7 @@ export default function OptPrintPage() {
               <div className="product-ingredients text-gray-700 line-clamp-2">
                 {item.ingredients || "Состав не указан"}
               </div>
-              <div className="flex justify-between items-center mt-1">
-                <div className="product-price font-bold">
-                  {item.price} ₽
-                </div>
-                <div className="product-id text-gray-500">
-                  ID: {item._id}
-                </div>
-              </div>
+         
             </div>
           </div>
         ))}

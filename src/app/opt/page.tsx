@@ -120,7 +120,6 @@ export default function OptPage() {
                     <div class="product-category">${product.cat_name}</div>
                     <div class="product-ingredients">${product.ingredients || 'Состав не указан'}</div>
                     <div class="product-footer">
-                        <div class="product-price">${product.price} ₽</div>
                         <div class="product-id">ID: ${product._id}</div>
                     </div>
                 </div>
