@@ -41,15 +41,21 @@ const SingleProduct: React.FC<Props> = ({ productId }) => {
 
       <div>
         
-        <Image
-          //src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
-          src={`/static/products/${item?.image}`}
-          alt="product image"
-          width={500}
-          height={500}
-          className="w-full max-h-[700px] object-cover rounded-lg"
-          priority
-        />
+        <div className="relative">
+          <Image
+            //src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
+            src={`/static/products/${item?.image}`}
+            alt="product image"
+            width={500}
+            height={500}
+            className="w-full max-h-[700px] object-cover rounded-lg"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute bottom-4 right-4 text-white text-sm font-semibold opacity-80 tracking-wide pointer-events-none">
+            www.ryazantvorog.ru
+          </div>
+        </div>
       </div>
       <div className="flex flex-col justify-center gap-y-10">
         <div>
