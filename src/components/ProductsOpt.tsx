@@ -46,11 +46,11 @@ const ProductsOpt: React.FC = () => {
       )}
       
       {!loading && !error && products.length > 0 && (
-        <Container className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 -mt-10">
+        <div className="products-opt-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {products.map((item: ProductsStruct) => (
             <ProductsDataOpt item={item} key={item._id} />
           ))}
-        </Container>
+        </div>
       )}
     </div>
   );
