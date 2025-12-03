@@ -41,9 +41,6 @@ const ProductsDataOpt = ({ item }: ItemProps) => {
             <div className="text-sm text-gray-600 min-h-[1.25rem] flex items-center print:text-sm">
               {item?.ingredients || "Состав не указан"}
             </div>
-            <div >
-              
-            </div>
           </div>
           
          
