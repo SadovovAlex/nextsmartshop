@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Container from "./Container";
 
 import testUserImage from "../../public/user.png";
@@ -51,15 +51,10 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   }, [session, dispatch]);
   */
 
-  const [totalAmt, setTotalAmt] = useState(0);
-
-  useEffect(() => {
-    let amt = 0;
-    productData.map((item: ProductsStruct) => {
-      amt += item.price * item.quantity;
-      return;
-    });
-    setTotalAmt(amt);
+  const totalAmt = useMemo(() => {
+    return productData.reduce((sum, item: ProductsStruct) => {
+      return sum + (item.price * (item.quantity || 1));
+    }, 0);
   }, [productData]);
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductsStruct, StateProps } from "../../type";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import FormattedPrice from "./FormattedPrice";
 import { resetOrder } from "@/redux/shoppingSlice";
@@ -14,14 +14,10 @@ const OrderDetails = () => {
   const dispatch = useDispatch();
   const { orderData } = useSelector((state: StateProps) => state?.shopping);
 
-  const [totalAmount, setTotalAmount] = useState(0);
-  useEffect(() => {
-    let amt = 0;
-    orderData?.order?.map((item: ProductsStruct) => {
-      amt += item.price * item.quantity;
-      return;
-    });
-    setTotalAmount(amt);
+  const totalAmount = useMemo(() => {
+    return orderData?.order?.reduce((sum, item: ProductsStruct) => {
+      return sum + (item.price * (item.quantity || 1));
+    }, 0) || 0;
   }, [orderData.order]);
 
   return (

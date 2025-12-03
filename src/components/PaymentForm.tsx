@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ProductsStruct, StateProps } from "../../type";
 import FormattedPrice from "./FormattedPrice";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSession } from "next-auth/react";
 import { resetCart, saveOrder } from "@/redux/shoppingSlice";
@@ -13,28 +13,20 @@ const PaymentForm = () => {
   const { productData, userInfo } = useSelector(
     (state: StateProps) => state?.shopping
   );
-  const [totalAmt, setTotalAmt] = useState(0);
-  const [shippingCost, setShippingCost] = useState(5000); // Изначальная стоимость доставки
-
-  useEffect(() => {
-    let amt = 0;
-    productData.map((item: ProductsStruct) => {
-      amt += item.price * item.quantity;
-      return;
-    });
-    setTotalAmt(amt);
-
-   
-    // Устанавливаем стоимость доставки в зависимости от суммы заказа
-    const shippingThreshold = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_THRESHOLD || "5000");
-    const shippingCostValue = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "5000");
-
-    if (amt > shippingThreshold) {
-      setShippingCost(0); // Бесплатная доставка
-    } else {
-      setShippingCost(shippingCostValue); // Стоимость доставки
-    }
+  const shippingThreshold = useMemo(() => parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_THRESHOLD || "5000"), []);
+  const shippingCostValue = useMemo(() => parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "5000"), []);
+  
+  const totalAmt = useMemo(() => {
+    return productData.reduce((sum, item: ProductsStruct) => {
+      const quantity = item.quantity && !isNaN(Number(item.quantity)) ? Number(item.quantity) : 1;
+      const price = item.price && !isNaN(Number(item.price)) ? Number(item.price) : 0;
+      return sum + (price * quantity);
+    }, 0);
   }, [productData]);
+
+  const shippingCost = useMemo(() => {
+    return totalAmt > shippingThreshold ? 0 : shippingCostValue;
+  }, [totalAmt, shippingThreshold, shippingCostValue]);
 
   // =============  Stripe Payment Start here ==============
   const handleCheckout = async () => {}

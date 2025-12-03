@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { resetCart } from "@/redux/shoppingSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ProductsStruct, StateProps } from "../../type";
 import FormattedPrice from './FormattedPrice';
 import toast from "react-hot-toast";
@@ -11,27 +11,19 @@ import toast from "react-hot-toast";
 
 const SubmitOrderForm = () => {
   const { productData } = useSelector((state: StateProps) => state?.shopping);
-  // сумма корзины и доставка 
-  const [totalAmt, setTotalAmt] = useState(0);
-  const [shippingCost, setShippingCost] = useState(5000); // Изначальная стоимость доставки
-  // Устанавливаем стоимость доставки в зависимости от суммы заказа
-  const shippingThreshold = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_THRESHOLD || "5000");
-  const shippingCostValue = parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "5000");
-    
-  useEffect(() => {
-    let amt = 0;
-    productData.map((item: ProductsStruct) => {
-      amt += item.price * item.quantity;
-      return;
-    });
-    setTotalAmt(amt);
+  // сумма корзины и доставка
+  const shippingThreshold = useMemo(() => parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_THRESHOLD || "5000"), []);
+  const shippingCostValue = useMemo(() => parseFloat(process.env.NEXT_PUBLIC_V_SHIPPING_COST || "5000"), []);
+  
+  const totalAmt = useMemo(() => {
+    return productData.reduce((sum, item: ProductsStruct) => {
+      return sum + (item.price * (item.quantity || 1));
+    }, 0);
+  }, [productData]);
 
-    if (amt >= shippingThreshold) {
-      setShippingCost(0); // Бесплатная доставка
-    } else {
-      setShippingCost(shippingCostValue); // Стоимость доставки
-    }
-  }, [productData, shippingThreshold, shippingCostValue]);
+  const shippingCost = useMemo(() => {
+    return totalAmt >= shippingThreshold ? 0 : shippingCostValue;
+  }, [totalAmt, shippingThreshold, shippingCostValue]);
   
 
   // Состояние для управления видимостью формы

@@ -24,9 +24,7 @@ const ProductsDataOpt = ({ item }: ItemProps) => {
             className="w-full h-full object-cover rounded-t-lg print:h-32"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute bottom-2 right-2 text-white text-xs opacity-80 font-semibold tracking-wide pointer-events-none">
-            www.ryazantvorog.ru
-          </div>
+          
         </div>
       </div>
       <div className="flex-1 border-[1px] border-slate-300 border-t-0 px-3 py-4 flex flex-col bg-white rounded-b-lg print:p-2">
@@ -42,6 +40,9 @@ const ProductsDataOpt = ({ item }: ItemProps) => {
             </div>
             <div className="text-sm text-gray-600 min-h-[1.25rem] flex items-center print:text-sm">
               {item?.ingredients || "Состав не указан"}
+            </div>
+            <div >
+              
             </div>
           </div>
           

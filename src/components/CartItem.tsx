@@ -60,7 +60,7 @@ const CartItem = () => {
                   <FiChevronLeft />
                 </span>
                 <span className="text-2xl font-bold">
-                  {item?.quantity && !isNaN(Number(item?.quantity)) ? item?.quantity : 1}
+                  {item?.quantity && typeof item.quantity === 'number' && item.quantity > 0 ? item.quantity : 1}
                 </span>
                 <span
                   onClick={() => dispatch(increaseQuantity(item))}
@@ -72,7 +72,10 @@ const CartItem = () => {
               </div>
               <div className="flex items-end justify-end w-full md:w-1/3">
                 <p className="text-2xl font-semibold">
-                  <FormattedPrice amount={(item?.price || 0) * (item?.quantity || 1)} />
+                  <FormattedPrice amount={
+                    (item?.price && typeof item.price === 'number' ? item.price : 0) *
+                    (item?.quantity && typeof item.quantity === 'number' && item.quantity > 0 ? item.quantity : 1)
+                  } />
                 </p>
               </div>
             </div>
