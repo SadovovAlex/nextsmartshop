@@ -98,8 +98,8 @@ export default function RootLayout({
       <body className="font-bodyFont w-full bg-main-bg text-darkText">
         <Layout>
           {children}
-          <Footer />
         </Layout>
+        <Footer />
       </body>
     </html>
   );
