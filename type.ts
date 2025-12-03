@@ -23,6 +23,7 @@ export interface StateProps {
     userInfo: {};
     orderData: {
       order: ProductsStruct[];
+      id?: string;
     };
   };
 }
