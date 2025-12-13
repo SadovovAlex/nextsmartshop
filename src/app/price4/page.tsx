@@ -59,14 +59,25 @@ const Price4Page: React.FC<PageProps> = ({ searchParams }) => {
       
       return {
         groupName: groupName.charAt(0).toUpperCase() + groupName.slice(1),
-        products: products.sort((a, b) => a.title.localeCompare(b.title)),
+        products: products,
         totalSum,
         firstImage
       };
     });
 
-    // Sort groups alphabetically
-    grouped.sort((a, b) => a.groupName.localeCompare(b.groupName));
+    // Sort groups by cat_priority first, then alphabetically by groupName
+    grouped.sort((a: any, b: any) => {
+      // Sort by cat_priority first (null/undefined values go last), then by groupName
+      if (a.products[0]?.cat_priority && b.products[0]?.cat_priority) {
+        return a.products[0].cat_priority - b.products[0].cat_priority;
+      } else if (a.products[0]?.cat_priority && !b.products[0]?.cat_priority) {
+        return -1;
+      } else if (!a.products[0]?.cat_priority && b.products[0]?.cat_priority) {
+        return 1;
+      } else {
+        return a.groupName.localeCompare(b.groupName);
+      }
+    });
     setGroupedProducts(grouped);
   }, [products]);
 
@@ -91,6 +102,9 @@ const Price4Page: React.FC<PageProps> = ({ searchParams }) => {
               <div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">Рязанская молочная ферма Заокское</h2>
                 <p className="text-gray-600">Работаем с розничными магазинами, сетями и продуктовыми рынками.</p>
+                   <p>Телефон для заказа: <span className="font-semibold">+7 (930) 888-76-78</span></p>
+                  <p>Email: <span className="font-semibold">ryazantvorog@gmail.com</span></p>
+            
               </div>
               <div className="flex items-center space-x-4">
                 <div className="w-28 h-28">
@@ -110,16 +124,17 @@ const Price4Page: React.FC<PageProps> = ({ searchParams }) => {
                 </div>
               </div>
             </div>
+             
           </div>
           <div className="p-6">
+          <div className="p-6 border-b print:border-b-2 print:border-black">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-semibold text-gray-800 mb-3">Доставка</h3>
                 <ul className="text-gray-600 space-y-1">
                   <li>• Бесплатная доставка в Москву, Московскую область</li>
-                  <li>• Тулу и Тульскую область</li>
-                  <li>• Калугу и Калужскую область</li>
-                  <li>• Липецк и Липецкую область</li>
+                  <li>• Тулу, Калугу, Липецк</li>
+                  <li>• а так же область</li>
                   <li>• При определенной сумме заказа</li>
                 </ul>
               </div>
@@ -129,12 +144,12 @@ const Price4Page: React.FC<PageProps> = ({ searchParams }) => {
                   <li>• Дни доставки: пн, вт, чт, пт, сб</li>
                   <li>• Ветеринарное свидетельство отправляем по Меркурию</li>
                   <li>• Опт на выгодных условиях</li>
-                  <li>• Телефон для заказа: <span className="font-semibold">+7(930)888-76-78</span></li>
-                  <li>• Email: <span className="font-semibold">ryazantvorog@gmail.com</span></li>
-                </ul>
+                  <li>• Доставка до магазина</li>
+                        </ul>
               </div>
             </div>
           </div>
+          </div>   
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 print:grid-cols-2 print:gap-0">
