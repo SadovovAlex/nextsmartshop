@@ -84,8 +84,57 @@ const Price4Page: React.FC<PageProps> = ({ searchParams }) => {
   return (
     <div className="min-h-screen bg-white print:bg-white">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Буклет товаров</h1>
+      
+        <div className="bg-white rounded-lg shadow-lg print:shadow-none print:bg-transparent mb-8">
+          <div className="p-6 border-b print:border-b-2 print:border-black">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">Рязанская молочная ферма Заокское</h2>
+                <p className="text-gray-600">Работаем с розничными магазинами, сетями и продуктовыми рынками.</p>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="w-28 h-28">
+                  <img
+                    alt="QR код"
+                    loading="lazy"
+                    width="112"
+                    height="112"
+                    decoding="async"
+                    className="w-full h-full transition-transform duration-200 transform hover:scale-110"
+                    style={{color: 'transparent'}}
+                    src="/static/qr-code.webp"
+                  />
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-gray-800">Узнай больше</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">Доставка</h3>
+                <ul className="text-gray-600 space-y-1">
+                  <li>• Бесплатная доставка в Москву, Московскую область</li>
+                  <li>• Тулу и Тульскую область</li>
+                  <li>• Калугу и Калужскую область</li>
+                  <li>• Липецк и Липецкую область</li>
+                  <li>• При определенной сумме заказа</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">Контакты</h3>
+                <ul className="text-gray-600 space-y-1">
+                  <li>• Дни доставки: пн, вт, чт, пт, сб</li>
+                  <li>• Ветеринарное свидетельство отправляем по Меркурию</li>
+                  <li>• Опт на выгодных условиях</li>
+                  <li>• Телефон для заказа: <span className="font-semibold">+7(930)888-76-78</span></li>
+                  <li>• Email: <span className="font-semibold">ryazantvorog@gmail.com</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 print:grid-cols-2 print:gap-0">
