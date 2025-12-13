@@ -49,6 +49,14 @@ const Menu = () => {
             </li>
             <li className="border-b border-gray-200 md:border-none text-white">
               <a
+                href="/buklet"
+                className="block px-4 py-2 hover:bg-gray-200 hover:text-orange-500 md:hover:bg-transparent"
+              >
+                Буклет
+              </a>
+            </li>
+            <li className="border-b border-gray-200 md:border-none text-white">
+              <a
                 href="/about"
                 className="block px-4 py-2 hover:bg-gray-200 hover:text-orange-500 md:hover:bg-transparent"
               >
