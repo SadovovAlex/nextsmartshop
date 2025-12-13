@@ -96,10 +96,7 @@ const BukletPage: React.FC<PageProps> = ({ searchParams }) => {
   return (
     <div className="min-h-screen bg-white print:bg-white">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Буклет товаров</h1>
-          <p className="text-gray-600">Сгруппированные товары с итоговыми суммами</p>
-        </div>
+       
 
         <div className="bg-white rounded-lg shadow-lg print:shadow-none print:bg-transparent mb-8">
           <div className="p-6 border-b print:border-b-2 print:border-black">
