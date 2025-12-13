@@ -40,14 +40,16 @@ const PriceListGrouped: React.FC<PriceListGroupedProps> = ({ groupedProducts, se
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-800">{group.groupName}</h3>
-              {/* <p className="text-sm text-gray-600">{group.products.length} товаров</p> */}
+              {group.products.length > 5 && (
+                <p className="text-sm text-gray-600">{Math.min(group.products.length, 5)} товаров из {group.products.length}</p>
+              )}
               {/* <p className="text-lg font-bold text-green-600">Итого: {group.totalSum} ₽</p> */}
             </div>
           </div>
           
           <div className="overflow-x-auto">
             <table className="w-full table-auto border-collapse">
-              {/* <thead>
+              <thead>
                 <tr className="bg-gray-200 print:bg-transparent">
                   <th className="px-2 py-1 text-left print:px-1 print:py-0.5 print:text-xs print:font-normal">№</th>
                   <th className="px-2 py-1 text-left print:px-1 print:py-0.5 print:text-xs print:font-normal">Наименование</th>
@@ -55,9 +57,9 @@ const PriceListGrouped: React.FC<PriceListGroupedProps> = ({ groupedProducts, se
                   <th className="px-2 py-1 text-left print:px-1 print:py-0.5 print:text-xs print:font-normal">Ед.изм.</th>
                   <th className="px-2 py-1 text-left print:px-1 print:py-0.5 print:text-xs print:font-normal">Цена,₽</th>
                 </tr>
-              </thead> */}
+              </thead>
               <tbody className="text-xs print:text-xs">
-                {group.products.map((product: ProductsStruct, index: number) => (
+                {group.products.slice(0, 5).map((product: ProductsStruct, index: number) => (
                   <tr
                     key={product._id}
                     className={`border-b hover:bg-green-100 transition-colors duration-300 print:border-b print:border-gray-300 print:hover:bg-transparent print:bg-transparent ${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
