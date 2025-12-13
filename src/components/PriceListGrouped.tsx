@@ -40,8 +40,8 @@ const PriceListGrouped: React.FC<PriceListGroupedProps> = ({ groupedProducts, se
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-800">{group.groupName}</h3>
-              {group.products.length > 6 && (
-                <p className="text-sm text-gray-600">{Math.min(group.products.length, 6)} товаров из {group.products.length}</p>
+              {group.products.length > 2 && (
+                <p className="text-sm text-gray-600">{Math.min(group.products.length, 2)} товаров из {group.products.length}</p>
               )}
               {/* <p className="text-lg font-bold text-green-600">Итого: {group.totalSum} ₽</p> */}
             </div>
@@ -59,7 +59,7 @@ const PriceListGrouped: React.FC<PriceListGroupedProps> = ({ groupedProducts, se
                 </tr>
               </thead>
               <tbody className="text-xs print:text-xs">
-                {group.products.slice(0, 6).map((product: ProductsStruct, index: number) => (
+                {group.products.slice(0, 2).map((product: ProductsStruct, index: number) => (
                   <tr
                     key={product._id}
                     className={`border-b hover:bg-green-100 transition-colors duration-300 print:border-b print:border-gray-300 print:hover:bg-transparent print:bg-transparent ${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}

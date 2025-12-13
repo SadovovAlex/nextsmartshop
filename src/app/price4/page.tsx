@@ -145,17 +145,22 @@ const Price4Page: React.FC<PageProps> = ({ searchParams }) => {
                     <li>• Дни доставки: пн, вт, чт, пт, сб</li>
                     <li>• Ветеринарное свидетельство отправляем по Меркурию</li>
                     <li>• Опт на выгодных условиях</li>
-                    <li>• Доставка до магазина</li>
+                    <li>• Доставка до магазина4444</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
+         
         </div>
+
+       
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 print:grid-cols-2 print:gap-0">
           <div className="bg-white rounded-lg shadow-lg print:shadow-none print:bg-transparent">
-
+  <div>
+            Наша продукция
+          </div>
             <div className="p-4">
               <PriceListGrouped
                 groupedProducts={groupedProducts.slice(0, Math.ceil(groupedProducts.length / 2))}

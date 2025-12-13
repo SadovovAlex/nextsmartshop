@@ -124,27 +124,40 @@ const BukletPage: React.FC<PageProps> = ({ searchParams }) => {
               </div>
             </div>
           </div>
-          <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">Доставка</h3>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Бесплатная доставка в Москву, Московскую область</li>
-                  <li>• Бесплатная доставка в Тулу и Тульскую область</li>
-                  <li>• Бесплатная доставка в Калугу и Калужскую область</li>
-                  <li>• Бесплатная доставка в Липецк и Липецкую область</li>
-                  <li>• При определенной сумме заказа</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">Контакты</h3>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Дни доставки: пн, вт, чт, пт, сб</li>
-                  <li>• Ветеринарное свидетельство отправляем по Меркурию</li>
-                  <li>• Опт на выгодных условиях</li>
-                  <li>• Телефон для заказа: <span className="font-semibold">+7(930)888-76-78</span></li>
-                  <li>• Email: <span className="font-semibold">ryazantvorog@gmail.com</span></li>
-                </ul>
+        <div className="p-6">
+            <div className="p-6 border-b print:border-b-2 print:border-black">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="md:col-span-1">
+                  <img
+                    src="/buklet.jpg"
+                    alt="Буклет изображение"
+                    width="400"
+                    height="300"
+                    className="w-full h-auto rounded-lg"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-3">Доставка</h3>
+                      <ul className="text-gray-600 space-y-1">
+                        <li>• Бесплатная доставка в Москву, Московскую область</li>
+                        <li>• Тулу, Калугу, Липецк</li>
+                        <li>• а так же область</li>
+                        <li>• При определенной сумме заказа</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-3">Контакты</h3>
+                      <ul className="text-gray-600 space-y-1">
+                        <li>• Дни доставки: пн, вт, чт, пт, сб</li>
+                        <li>• Ветеринарное свидетельство отправляем по Меркурию</li>
+                        <li>• Опт на выгодных условиях</li>
+                        <li>• Доставка до магазина</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
