@@ -28,7 +28,7 @@ const Menu = () => {
         <nav
           className={`absolute top-full left-0 w-48 bg-gray-700 shadow-md z-30 transform transition-transform duration-300 ${
             isOpen ? "translate-x-0" : "-translate-x-full"
-          } md:static md:transform-none md:w-auto md:bg-transparent md:shadow-none md:flex md:justify-center`}
+          }  print:hidden md:static md:transform-none md:w-auto md:bg-transparent md:shadow-none md:flex md:justify-center`}
         >
           <ul className="list-none md:flex md:space-x-4 ">
             <li className="border-b border-gray-200 md:border-none text-white ">

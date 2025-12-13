@@ -64,34 +64,34 @@ const PriceList: React.FC<ProductsProps> = ({ searchTerm }) => {
       <thead>
         <tr className="bg-gray-200 print:bg-transparent">
           <th
-            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default text-left"
             onClick={() => handleSort("id")}
           >
             #
           </th>
 
-          <th className="px-2 py-1 print:px-1 print:py-0.5"></th>
+          <th className="px-2 py-1 print:px-1 print:py-0.5 text-left"></th>
           <th
-            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default text-left"
             onClick={() => handleSort("title")}
           >
             Наименование
           </th>
 
 
-          <th className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
+          <th className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default text-left"
             onClick={() => handleSort("cat_name")}
           >
             Категория
           </th>
           <th
-            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default text-left"
             onClick={() => handleSort("type")}
           >
             Ед.изм.
           </th>
           <th
-            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default"
+            className="px-2 py-1 cursor-pointer hover:bg-gray-300 print:px-1 print:py-0.5 print:text-xs print:font-normal print:no-underline print:no-underline print:cursor-default text-left"
             onClick={() => handleSort("price")}
           >
             Цена,₽
