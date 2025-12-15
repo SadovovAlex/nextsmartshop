@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import PriceListGrouped from "@/components/PriceListGrouped";
 import { getProducts } from "@/helpers";
 import { ProductsStruct } from "../../../type";
+import Image from "next/image";
 
 interface PageProps {
   searchParams: Promise<{
@@ -107,14 +108,11 @@ const BukletPage: React.FC<PageProps> = ({ searchParams }) => {
               </div>
               <div className="flex items-center space-x-4">
                 <div className="w-28 h-28">
-                  <img 
+                  <Image 
                     alt="QR код" 
-                    loading="lazy" 
-                    width="112" 
-                    height="112" 
-                    decoding="async" 
+                    width={112} 
+                    height={112} 
                     className="w-full h-full transition-transform duration-200 transform hover:scale-110" 
-                    style={{color: 'transparent'}} 
                     src="/static/qr-code-buklet.webp"
                   />
                 </div>
@@ -128,11 +126,11 @@ const BukletPage: React.FC<PageProps> = ({ searchParams }) => {
             <div className="p-6 border-b print:border-b-2 print:border-black">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-1">
-                  <img
+                  <Image
                     src="/static/buklet.jpg"
                     alt="Буклет изображение"
-                    width="400"
-                    height="300"
+                    width={400}
+                    height={300}
                     className="w-full h-auto rounded-lg"
                   />
                 </div>
