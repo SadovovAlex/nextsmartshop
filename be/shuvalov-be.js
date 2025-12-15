@@ -29,36 +29,43 @@ app.use(express.json());
 
 // Метод для получения списка товаров
 app.get('/api/products', (req, res) => {
-  db.all('SELECT p.*, c.cat_name, c.cat_priority FROM products p,  dict_category c WHERE p.category_id = c.id ORDER BY c.cat_priority ASC, title, image DESC', [], (err, rows) => {
-    if (err) {
-      return res.status(500).json({ message: 'Ошибка получения данных' });
-    }
+  try {
+    const stmt = db.prepare('SELECT p.*, c.cat_name, c.cat_priority FROM products p, dict_category c WHERE p.category_id = c.id ORDER BY c.cat_priority ASC, title, image DESC');
+    const rows = stmt.all();
     res.json(rows);
-  });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Ошибка получения данных' });
+  }
 });
 
 // Метод для получения тренд товаров
 app.get('/api/trendproducts', (req, res) => {
-  db.all('SELECT p.*, c.cat_name, c.cat_priority FROM products p,  dict_category c WHERE p.category_id = c.id AND isNew=1', [], (err, rows) => {
-    if (err) {
-      return res.status(500).json({ message: 'Ошибка получения данных' });
-    }
+  try {
+    const stmt = db.prepare('SELECT p.*, c.cat_name, c.cat_priority FROM products p, dict_category c WHERE p.category_id = c.id AND isNew=1');
+    const rows = stmt.all();
     res.json(rows);
-  });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Ошибка получения данных' });
+  }
 });
 
 // Метод для получения одного товара по ID
 app.get('/api/products/:id', (req, res) => {
-  const productId = req.params.id;
-  db.get('SELECT p.*, c.cat_name, c.cat_priority FROM products p,  dict_category c WHERE p.category_id = c.id AND _id = ?', [productId], (err, row) => {
-    if (err) {
-      return res.status(500).json({ message: 'Ошибка получения данных' });
-    }
+  try {
+    const productId = req.params.id;
+    const stmt = db.prepare('SELECT p.*, c.cat_name, c.cat_priority FROM products p, dict_category c WHERE p.category_id = c.id AND _id = ?');
+    const row = stmt.get(productId);
+    
     if (!row) {
       return res.status(404).json({ message: 'Продукт не найден' });
     }
     res.json(row);
-  });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Ошибка получения данных' });
+  }
 });
 
 app.post('/api/send-email', (req, res) => {
