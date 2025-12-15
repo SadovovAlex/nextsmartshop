@@ -6,6 +6,16 @@ import Menu from "@/components/Menu";
 import AdminRouteGuard from "@/components/AdminRouteGuard";
 import PriceListGrouped from "@/components/PriceListGrouped";
 import { useEffect } from "react";
+import { ProductsStruct } from "../../../type";
+
+
+interface GroupedProduct {
+  groupName: string;
+  products: ProductsStruct[];
+  totalSum: number;
+  firstImage: string;
+}
+
 
 const InvoicePage = () => {
   useEffect(() => {
@@ -62,7 +72,12 @@ const InvoicePage = () => {
 
       <Container>
         <AdminRouteGuard>
-          <PriceListGrouped searchTerm={""} />
+           {/* <PriceListGrouped 
+                searchTerm=""
+              /> */}
+                удалено zzzzz
+                groupedProducts= GroupedProduct[]
+            
         </AdminRouteGuard>
       </Container>
     </div>
