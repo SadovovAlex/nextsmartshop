@@ -6,9 +6,9 @@ import { getProducts } from "@/helpers";
 import { ProductsStruct } from "../../../type";
 
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     search?: string;
-  };
+  }>;
 }
 
 interface GroupedProduct {
@@ -115,7 +115,7 @@ const BukletPage: React.FC<PageProps> = ({ searchParams }) => {
                     decoding="async" 
                     className="w-full h-full transition-transform duration-200 transform hover:scale-110" 
                     style={{color: 'transparent'}} 
-                    src="/static/qr-code.webp"
+                    src="/static/qr-code-buklet.webp"
                   />
                 </div>
                 <div>
@@ -129,7 +129,7 @@ const BukletPage: React.FC<PageProps> = ({ searchParams }) => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-1">
                   <img
-                    src="/buklet.jpg"
+                    src="/static/buklet.jpg"
                     alt="Буклет изображение"
                     width="400"
                     height="300"

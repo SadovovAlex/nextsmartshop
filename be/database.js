@@ -1,18 +1,12 @@
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require('better-sqlite3');
 const path = require('path');
 
 // Создаем или открываем базу данных
-const db = new sqlite3.Database(path.join(__dirname, 'products.db'), (err) => {
-  if (err) {
-    console.error('Ошибка открытия базы данных:', err.message);
-  } else {
-    console.log('Подключение к базе данных успешно.');
-  }
-});
+const db = sqlite3(path.join(__dirname, 'products.db'));
 
 // Создаем таблицу, если она не существует
-db.serialize(() => {
-  db.run(`CREATE TABLE IF NOT EXISTS products (
+try {
+  db.exec(`CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT,
     isNew BOOLEAN,
@@ -26,6 +20,9 @@ db.serialize(() => {
     quantity INTEGER,
     ingredients TEXT
   )`);
-});
+  console.log('Подключение к базе данных успешно.');
+} catch (err) {
+  console.error('Ошибка открытия базы данных:', err.message);
+}
 
 module.exports = db;
