@@ -81,6 +81,8 @@ const ProductsData = ({ item }: ItemProps) => {
             </div>
             
             <div className="flex items-center justify-between">
+              {/* Иконки звезд */}
+              <div className="flex items-center gap-x-1">{startArray}</div>
               {/* Кнопка добавления в корзину */}
               <button
                 onClick={() =>
@@ -93,8 +95,7 @@ const ProductsData = ({ item }: ItemProps) => {
               >
                 В корзину
               </button>
-              {/* Иконки звезд */}
-              <div className="flex items-center gap-x-1">{startArray}</div>
+              
             </div>
           </div>
         </div>
