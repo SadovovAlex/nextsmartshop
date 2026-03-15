@@ -25,13 +25,13 @@ const ProductsData = ({ item }: ItemProps) => {
     <div className="w-full h-[390px] rounded-lg overflow-hidden border-[1px] border-slate-300 flex flex-col">
       <div className="flex-shrink-0">
         <Link href={{ pathname: "/product", query: { _id: item?._id } }}>
-          <div className="w-full h-48 group overflow-hidden relative">
+          <div className="w-full h-56 group overflow-hidden relative">
             <Image
               src={item?.image ? `/static/products/${item?.image}` : '/static/no_photo.webp'}
               alt="foto"
               width={650}
               height={650}
-              className="w-full h-full object-cover group-hover:scale-110 duration-200 rounded-t-lg"
+              className="w-full h-full object-contain group-hover:scale-110 duration-200 rounded-t-lg"
             />
             {item?.isNew === 1 && (
               <span className="absolute top-2 right-2 font-medium text-xs py-1 px-3 rounded-full bg-white group-hover:bg-orange-600 group-hover:text-white duration-200">
