@@ -1,76 +1,176 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 Smart Shop - Интернет-магазин
 
-#Demo
-https://ryazantvorog.ru/
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-pink)](https://tailwindcss.com/)
+[![Redux](https://img.shields.io/badge/Redux-5-red)](https://redux.js.org/)
 
-## Getting Started
+> Современный интернет-магазин с админ-панелью, корзиной и полной системой заказов
 
-First, run the development server:
+---
+
+## 📸 Демонстрация
+
+![Главная страница](./doc/ScreenMain.jpg)
+![Корзина](./doc/ScreenCart.jpg)
+![Прайс-лист](./doc/ScreenPrice.jpg)
+![Буклет](./doc/ScreenBuklet.jpg)
+
+---
+
+## 🌐 Демо
+
+[Посмотреть сайт](https://ryazantvorog.ru/)
+
+---
+
+## ✨ Особенности
+
+- 🎨 **Современный дизайн** с использованием Tailwind CSS
+- 🛒 **Корзина** с Redux state management
+- 📦 **Каталог товаров** с фильтрацией и поиском
+- 💳 **Оплата** через платежный шлюз
+- 📝 **Система заказов** с генерацией чеков
+- 👨‍💼 **Админ-панель** для управления товарами и заказами
+- 🖨️ **Печать чеков** и документов
+- 📱 **Адаптивный дизайн** для всех устройств
+- 🍪 **Cookie-баннер** для GDPR compliance
+
+---
+
+## 📁 Структура проекта
+
+```
+smart_shop/
+├── be/                 # Backend (Node.js)
+│   ├── admin-login.js  # Админ-авторизация
+│   ├── create-admin-table.sql
+│   ├── create-db.sql
+│   ├── database.js     # База данных
+│   └── shuvalov-be.js  # Основной бэкенд
+├── nginx/              # Nginx конфигурации
+│   ├── default
+│   └── shuvalov.conf
+├── public/             # Статические файлы
+│   ├── static/        # Изображения товаров, логотипы
+│   └── *.png, *.jpg, *.pdf
+├── src/
+│   ├── app/           # Next.js App Router
+│   │   ├── api/       # API маршруты
+│   │   ├── cart/      # Страница корзины
+│   │   ├── order/     # Страница заказа
+│   │   ├── price*/    # Страницы прайс-листов
+│   │   ├── product/   # Страница товара
+│   │   └── *.tsx      # Страницы приложения
+│   ├── components/    # React компоненты
+│   ├── contexts/      # React Context
+│   ├── helpers/       # Утилитарные функции
+│   ├── redux/         # Redux store и слайсы
+│   └── constants/     # Константы
+├── scripts/           # Скрипты развертывания
+└── type/              # TypeScript типы
+```
+
+---
+
+## 🚀 Установка
+
+### Требования
+
+- Node.js 18+
+- npm, yarn или pnpm
+- MySQL/PostgreSQL (для бэкенда)
+
+### Клонирование
 
 ```bash
+git clone <repository-url>
+cd smart_shop
+```
+
+### Установка зависимостей
+
+```bash
+# Frontend
+npm install
+
+# Backend
+cd be
+npm install
+```
+
+---
+
+## 🔧 Разработка
+
+### Запуск разработки
+
+```bash
+# Frontend
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+
+# Backend
+cd be && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Сборка для продакшена
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## @next/bundle-analyzer plugin
-Use the @next/bundle-analyzer plugin to analyze the size of your JavaScript bundles and identify large modules and dependencies that might be impacting your application's performance.
-
-yarn add @next/bundle-analyzer
-
-set ANALYZE=true 
-yarn build
-
-## Image Optimisations (sharp)
-Warning: For production Image Optimization with Next.js, the optional 'sharp' package is strongly recommended. Run 'npm i sharp', and Next.js will use it automatically for Image Optimization.
-Read more: https://nextjs.org/docs/messages/sharp-missing-in-production
-
-yarn add sharp
-
-## output: "standalone"
-In next.config.js
-module.exports = {
-  output: 'standalone',
-}
-
-This will create a folder at .next/standalone which can then be deployed on its own without installing node_modules
-
-This minimal server does not copy the public or .next/static folders by default as these should ideally be handled by a CDN instead, although these folders can be copied to the standalone/public and standalone/.next/static folders manually, after which server.js file will serve these automatically.
-
-To copy these manually, you can use the cp command-line tool after you next build:
-
-cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/
-
-To start your minimal server.js file locally, run the following command:
-node .next/standalone/server.js
-
-## error `searchParams` should be awaited before using its properties.
-npx @next/codemod@latest next-async-request-api --force
-y
-
-## fix git history
-For Example remove file .env.local from git history
 ```bash
-git filter-branch --force --index-filter "git rm --cached --ignore-unmatch .env.local" --prune-empty --tag-name-filter cat -- --all
-git gc --prune=now --aggressive
-git push --force
+npm run build
+npm start
 ```
 
-## end
+### Standalone сборка
+
+```bash
+npm run build-standalone
+```
+
+---
+
+## 📦 API Маршруты
+
+| Метод | Маршрут | Описание |
+|-------|---------|----------|
+| GET | `/api/products` | Получить список товаров |
+| POST | `/api/checkout` | Оформить заказ |
+| POST | `/api/admin/login` | Админ-авторизация |
+| POST | `/api/admin/logout` | Админ-деавторизация |
+| GET | `/api/admin/verify` | Проверка админ-сессии |
+
+---
+
+## 🗄️ База данных
+
+### Создание базы данных
+
+```bash
+cd be
+node create-db.sql
+```
+
+### Инициализация администратора
+
+```bash
+node init-admin.js
+```
+
+---
+
+## 📝 Лицензия
+
+MIT License
+
+---
+
+## 🤝 Вклад
+
+Внесение предложений и вклад в проект приветствуется!
+
+---
+
+## 📞 Контакты
+
+Для вопросов и предложений:
+- Email: support@ryazantvorog.ru
+- Сайт: https://ryazantvorog.ru/
