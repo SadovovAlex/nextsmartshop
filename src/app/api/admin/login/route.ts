@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Отправка запроса на бэкенд для проверки администратора
-    const response = await fetch('http://localhost:3001/api/admin/login', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
