@@ -5,12 +5,6 @@ import PriceListGrouped from "@/components/PriceListGrouped";
 import { getProducts } from "@/helpers";
 import { ProductsStruct } from "../../../type";
 
-interface PageProps {
-  searchParams: {
-    search?: string;
-  };
-}
-
 interface GroupedProduct {
   groupName: string;
   products: ProductsStruct[];
@@ -18,7 +12,7 @@ interface GroupedProduct {
   firstImage: string;
 }
 
-const Price4Page: React.FC<PageProps> = ({ searchParams }) => {
+const Price4Page: React.FC<any> = ({ searchParams }) => {
   const unwrappedParams = React.use(searchParams as any) as any;
   const searchTerm = unwrappedParams?.search || "";
   const [products, setProducts] = useState<ProductsStruct[]>([]);

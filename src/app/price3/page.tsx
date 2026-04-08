@@ -1,17 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import PriceListHalf from "@/components/PriceListHalf"; 
+import PriceListHalf from "@/components/PriceListHalf";
 import { getProducts } from "@/helpers";
 import { ProductsStruct } from "../../../type";
 
-interface PageProps {
-  searchParams: {
-    search?: string;
-  };
-}
-
-const Price3Page: React.FC<PageProps> = ({ searchParams }) => {
+const Price3Page: React.FC<any> = ({ searchParams }) => {
   const unwrappedParams = React.use(searchParams as any) as any;
   const searchTerm = unwrappedParams?.search || "";
   const [products, setProducts] = useState<ProductsStruct[]>([]);
