@@ -1,3 +1,4 @@
+// BannerStatic.tsx
 "use client";
 import bannerone from "@/images/bannerone.webp";
 import bannertwo from "@/images/bannertwo.webp";
