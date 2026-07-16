@@ -191,7 +191,7 @@ const Footer = () => {
       </Container>
       <footer className="bg-neutral-200 text-center lg:text-left dark:bg-neutral-700 text-sm">
         <div className="p-2 text-neutral-700 dark:text-neutral-200 text-center ">
-          &copy; 2025 WR Shop. All rights reserved.&nbsp;
+          &copy; {new Date().getFullYear()} WR Shop. All rights reserved.&nbsp;
           <a
             href="#"
             className="text-neutral-800 dark:text-neutral-400"
