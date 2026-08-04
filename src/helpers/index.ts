@@ -10,6 +10,8 @@ export const getTrendingProducts = async () => {
 }
   */
 
+// helpers/index.ts - функция getProducts
+
 export const getProducts = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
   if (!res.ok) {

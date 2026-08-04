@@ -1,3 +1,4 @@
+// BannerText.tsx
 import Container from "./Container";
 import { motion } from "framer-motion";
 import { TEXT, CONTACT } from '../constants/text';

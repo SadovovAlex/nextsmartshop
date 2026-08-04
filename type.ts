@@ -1,3 +1,5 @@
+// type.ts - полное определение ProductsStruct
+
 export interface ProductsStruct {
   _id: number;
   title: string;
