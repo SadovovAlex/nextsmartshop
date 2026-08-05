@@ -1,10 +1,23 @@
+// buklet/page.tsx - Оптимизированная для печати на 1 листе А4
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PriceListGrouped from "@/components/PriceListGrouped";
 import { getProducts } from "@/helpers";
 import { ProductsStruct } from "../../../type";
 import Image from "next/image";
+import Menu from "@/components/Menu";
+import { 
+  FiPrinter, 
+  FiSearch, 
+  FiX,
+  FiTruck,
+  FiClock,
+  FiAward,
+  FiChevronDown,
+  FiChevronUp
+} from "react-icons/fi";
+import { CONTACT } from "@/constants/text";
 
 interface PageProps {
   searchParams: Promise<{
@@ -17,6 +30,7 @@ interface GroupedProduct {
   products: ProductsStruct[];
   totalSum: number;
   firstImage: string;
+  productCount: number;
 }
 
 const BukletPage: React.FC<PageProps> = ({ searchParams }) => {
@@ -24,7 +38,7 @@ const BukletPage: React.FC<PageProps> = ({ searchParams }) => {
   const searchTerm = unwrappedParams?.search || "";
   const [products, setProducts] = useState<ProductsStruct[]>([]);
   const [loading, setLoading] = useState(true);
-  const [groupedProducts, setGroupedProducts] = useState<GroupedProduct[]>([]);
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -41,186 +55,353 @@ const BukletPage: React.FC<PageProps> = ({ searchParams }) => {
     fetchProducts();
   }, []);
 
-  useEffect(() => {
-    // Group products by first word of title
-    const groups = new Map<string, ProductsStruct[]>();
+  // Группировка продуктов
+  const groupedProducts = useMemo(() => {
+    const groups = new Map<string, { products: ProductsStruct[], totalSum: number, firstImage: string }>();
     
     products.forEach(product => {
-      const firstWord = product.title.split(' ')[0].toLowerCase();
-      if (!groups.has(firstWord)) {
-        groups.set(firstWord, []);
-      }
-      groups.get(firstWord)!.push(product);
-    });
-
-    // Calculate totals and create grouped structure
-    const grouped = Array.from(groups.entries()).map(([groupName, products]) => {
-      const totalSum = products.reduce((sum, product) => sum + product.price, 0);
-      const firstImage = products[0]?.image || 'no_photo.webp';
+      const groupKey = product.cat_name || product.title.split(' ')[0].toLowerCase();
       
-      return {
-        groupName: groupName.charAt(0).toUpperCase() + groupName.slice(1),
-        products: products,
-        totalSum,
-        firstImage
-      };
-    });
-
-    // Sort groups by cat_priority first, then alphabetically by groupName
-    grouped.sort((a: any, b: any) => {
-      // Sort by cat_priority first (null/undefined values go last), then by groupName
-      if (a.products[0]?.cat_priority && b.products[0]?.cat_priority) {
-        return a.products[0].cat_priority - b.products[0].cat_priority;
-      } else if (a.products[0]?.cat_priority && !b.products[0]?.cat_priority) {
-        return -1;
-      } else if (!a.products[0]?.cat_priority && b.products[0]?.cat_priority) {
-        return 1;
-      } else {
-        return a.groupName.localeCompare(b.groupName);
+      if (!groups.has(groupKey)) {
+        groups.set(groupKey, {
+          products: [],
+          totalSum: 0,
+          firstImage: product.image || 'no_photo.webp'
+        });
       }
+      
+      const group = groups.get(groupKey)!;
+      group.products.push(product);
+      group.totalSum += product.price;
     });
 
-    setGroupedProducts(grouped);
+    return Array.from(groups.entries())
+      .map(([groupName, data]) => ({
+        groupName: groupName.charAt(0).toUpperCase() + groupName.slice(1),
+        products: data.products,
+        totalSum: data.totalSum,
+        firstImage: data.firstImage,
+        productCount: data.products.length
+      }))
+      .sort((a, b) => a.groupName.localeCompare(b.groupName));
   }, [products]);
+
+  // Фильтрация по поиску
+  const filteredGroups = useMemo(() => {
+    if (!searchTerm) return groupedProducts;
+    
+    const search = searchTerm.toLowerCase();
+    return groupedProducts.filter(group => 
+      group.products.some(product =>
+        product.title.toLowerCase().includes(search) ||
+        product.cat_name?.toLowerCase().includes(search) ||
+        product.type?.toLowerCase().includes(search)
+      )
+    );
+  }, [groupedProducts, searchTerm]);
+
+  // Разделение на две колонки
+  const halfIndex = Math.ceil(filteredGroups.length / 2);
+  const leftGroups = filteredGroups.slice(0, halfIndex);
+  const rightGroups = filteredGroups.slice(halfIndex);
+
+  const toggleGroup = (groupName: string) => {
+    setExpandedGroups(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(groupName)) {
+        newSet.delete(groupName);
+      } else {
+        newSet.add(groupName);
+      }
+      return newSet;
+    });
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Загрузка буклета...</p>
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-orange-500 border-t-transparent mx-auto"></div>
+          <p className="mt-4 text-gray-600 font-medium">Загрузка буклета...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white print:bg-white">
-      <div className="container mx-auto px-4 py-8">
-       
-
-        <div className="bg-white rounded-lg shadow-lg print:shadow-none print:bg-transparent mb-8">
-          <div className="p-6 border-b print:border-b-2 print:border-black">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">Рязанская молочная ферма Заокское</h2>
-                <p className="text-gray-600">Работаем с розничными магазинами, сетями и продуктовыми рынками.</p>
+    <div className="min-h-screen bg-gray-50 print:bg-white">
+      <Menu />
+      
+      <div className="container mx-auto px-4 py-4 print:px-0 print:py-0 print:m-0 print:max-w-none">
+        {/* ===== БУКЛЕТ ДЛЯ ПЕЧАТИ ===== */}
+        <div id="buklet-print" className="print:block">
+          {/* ===== ЗАГОЛОВОК ===== */}
+          <div className="bg-gradient-to-r from-orange-500 to-orange-600 print:bg-gray-800 print:from-gray-800 print:to-gray-800 rounded-2xl print:rounded-none shadow-lg print:shadow-none mb-4 print:mb-1 overflow-hidden">
+            <div className="flex items-center justify-between p-4 print:p-2">
+              <div className="text-white">
+                <h1 className="text-xl md:text-2xl print:text-sm font-bold leading-tight">
+                  Рязанская молочная ферма
+                </h1>
+                <p className="text-orange-100 print:text-gray-300 text-xs print:text-[8px]">
+                  с. Заокское • Натуральная молочная продукция
+                </p>
               </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-28 h-28">
+              
+              <div className="flex items-center gap-3 print:gap-1">
+                <div className="text-white text-right print:text-gray-300">
+                  <p className="text-xs print:text-[7px] opacity-80">Телефон</p>
+                  <a 
+                    href={`tel:${CONTACT.PHONE}`}
+                    className="text-sm print:text-[9px] font-bold hover:underline"
+                  >
+                    {CONTACT.PHONE_FORMATTED}
+                  </a>
+                </div>
+                
+                <div className="w-12 h-12 print:w-10 print:h-10 bg-white rounded-lg p-0.5 print:p-0.5 shadow-lg">
                   <Image 
-                    alt="QR код" 
-                    width={112} 
-                    height={112} 
-                    className="w-full h-full transition-transform duration-200 transform hover:scale-110" 
+                    alt="QR" 
+                    width={48} 
+                    height={48} 
+                    className="w-full h-full object-contain" 
                     src="/static/qr-code-buklet.webp"
                   />
                 </div>
-                <div>
-                  <p className="text-lg font-semibold text-gray-800">Узнай больше</p>
-                </div>
+              </div>
+            </div>
+
+            {/* Информационные карточки - компактные */}
+            <div className="grid grid-cols-3 gap-2 px-4 pb-3 print:px-2 print:pb-1">
+              <div className="flex items-center gap-1.5 print:gap-0.5 bg-white/10 print:bg-gray-700 rounded-lg px-2 py-1 print:px-1 print:py-0.5">
+                <FiTruck className="w-3 h-3 print:w-2.5 print:h-2.5 text-white" />
+                <span className="text-white print:text-gray-300 text-[10px] print:text-[6px] leading-tight">Бесплатная доставка</span>
+              </div>
+              <div className="flex items-center gap-1.5 print:gap-0.5 bg-white/10 print:bg-gray-700 rounded-lg px-2 py-1 print:px-1 print:py-0.5">
+                <FiClock className="w-3 h-3 print:w-2.5 print:h-2.5 text-white" />
+                <span className="text-white print:text-gray-300 text-[10px] print:text-[6px] leading-tight">Пн-Сб 08:00-18:00</span>
+              </div>
+              <div className="flex items-center gap-1.5 print:gap-0.5 bg-white/10 print:bg-gray-700 rounded-lg px-2 py-1 print:px-1 print:py-0.5">
+                <FiAward className="w-3 h-3 print:w-2.5 print:h-2.5 text-white" />
+                <span className="text-white print:text-gray-300 text-[10px] print:text-[6px] leading-tight">Вет. контроль</span>
               </div>
             </div>
           </div>
-        <div className="p-6">
-            <div className="p-6 border-b print:border-b-2 print:border-black">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="md:col-span-1">
-                  <Image
-                    src="/static/buklet.jpg"
-                    alt="Буклет изображение"
-                    width={400}
-                    height={300}
-                    className="w-full h-auto rounded-lg"
+
+          {/* ===== ОСНОВНОЙ КОНТЕНТ - МАКСИМАЛЬНО КОМПАКТНЫЙ ===== */}
+          {filteredGroups.length === 0 ? (
+            <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
+              <p className="text-gray-500 text-lg">По вашему запросу ничего не найдено</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 print:gap-0.5 print:grid-cols-2">
+              {/* Левая колонка */}
+              <div className="space-y-1 print:space-y-0">
+                {leftGroups.map((group) => (
+                  <PriceListGrouped 
+                    key={group.groupName}
+                    group={group}
+                    searchTerm={searchTerm}
+                    isExpanded={true}
+                    onToggle={() => toggleGroup(group.groupName)}
+                    isPrint={true}
                   />
-                </div>
-                <div className="md:col-span-2">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3">Доставка</h3>
-                      <ul className="text-gray-600 space-y-1">
-                        <li>• Бесплатная доставка в Москву, Московскую область</li>
-                        <li>• Тулу, Калугу, Липецк</li>
-                        <li>• а так же область</li>
-                        <li>• При определенной сумме заказа</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3">Контакты</h3>
-                      <ul className="text-gray-600 space-y-1">
-                        <li>• Дни доставки: пн, вт, чт, пт, сб</li>
-                        <li>• Ветеринарное свидетельство отправляем по Меркурию</li>
-                        <li>• Опт на выгодных условиях</li>
-                        <li>• Доставка до магазина</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                ))}
+              </div>
+
+              {/* Правая колонка */}
+              <div className="space-y-1 print:space-y-0">
+                {rightGroups.map((group) => (
+                  <PriceListGrouped 
+                    key={group.groupName}
+                    group={group}
+                    searchTerm={searchTerm}
+                    isExpanded={true}
+                    onToggle={() => toggleGroup(group.groupName)}
+                    isPrint={true}
+                  />
+                ))}
               </div>
             </div>
-          </div>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 print:grid-cols-2 print:gap-0">
-          <div className="bg-white rounded-lg shadow-lg print:shadow-none print:bg-transparent">
-            
-            <div className="p-4">
-              <PriceListGrouped 
-                groupedProducts={groupedProducts.slice(0, Math.ceil(groupedProducts.length / 2))}
-                searchTerm={searchTerm}
-              />
-            </div>
-          </div>
+        {/* ===== ФУТЕР ===== */}
+        <div className="mt-4 print:mt-0.5 pt-2 print:pt-0.5 border-t border-gray-200 print:border-gray-300 text-center text-xs print:text-[6px] text-gray-400 print:text-gray-500">
+          <p>© {new Date().getFullYear()} Рязанская молочная ферма Заокское</p>
+        </div>
 
-          <div className="bg-white rounded-lg shadow-lg print:shadow-none print:bg-transparent">
-            
-            <div className="p-4">
-              <PriceListGrouped 
-                groupedProducts={groupedProducts.slice(Math.ceil(groupedProducts.length / 2))}
-                searchTerm={searchTerm}
-              />
-            </div>
-          </div>
+        {/* ===== КНОПКИ УПРАВЛЕНИЯ (только на экране) ===== */}
+        <div className="fixed bottom-8 right-8 flex flex-col gap-2 print:hidden z-50">
+          <button
+            onClick={handlePrint}
+            className="flex items-center gap-2 px-4 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all"
+          >
+            <FiPrinter className="w-5 h-5" />
+            Печать
+          </button>
         </div>
       </div>
 
+      {/* СТИЛИ ДЛЯ ПЕЧАТИ НА 1 ЛИСТЕ А4 */}
       <style jsx global>{`
         @media print {
-          body {
+          /* Сброс всех отступов */
+          * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
           }
           
-          .print\:shadow-none {
-            box-shadow: none !important;
+          html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: white !important;
+            width: 100% !important;
+            height: 100% !important;
           }
           
-          .print\:border-b-2 {
-            border-bottom-width: 2px !important;
+          /* Контейнер буклета */
+          #buklet-print {
+            max-width: 100% !important;
+            padding: 2mm !important;
+            margin: 0 !important;
           }
           
-          .print\:border-black {
-            border-color: black !important;
+          /* Скрываем все лишнее */
+          header, nav, .no-print, .print\\:hidden {
+            display: none !important;
           }
           
-          .print\:grid-cols-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+          /* Меню скрываем */
+          .menu-container, nav, header:not(#buklet-print) {
+            display: none !important;
           }
           
-          .print\:gap-0 {
-            gap: 0 !important;
+          /* Основной контент */
+          .container {
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
           }
           
-          /* Ensure proper page break behavior */
+          /* Сетка в две колонки */
+          .grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 1px !important;
+          }
+          
+          /* Карточки групп */
+          .group-card {
+            break-inside: avoid !important;
+            page-break-inside: avoid !important;
+            border: 1px solid #e5e7eb !important;
+            border-radius: 2px !important;
+            margin-bottom: 1px !important;
+            padding: 0 !important;
+          }
+          
+          /* Таблицы */
+          table {
+            font-size: 5px !important;
+            line-height: 1.1 !important;
+          }
+          
+          th, td {
+            padding: 1px 2px !important;
+            font-size: 5px !important;
+            line-height: 1.1 !important;
+          }
+          
+          /* Заголовки групп */
+          .group-header {
+            padding: 1px 4px !important;
+            font-size: 6px !important;
+            border-bottom: 1px solid #d1d5db !important;
+          }
+          
+          /* Изображения */
+          img {
+            max-width: 20px !important;
+            max-height: 20px !important;
+          }
+          
+          /* Шрифты */
+          h1, h2, h3, h4 {
+            font-size: 8px !important;
+            line-height: 1.2 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+          
+          p, span, div {
+            font-size: 6px !important;
+            line-height: 1.2 !important;
+          }
+          
+          /* Цвета */
+          .bg-white {
+            background: white !important;
+          }
+          
+          .bg-gray-50 {
+            background: #f9fafb !important;
+          }
+          
+          .text-gray-500, .text-gray-400 {
+            color: #6b7280 !important;
+          }
+          
+          .text-orange-500, .text-orange-600 {
+            color: #1a1a1a !important;
+          }
+          
+          /* Страница А4 */
           @page {
             size: A4 portrait;
-            margin: 0.5cm;
+            margin: 3mm 4mm !important;
           }
           
-          /* Hide unnecessary elements when printing */
-          header, footer, nav {
+          /* Предотвращаем разрывы внутри групп */
+          .group-card {
+            break-inside: avoid !important;
+            page-break-inside: avoid !important;
+          }
+          
+          /* Скрываем кнопки */
+          button {
             display: none !important;
+          }
+          
+          /* Убираем лишние отступы */
+          .p-\\d+ {
+            padding: 0 !important;
+          }
+          .m-\\d+ {
+            margin: 0 !important;
+          }
+          .gap-\\d+ {
+            gap: 0 !important;
+          }
+          .space-y-\\d+ {
+            margin-top: 0 !important;
+          }
+          
+          /* Принудительно показываем все группы */
+          .group-expanded {
+            display: block !important;
+            max-height: none !important;
+            overflow: visible !important;
+          }
+          
+          /* Убираем анимации */
+          .animate-fadeIn {
+            animation: none !important;
+            opacity: 1 !important;
           }
         }
       `}</style>

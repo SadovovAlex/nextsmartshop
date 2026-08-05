@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "mkdir my-product-api\r cd my-product-api\r npm init -y\r npm install express sqlite3",
   "main": "database.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+ "scripts": {
+    "start": "node shuvalov-be.js",
+    "dev": "nodemon shuvalov-be.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",

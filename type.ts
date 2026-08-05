@@ -1,5 +1,4 @@
-// type.ts - полное определение ProductsStruct
-
+// type.ts - Полное определение ProductsStruct с новыми полями
 export interface ProductsStruct {
   _id: number;
   title: string;
@@ -12,7 +11,10 @@ export interface ProductsStruct {
   image: string;
   rating: number;
   quantity: number;
-  ingredients: string,
+  ingredients: string;
+  hide?: number;          // 0 - показан, 1 - скрыт (NULL в БД = показан)
+  category_id?: number;   // ID категории для связи с dict_category
+  cat_priority?: number;  // Приоритет сортировки категорий
 }
 
 export interface ItemProps {
@@ -21,7 +23,7 @@ export interface ItemProps {
 
 export interface StateProps {
   shopping: {
-    productData: [];
+    productData: ProductsStruct[]; // Исправлено: [] -> ProductsStruct[]
     userInfo: {};
     orderData: {
       order: ProductsStruct[];

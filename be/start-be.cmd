@@ -1,3 +1,3 @@
-node shuvalov-be.js
+npm run start
 
 pause

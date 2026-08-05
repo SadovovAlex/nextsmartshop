@@ -1,209 +1,253 @@
+// Footer.tsx - Исправленная версия
 "use client";
-import {
-  BsInstagram,
-  BsGithub,
-  BsLinkedin,
-  BsFacebook,
-  BsTwitter,
-} from "react-icons/bs";
-import payment from "@/images/payment.png";
-import Container from "./Container";
-import Logo from "./Logo";
+
+import React from "react";
 import Link from "next/link";
-import { TEXT, CONTACT } from '../constants/text';
-import packageJson from '../../package.json';
 import Image from "next/image";
+import { 
+  FiPhone, 
+  FiMail, 
+  FiMapPin, 
+  FiClock, 
+  FiTruck,
+  FiAward,
+  FiChevronRight,
+  FiHome,
+  FiFileText,
+  FiInfo,
+  FiShoppingCart,
+  FiFile
+} from "react-icons/fi";
+import { CONTACT, TEXT, ROUTES } from "@/constants/text";
+import packageJson from '../../package.json';
 
 const Footer = () => {
-  const handlePhoneClick = () => {
-    if (typeof window !== 'undefined') {
-      window.location.href = `tel:${CONTACT.PHONE}`;
-    }
-  };
-  const handleEmailClick = () => {
-    if (typeof window !== 'undefined') {
-      window.location.href = `mailto:${CONTACT.EMAIL}`;
-    }
-  };
+  const currentYear = new Date().getFullYear();
 
-  // Проверяем, находимся ли мы на странице /opt
-  const isOptPage = typeof window !== 'undefined' && window.location.pathname === '/opt';
+  // Навигационные ссылки
+  const navLinks = [
+    { href: ROUTES.HOME, label: "Главная", icon: FiHome },
+    { href: ROUTES.PRICE, label: "Прайс", icon: FiFileText },
+    { href: ROUTES.ABOUT, label: "О нас", icon: FiInfo },
+    { href: ROUTES.CART, label: "Корзина", icon: FiShoppingCart },
+    { href: ROUTES.INVOICE, label: "Накладная", icon: FiFile },
+  ];
 
-  if (isOptPage) {
-    return null;
-  }
+  // Информационные блоки
+  const infoBlocks = [
+    {
+      icon: FiTruck,
+      title: "Доставка",
+      description: "Бесплатная доставка в Москву, МО, Тулу, Калугу, Липецк",
+      detail: "При определенной сумме заказа"
+    },
+    {
+      icon: FiClock,
+      title: "График работы",
+      description: "Пн, Вт, Чт, Пт, Сб",
+      detail: "Прием заказов: 8:00 - 10:00"
+    },
+    {
+      icon: FiAward,
+      title: "Качество",
+      description: "Ветеринарный контроль",
+      detail: "Отправка по системе Меркурий"
+    }
+  ];
 
   return (
-    <div className="pt-2 w-full bg-darkText text-slate-100 footer print:hidden">
-      <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-10">
-
-        <div className="flex flex-col gap-y-4">
-          <p className="text-xs transition duration-300 ease-in-out hover:text-gray-500">
-            <span className="font-semibold animate-fadeIn">
-              Работаем с розничными магазинами, сетями и продуктовыми рынками.
-            </span>
-            <br />
-            <span className="font-semibold animate-fadeIn">Опт на выгодных условиях.</span>
-            <br />
-            <span className="font-semibold animate-fadeIn">
-              Ветеринарное свидетельство отправляем по Меркурию.
-            </span>
-            <br />
-            <span className="font-semibold animate-fadeIn">{TEXT.DELIVERY}</span>
-            <br />
-            <span className="font-semibold">Дни доставки:</span> пн, вт, чт, пт, сб.
-          </p>
-        </div>
-
-        <div>
-          {/* Phone Number */}
-          <div className="">
-            <div className="sm:block hidden text-xs font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-              Рязанская молочная ферма Заокское
+    <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-gray-300 print:hidden">
+      {/* Основной футер */}
+      <div className="border-b border-gray-800">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            
+            {/* ===== КОЛОНКА 1: ИНФОРМАЦИЯ ===== */}
+            <div className="space-y-4">
+              <h3 className="text-white font-bold text-lg flex items-center gap-2">
+                <span className="w-1 h-6 bg-orange-500 rounded-full" />
+                О нас
+              </h3>
+              <p className="text-sm leading-relaxed text-gray-400">
+                Работаем с розничными магазинами, сетями и продуктовыми рынками. 
+                Предлагаем качественную молочную продукцию по выгодным условиям.
+              </p>
+              <p className="text-sm leading-relaxed text-gray-400">
+                <span className="text-orange-400 font-semibold">Опт</span> на выгодных условиях.
+                Ветеринарное свидетельство отправляем по системе Меркурий.
+              </p>
+              <div className="flex flex-col gap-1 text-sm text-gray-400">
+                <p className="flex items-center gap-2">
+                  <FiTruck className="text-orange-400 w-4 h-4" />
+                  <span>{TEXT.DELIVERY}</span>
+                </p>
+                <p className="flex items-center gap-2">
+                  <FiClock className="text-orange-400 w-4 h-4" />
+                  <span>Дни доставки: пн, вт, чт, пт, сб</span>
+                </p>
+              </div>
             </div>
-            <div
-              className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
-              onClick={handlePhoneClick}
-            >
-              {CONTACT.PHONE_FORMATTED}
+
+            {/* ===== КОЛОНКА 2: КОНТАКТЫ ===== */}
+            <div className="space-y-4">
+              <h3 className="text-white font-bold text-lg flex items-center gap-2">
+                <span className="w-1 h-6 bg-orange-500 rounded-full" />
+                Контакты
+              </h3>
+              
+              <div className="space-y-3">
+                {/* Телефон */}
+                <div className="group">
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Телефон</p>
+                  <a
+                    href={`tel:${CONTACT.PHONE}`}
+                    className="text-white font-semibold text-lg hover:text-orange-400 transition-colors flex items-center gap-2"
+                  >
+                    <FiPhone className="w-4 h-4 text-orange-400" />
+                    {CONTACT.PHONE_FORMATTED}
+                  </a>
+                </div>
+
+                {/* Email */}
+                <div className="group">
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Email</p>
+                  <a
+                    href={`mailto:${CONTACT.EMAIL}`}
+                    className="text-white font-semibold hover:text-orange-400 transition-colors flex items-center gap-2"
+                  >
+                    <FiMail className="w-4 h-4 text-orange-400" />
+                    {CONTACT.EMAIL}
+                  </a>
+                </div>
+
+                {/* Адрес */}
+                <div className="group">
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Адрес</p>
+                  <a
+                    href="https://maps.google.com/maps/search/Рязанская+область,+село+Заокское"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-orange-400 transition-colors flex items-center gap-2 text-sm"
+                  >
+                    <FiMapPin className="w-4 h-4 text-orange-400 flex-shrink-0" />
+                    <span>Рязанская область, село Заокское</span>
+                  </a>
+                </div>
+
+                {/* Время работы */}
+                <div className="group">
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Прием заказов</p>
+                  <div className="flex items-center gap-2 text-white">
+                    <FiClock className="w-4 h-4 text-orange-400" />
+                    <span>8:00 - 10:00 ежедневно</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              className="xs:text-xs text-sm font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px] cursor-pointer"
-              onClick={handleEmailClick}
-            >
-              ryazantvorog@gmail.com
+
+            {/* ===== КОЛОНКА 3: БЫСТРЫЕ ССЫЛКИ ===== */}
+            <div className="space-y-4">
+              <h3 className="text-white font-bold text-lg flex items-center gap-2">
+                <span className="w-1 h-6 bg-orange-500 rounded-full" />
+                Навигация
+              </h3>
+              
+              <ul className="space-y-2">
+                {navLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="flex items-center gap-2 text-gray-400 hover:text-orange-400 transition-all duration-200 group text-sm"
+                      >
+                        <FiChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all" />
+                        <Icon className="w-4 h-4 text-gray-600 group-hover:text-orange-400 transition-colors" />
+                        <span className="group-hover:translate-x-1 transition-transform">
+                          {link.label}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* ===== КОЛОНКА 4: QR КОД ===== */}
+            <div className="space-y-4">
+              <h3 className="text-white font-bold text-lg flex items-center gap-2">
+                <span className="w-1 h-6 bg-orange-500 rounded-full" />
+                QR-код
+              </h3>
+              
+              <div className="flex flex-col items-center bg-gray-800/50 rounded-2xl p-4 border border-gray-700">
+                <div className="relative w-32 h-32 bg-white rounded-xl p-2 transition-transform duration-300 hover:scale-105">
+                  <Image
+                    src="/static/qr-code.webp"
+                    alt="QR-код сайта"
+                    fill
+                    className="object-contain p-1"
+                    sizes="(max-width: 128px) 100vw, 128px"
+                  />
+                </div>
+                <p className="text-xs text-gray-500 mt-3 text-center">
+                  Наведите камеру для перехода на сайт
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Contact Information */}
-          <div className="flex flex-col text-sm font-semibold text-white mt-2">
-            {/* Address */}
-            <div className="flex items-center mt-1">
-              <p className="mr-2">Адрес:</p>
-              <a
-                href="https://maps.google.com/maps/search/%D0%9A%D0%BE%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F%20%D1%83%D0%BB.%2C%2070%2C%20%D0%97%D0%B0%D0%BE%D0%BA%D1%81%D0%BA%D0%BE%D0%B5%2C%20%D0%A0%D1%8F%D0%B7%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B1%D0%BB.%2C%20%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F%2C%20390019/@54.6898,39.7476,17z?hl=en"
-                className="text-blue-400 hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Россия, 390019, Рязанская обл., село Заокское.
-              </a>
-            </div>
-
-            {/* Working Hours */}
-            <div className="flex items-center mt-1">
-              <p className="mr-2">Прием заказов:</p>
-              <p>8:00 - 10:00 ежедневно</p>
-            </div>
-          </div>
-          {
-            /*
-                    <div className="socialLink flex items-center gap-x-4">
-                      <a href="#" target="_blank">
-                        <span className="socialLink">
-                          <BsInstagram />
-                        </span>
-                      </a>
-                      <a href="#" target="_blank">
-                        <span className="socialLink">
-                          <BsGithub />
-                        </span>
-                      </a>
-                      <a href="#" target="_blank">
-                        <span className="socialLink">
-                          <BsLinkedin />
-                        </span>
-                      </a>
-                      <a href="#" target="_blank">
-                        <span className="socialLink">
-                          <BsFacebook />
-                        </span>
-                      </a>
-                      <a href="#" target="_blank">
-                        <span className="socialLink">
-                          <BsTwitter />
-                        </span>
-                      </a>
-                    </div>
-               
-                  */
-          }
-        </div>
-
-        <div className="md:mt-0 top-0 items-center">
-          <div className="container mx-auto flex flex-col items-center">
-            <Image
-              src="/static/qr-code.webp"
-              alt="Лого"
-              className="w-28 h-28 transition-transform duration-200 transform hover:scale-110"
-              width={500}
-              height={300}
-            />
+          {/* ===== ИНФОРМАЦИОННЫЕ КАРТОЧКИ ===== */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 pt-8 border-t border-gray-800">
+            {infoBlocks.map((block, index) => {
+              const Icon = block.icon;
+              return (
+                <div 
+                  key={index}
+                  className="flex items-start gap-3 p-3 rounded-xl bg-gray-800/30 hover:bg-gray-800/50 transition-colors group"
+                >
+                  <div className="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
+                    <Icon className="w-5 h-5 text-orange-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold text-sm">{block.title}</h4>
+                    <p className="text-xs text-gray-400">{block.description}</p>
+                    <p className="text-[10px] text-gray-500 mt-0.5">{block.detail}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
+      </div>
 
-        <div className="links py-4 px-6 md:px-0">
-          <div className="container mx-auto flex flex-col items-center">
-            <div className="flex flex-wrap justify-center space-x-4 md:flex-col md:items-start md:mr-8 md:space-y-4">
-              <li className="list-none">
-                <Link href="/">
-                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                    Главная
-                  </div>
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link href={"/price"}>
-                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                    Прайс
-                  </div>
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link href="/about">
-                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                    О нас
-                  </div>
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link href="/cart">
-                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                    Корзина
-                  </div>
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link href="/invoice">
-                  <div className="text-base font-semibold hover:text-orange-500 transition-transform duration-200 transform hover:translate-y-[-2px]">
-                    Накладная
-                  </div>
-                </Link>
-              </li>
+      {/* ===== НИЖНИЙ БАР ===== */}
+      <div className="bg-gray-950">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+            <p className="text-xs text-gray-500">
+              © {currentYear} Рязанская молочная ферма Заокское. 
+              <span className="hidden sm:inline"> Все права защищены.</span>
+            </p>
+            
+            <div className="flex items-center gap-4 text-xs">
+              <span className="text-gray-600">|</span>
+              <span className="text-gray-500">
+                Разработка: 
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-orange-400 transition-colors ml-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WRDev v{packageJson.version}
+                </a>
+              </span>
             </div>
           </div>
         </div>
-
-
-
-
-
-      </Container>
-      <footer className="bg-neutral-200 text-center lg:text-left dark:bg-neutral-700 text-sm">
-        <div className="p-2 text-neutral-700 dark:text-neutral-200 text-center ">
-          &copy; {new Date().getFullYear()} WR Shop. All rights reserved.&nbsp;
-          <a
-            href="#"
-            className="text-neutral-800 dark:text-neutral-400"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WRDev v{packageJson.version}
-          </a>
-        </div>
-      </footer>
-    </div>
-
+      </div>
+    </footer>
   );
 };
 
