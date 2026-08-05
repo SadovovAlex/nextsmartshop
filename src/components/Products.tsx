@@ -1,4 +1,4 @@
-// Products.tsx - Улучшенная версия с поддержкой hide и админ-режима
+// Products.tsx - Исправленная версия с кликабельными скрытыми карточками
 import { getProducts } from "@/helpers";
 import React, { useEffect, useState, useMemo } from "react";
 import Container from "./Container";
@@ -149,7 +149,7 @@ const Products: React.FC<ProductsProps> = ({ searchTerm, categories = [] }) => {
             <span className="text-lg">👀</span>
             <span>
               Вы видите все товары, включая скрытые. 
-              Скрытые товары отмечены значком 
+              Скрытые товары отмечены затемнением и надписью
               <span className="inline-flex items-center gap-1 mx-1 px-2 py-0.5 bg-gray-200 rounded-full text-xs">
                 <span className="w-2 h-2 bg-gray-400 rounded-full" />
                 Скрыт
@@ -191,10 +191,10 @@ const Products: React.FC<ProductsProps> = ({ searchTerm, categories = [] }) => {
                       }}
                     >
                       {item.hide === 1 && admin ? (
-                        // Скрытый товар - затемненная карточка с оверлеем
-                        <div className="relative">
-                          {/* Полупрозрачный серый оверлей */}
-                          <div className="absolute inset-0 bg-gray-400/50 backdrop-blur-[1px] rounded-2xl z-10 flex items-center justify-center">
+                        // Скрытый товар - затемненная карточка с оверлеем, но кликабельная
+                        <div className="relative cursor-pointer">
+                          {/* Полупрозрачный серый оверлей - НЕ БЛОКИРУЕТ КЛИКИ */}
+                          <div className="absolute inset-0 bg-gray-400/30 backdrop-blur-[0.5px] rounded-2xl z-10 pointer-events-none flex items-center justify-center">
                             <span className="bg-gray-700/80 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
                               <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
                               Скрыт
@@ -241,10 +241,10 @@ const Products: React.FC<ProductsProps> = ({ searchTerm, categories = [] }) => {
             }}
           >
             {item.hide === 1 && admin ? (
-              // Скрытый товар - затемненная карточка с оверлеем
-              <div className="relative">
-                {/* Полупрозрачный серый оверлей */}
-                <div className="absolute inset-0 bg-gray-400/50 backdrop-blur-[1px] rounded-2xl z-10 flex items-center justify-center">
+              // Скрытый товар - затемненная карточка с оверлеем, но кликабельная
+              <div className="relative cursor-pointer">
+                {/* Полупрозрачный серый оверлей - НЕ БЛОКИРУЕТ КЛИКИ */}
+                <div className="absolute inset-0 bg-gray-400/30 backdrop-blur-[0.5px] rounded-2xl z-10 pointer-events-none flex items-center justify-center">
                   <span className="bg-gray-700/80 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
                     <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
                     Скрыт
