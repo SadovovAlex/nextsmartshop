@@ -1,4 +1,5 @@
-// Menu.tsx - С корзиной
+// src/components/Menu.tsx
+
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
@@ -21,7 +22,6 @@ import AdminLoginForm from "./AdminLoginForm";
 import { usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
 import { StateProps } from "../../type";
-import FormattedPrice from "./FormattedPrice";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Menu = () => {
@@ -100,10 +100,8 @@ const Menu = () => {
       >
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            {/* Логотип */}
-            <Link href="/" className="flex-shrink-0">
-              <Logo />
-            </Link>
+            {/* Логотип - используем компонент Logo без дополнительной обертки */}
+            <Logo />
 
             {/* Десктопное меню */}
             <nav className="hidden md:flex items-center space-x-1">
