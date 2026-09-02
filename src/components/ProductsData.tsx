@@ -59,7 +59,7 @@ const ProductsData = ({ item }: ItemProps) => {
               {item?.ingredients || "Состав не указан"}
             </div>
           </div>
-          
+
           <div className="flex flex-col space-y-3 mt-auto">
             <div className="flex items-center justify-between">
               {parseFloat(discountPercentage) > 0 && (
@@ -80,23 +80,26 @@ const ProductsData = ({ item }: ItemProps) => {
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-center justify-between">
               {/* Иконки звезд */}
               <div className="flex items-center gap-x-1">{startArray}</div>
               {/* Кнопка добавления в корзину */}
               <button
-                onClick={() =>
-                  dispatch(addToCart(item)) &&
-                  toast.success(
-                    `+1 ${item?.title.substring(0, 30)}\nдобавлен в корзину`
-                  )
-                }
+                onClick={() => {
+                  // Создаем новый объект с quantity = 1
+                  const cartItem = {
+                    ...item,
+                    quantity: 1
+                  };
+                  dispatch(addToCart(cartItem));
+                  toast.success(`+1 ${item?.title.substring(0, 30)}\nдобавлен в корзину`);
+                }}
                 className="bg-orange-600 px-4 py-2 text-sm tracking-wide rounded-full text-slate-100 hover:bg-orange-800 hover:text-white duration-200"
               >
                 В корзину
               </button>
-              
+
             </div>
           </div>
         </div>
