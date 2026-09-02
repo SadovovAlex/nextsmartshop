@@ -1,4 +1,5 @@
-// BannerStatic.tsx - С поддержкой скрытия
+// src/components/BannerStatic.tsx - Компактная версия
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -6,33 +7,48 @@ import bannerone from "@/images/bannerone.webp";
 import bannertwo from "@/images/bannertwo.webp";
 import bannerthree from "@/images/bannerthree.webp";
 import Image from "next/image";
-import BannerText from "./BannerText";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { FiArrowRight, FiPhone } from "react-icons/fi";
+import { CONTACT } from "@/constants/text";
 
 interface BannerProps {
-  hide?: boolean; // Добавляем опцию скрытия
+  hide?: boolean;
 }
 
 const Banner = ({ hide = false }: BannerProps) => {
   const banners = [
-    { image: bannerone, alt: 'Рязанская молочная ферма Заокское', title: 'Рязанская молочная ферма Заокское' },
-    { image: bannertwo, alt: 'Молоко и продукция из натурального молока', title: 'Творог и творожная продукция Рязани' },
-    { image: bannerthree, alt: 'Продукция из натурального молока', title: 'Домашняя Молочная продукция из Рязани' },
+    { 
+      image: bannerone, 
+      alt: 'Рязанская молочная ферма Заокское', 
+      title: 'Натуральная молочная продукция',
+      subtitle: 'Рязанская молочная ферма Заокское'
+    },
+    { 
+      image: bannertwo, 
+      alt: 'Молоко и продукция из натурального молока', 
+      title: 'Творог и творожная продукция',
+      subtitle: 'Домашний вкус из Рязани'
+    },
+    { 
+      image: bannerthree, 
+      alt: 'Продукция из натурального молока', 
+      title: 'Свежее молоко каждый день',
+      subtitle: 'От производителя с любовью'
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Автопереключение
   useEffect(() => {
-    if (!isAutoPlaying || hide) return; // Останавливаем автоплей если баннер скрыт
+    if (!isAutoPlaying || hide) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % banners.length);
     }, 5000);
     return () => clearInterval(interval);
   }, [isAutoPlaying, hide, banners.length]);
 
-  // Ручное переключение
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
     setIsAutoPlaying(false);
@@ -62,7 +78,7 @@ const Banner = ({ hide = false }: BannerProps) => {
           transition={{ duration: 0.5, ease: 'easeInOut' }}
           className="relative w-full overflow-hidden"
         >
-          <div className="relative w-full xs:h-[300px] md:h-[450px] lg:h-[500px]">
+          <div className="relative w-full xs:h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
@@ -79,45 +95,88 @@ const Banner = ({ hide = false }: BannerProps) => {
                   priority
                   quality={90}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
               </motion.div>
             </AnimatePresence>
 
-            {/* Текст баннера */}
-            <BannerText title={currentBanner.title} />
+            {/* КОМПАКТНЫЙ ТЕКСТ БАННЕРА */}
+            <div className="absolute inset-0 flex items-center">
+              <div className="container mx-auto px-4 sm:px-6">
+                <div className="max-w-2xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  >
+                    {/* Бейдж */}
+                    <span className="inline-block bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                      🔥 Только свежие продукты
+                    </span>
+                    
+                    {/* Заголовок */}
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-2">
+                      {currentBanner.title}
+                    </h1>
+                    
+                    {/* Подзаголовок */}
+                    <p className="text-sm sm:text-base text-white/90 mb-4">
+                      {currentBanner.subtitle}
+                    </p>
+                    
+                    {/* Кнопки */}
+                    <div className="flex flex-wrap gap-3">
+                      <Link
+                        href="#products"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-all duration-300 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 text-sm"
+                      >
+                        Смотреть каталог
+                        <FiArrowRight className="w-4 h-4" />
+                      </Link>
+                      <a
+                        href={`tel:${CONTACT.PHONE}`}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-semibold rounded-full transition-all duration-300 text-sm border border-white/30"
+                      >
+                        <FiPhone className="w-4 h-4" />
+                        {CONTACT.PHONE_FORMATTED}
+                      </a>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
 
-            {/* Индикаторы */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            {/* Индикаторы - компактные */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
               {banners.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`transition-all duration-300 rounded-full ${
                     currentIndex === index
-                      ? 'w-8 h-2.5 bg-white'
-                      : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
+                      ? 'w-6 h-1.5 bg-white'
+                      : 'w-1.5 h-1.5 bg-white/40 hover:bg-white/60'
                   }`}
                   aria-label={`Перейти к слайду ${index + 1}`}
                 />
               ))}
             </div>
 
-            {/* Кнопки навигации */}
+            {/* Кнопки навигации - компактные */}
             <button
               onClick={goToPrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/40 transition-colors text-white"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-1.5 sm:p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/30 transition-colors text-white"
               aria-label="Предыдущий слайд"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/40 transition-colors text-white"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-1.5 sm:p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/30 transition-colors text-white"
               aria-label="Следующий слайд"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>

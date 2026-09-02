@@ -52,7 +52,7 @@ const Logo = () => {
         <div className="flex flex-col min-w-0 max-w-[160px] md:max-w-[250px]">
           {/* Название фермы */}
           <div className="hidden sm:block truncate">
-            <h1 className={`text-[10px] md:text-xs font-bold text-gray-800 transition-colors duration-300 whitespace-nowrap ${
+            <h1 className={`text-[10px] md:text-xs font-bold text-gray-400 transition-colors duration-300 whitespace-nowrap ${
               isHovered ? 'text-orange-500' : ''
             }`}>
               Рязанская молочная ферма
