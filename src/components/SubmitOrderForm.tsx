@@ -32,6 +32,7 @@ const SubmitOrderForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "ryazantvorog@gmail.com",
+    contact: "",
     message: "",
   });
 
@@ -170,7 +171,7 @@ const SubmitOrderForm = () => {
         // Сброс корзины после успешной отправки формы
         dispatch(resetCart());
         // Сброс данных формы
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "ryazantvorog@gmail.com", contact: "", message: "" });
         // Скрытие формы
         setFormVisible(false);
         // Дополнительные действия после успешной отправки формы
@@ -213,6 +214,18 @@ const SubmitOrderForm = () => {
               className="border border-gray-300 p-2 rounded"
               value={formData.name}
               onChange={handleInputChange}
+              required
+            />
+
+            <input
+              type="text"
+              name="contact"
+              placeholder="Телефон или Email для связи"
+              className="border border-gray-300 p-2 rounded"
+              value={formData.contact}
+              onChange={handleInputChange}
+              pattern="(\+?[0-9][0-9\s\-\(\)]{6,19})|([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})"
+              title="Укажите телефон или email"
               required
             />
 

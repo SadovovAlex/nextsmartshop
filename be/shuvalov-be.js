@@ -1,10 +1,15 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const adminRoutes = require('./admin-login');
 
 const app = express();
+
+// 2. PORT теперь читается ПОСЛЕ загрузки .env
 const PORT = process.env.PORT || 3001;
+
 
 // Настройка CORS
 app.use(cors({
@@ -69,7 +74,11 @@ app.get('/api/products/:id', (req, res) => {
 });
 
 app.post('/api/send-email', (req, res) => {
-  const { name, email, message, table, tablestyle } = req.body;
+  const { name, email, contact, message, table, tablestyle } = req.body;
+
+  if (!contact || !String(contact).trim()) {
+    return res.status(400).json({ message: 'Не указан телефон или email для связи' });
+  }
 
   const emailLogin = process.env.EMAIL_LOGIN;
   const emailPassword = process.env.EMAIL_PASSWORD;
@@ -93,7 +102,7 @@ app.post('/api/send-email', (req, res) => {
     subject: `Новый заказ от ${name}`,
     text: `
       Name: ${name}
-      Email: ${email}
+      Телефон/Email для связи: ${contact}
       Message: ${message}
     `,
     html: `
@@ -103,7 +112,7 @@ app.post('/api/send-email', (req, res) => {
         </head>
         <body>
           <h2>Новый заказ от ${name}</h2>
-          <BR>Email: ${email}
+          <BR>Телефон/Email для связи: ${contact}
           <BR>Сообщение к заказу: ${message}
           <BR>
           <h2>Информация о заказе:</h2>
@@ -127,6 +136,7 @@ app.post('/api/send-email', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
   console.log(`email:${process.env.EMAIL_LOGIN}`);
+  console.log(`pass set: ${process.env.EMAIL_PASSWORD ? 'yes (' + process.env.EMAIL_PASSWORD.length + ' chars)' : 'NO'}`);
 
 
 });
