@@ -55,7 +55,7 @@ const ProductsData = ({ item }: ItemProps) => {
                 {item?.cat_name}
               </div>
             </div>
-            <div className="text-sm text-gray-600 min-h-[1.25rem] flex items-center">
+            <div className="text-sm text-gray-600 min-h-[1.25rem] leading-5 line-clamp-1">
               {item?.ingredients || "Состав не указан"}
             </div>
           </div>
